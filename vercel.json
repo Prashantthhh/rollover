@@ -1,0 +1,133 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "headers": [
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(img|video)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/icon.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/Comp",
+      "destination": "/#menu",
+      "permanent": true
+    },
+    {
+      "source": "/Comp/:id",
+      "destination": "/#menu",
+      "permanent": true
+    },
+    {
+      "source": "/Events",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Outdoor",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Instore",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/About",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ContactUs",
+      "destination": "/#visit",
+      "permanent": true
+    },
+    {
+      "source": "/image",
+      "destination": "/#gallery",
+      "permanent": true
+    },
+    {
+      "source": "/Blogcont",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/NewArrivals",
+      "destination": "/#specials",
+      "permanent": true
+    },
+    {
+      "source": "/offers",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Feedback",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Subscription",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Nutrition",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Ingredients",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Categories",
+      "destination": "/#menu",
+      "permanent": true
+    },
+    {
+      "source": "/Ambassador",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

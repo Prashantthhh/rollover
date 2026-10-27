@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens: retro Indian ice cream parlour ----------
+   Three flat colours only: brand pink, cream, deep maroon. No gradients, no tints, no soft shadows.
+   Maroon on pink and pink on maroon are both ~4.5:1 (AA for any size); maroon on cream and cream on maroon are ~15:1. */
+@theme {
+  --color-pink: #eb3592;
+  --color-cream: #fef2f3;
+  --color-maroon: #340a1b;
+  /* Older names still used by sections that have not been redesigned yet, mapped onto the three flats. */
+  --color-ink: #340a1b;
+  --color-pink-soft: #fef2f3;
+  --color-sun: #fef2f3;
+
+  --font-display: var(--font-shrikhand), "Arial Black", system-ui, sans-serif;
+  --font-sans: var(--font-archivo), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-pop: 4px 4px 0 var(--color-maroon);
+  --shadow-pop-lg: 8px 8px 0 var(--color-maroon);
+}
+
+html { scroll-padding-top: 5rem; font-synthesis: none; } /* Shrikhand has one weight: never fake a bold */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+html, body { overflow-x: clip; }
+body {
+  background: var(--color-cream);
+  color: var(--color-maroon);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible { outline: 3px solid var(--color-maroon); outline-offset: 3px; }
+.dark-block :focus-visible { outline-color: var(--color-cream); } /* focus ring that shows on maroon */
+
+/* ---------- Components ---------- */
+/* Buttons are square blocks with a hard offset shadow; .btn-pill is the one rounded variant. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 3rem; padding: 0.6rem 1.4rem; white-space: nowrap;
+  border: 3px solid var(--color-maroon); border-radius: 0;
+  font-family: var(--font-sans); font-weight: 700; font-size: 1.2rem; line-height: 1; letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--color-maroon); box-shadow: 5px 5px 0 var(--color-maroon); cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-pill { border-radius: 999px; }
+.btn-pink { background: var(--color-pink); }
+.btn-cream, .btn-sun { background: var(--color-cream); }
+.btn-maroon { background: var(--color-maroon); color: var(--color-cream); }
+@media (prefers-reduced-motion: no-preference) {
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--color-maroon); }
+  .btn:active { transform: translate(4px, 4px); box-shadow: 1px 1px 0 var(--color-maroon); }
+}
+.dark-block .btn { box-shadow: 5px 5px 0 var(--color-pink); border-color: var(--color-cream); }
+
+/* ---------- Word rise (shared by RiseWords and SplitHeading) ---------- */
+.word-mask {
+  display: inline-block; overflow: hidden; vertical-align: bottom;
+  /* room for descenders and tape padding without changing layout */
+  padding: 0.05em 0.14em 0.16em; margin: -0.05em -0.14em -0.16em;
+}
+.tape { background: var(--color-cream); }
+.word-rise { display: inline-block; animation: word-rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both; animation-delay: calc(0.1s + var(--i, 0) * 55ms); }
+@keyframes word-rise { from { transform: translateY(105%); } to { transform: none; } }
+
+/* ---------- Hero: full-bleed video shrinks into an arched window as you scroll ----------
+   One number drives it all: --p (0 = start, 1 = framed). HeroScrub writes --p from scroll progress.
+   The frame rectangle is defined once (--ft/--fr/--fb/--fl, % of the stage) and the clip-path insets are
+   interpolated from the start inset (--st/--sr/--sb/--sl) to that frame, so the video always lands inside the
+   maroon frame. The top corners curve into an arch (p squared, so the curve only appears late); the bottom stays square.
+   Phones: edge-to-edge start, headline block above the stage (scrolls away), shorter runway.
+   Desktop: start inset to <=1200px wide, text pinned on top. */
+.hero-wrap { --stage: max(36rem, calc(100svh - 4rem)); --d: 51svh; position: relative; }
+.hero-text { position: relative; z-index: 10; pointer-events: none; }
+.hero-runway { height: var(--d); }
+.hero-stage {
+  --p: 0; --pad: 12px;
+  --ft: 12%; --fr: 6%; --fb: 8%; --fl: 6%;
+  --st: 0px; --sr: 0px; --sb: 0px; --sl: 0px;
+  position: sticky; top: 4rem; height: var(--stage); background: var(--color-cream);
+}
+@media (min-width: 768px) {
+  .hero-wrap { --d: 85svh; }
+  /* text and stage share one grid area that spans stage + runway, so both stay pinned for the same distance
+     and leave together */
+  .hero-wrap { display: grid; grid-template-rows: var(--stage) var(--d); }
+  .hero-text, .hero-stage { grid-area: 1 / 1 / 3 / 2; align-self: start; }
+  .hero-runway { grid-area: 2 / 1; }
+  .hero-text { position: sticky; top: 4rem; height: var(--stage); }
+  .hero-stage {
+    --ft: 6%; --fr: 4%; --fb: 8%; --fl: 54%;
+    --st: 0px; --sb: 0px; --sr: max(0px, calc((100% - 1200px) / 2)); --sl: var(--sr);
+  }
+}
+.hero-frame { position: absolute; top: var(--ft); right: var(--fr); bottom: var(--fb); left: var(--fl); border-radius: 999px 999px 0 0; }
+/* the hard offset "shadow" is a flat pink copy of the frame, shifted */
+.hero-frame-offset { transform: translate(14px, 14px); }
+.hero-clip {
+  position: absolute; inset: 0; overflow: hidden;
+  clip-path: inset(
+    calc(var(--st) + var(--p) * (var(--ft) + var(--pad) - var(--st)))
+    calc(var(--sr) + var(--p) * (var(--fr) + var(--pad) - var(--sr)))
+    calc(var(--sb) + var(--p) * (var(--fb) + var(--pad) - var(--sb)))
+    calc(var(--sl) + var(--p) * (var(--fl) + var(--pad) - var(--sl)))
+    round calc(var(--p) * var(--p) * 999px) calc(var(--p) * var(--p) * 999px) 0 0
+  );
+}
+/* frame parts appear once the video is nearly home; doodles fade in with them */
+.hero-frame-bg { opacity: clamp(0, calc((var(--p) - 0.5) * 4), 1); }
+.hero-pop { opacity: clamp(0, calc((var(--p) - 0.8) * 5), 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .word-rise { animation: none; }
+  /* no pin, no scrub: show the finished (framed) state */
+  .hero-runway { display: none; }
+  .hero-wrap { grid-template-rows: var(--stage); }
+  .hero-text, .hero-stage { grid-area: 1 / 1; }
+  .hero-stage { position: relative; top: 0; --p: 1 !important; }
+  .hero-text { position: relative; top: 0; }
+}
+
+/* ---------- Step art (How rolls are made): SVG + CSS, transform/opacity only ---------- */
+.art * { transform-box: fill-box; transform-origin: center; }
+.art[data-active="true"] .a-stream { transform-origin: 50% 0%; animation: art-pour 3s ease-in-out infinite; }
+.art[data-active="true"] .a-puddle { animation: art-puddle 3s ease-in-out infinite; }
+.art[data-active="true"] .a-jug { transform-origin: 30% 80%; animation: art-jug 3s ease-in-out infinite; }
+.art[data-active="true"] .a-chop-a { transform-origin: 50% 100%; animation: art-chop 0.9s ease-in-out infinite alternate; }
+.art[data-active="true"] .a-chop-b { transform-origin: 50% 100%; animation: art-chop 0.9s ease-in-out 0.45s infinite alternate; }
+.art[data-active="true"] .a-top { animation: art-drop 3s ease-in 1 both; animation-iteration-count: infinite; animation-delay: var(--d, 0s); }
+.art[data-active="true"] .a-sheet { transform-origin: 0% 50%; animation: art-sheet 3.2s ease-in-out infinite; }
+.art[data-active="true"] .a-spread { animation: art-sweep 1.6s ease-in-out infinite alternate; }
+.art[data-active="true"] .a-spark { animation: art-twinkle 1.8s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.art[data-active="true"] .a-roll { animation: art-roll 3.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite both; }
+.art[data-active="true"] .a-roll-2 { animation-delay: 0.35s; }
+.art[data-active="true"] .a-roll-3 { animation-delay: 0.7s; }
+.art[data-active="true"] .a-push { animation: art-push 3.6s ease-in-out infinite; }
+.art[data-active="true"] .a-drizzle { animation: art-fade 3.6s ease-in-out infinite; }
+@keyframes art-pour { 0%, 8% { transform: scaleY(0); } 28%, 72% { transform: scaleY(1); } 88%, 100% { transform: scaleY(0); transform-origin: 50% 100%; } }
+@keyframes art-puddle { 0%, 10% { transform: scale(0.15); } 45%, 90% { transform: scale(1); } 100% { transform: scale(0.15); } }
+@keyframes art-jug { 0%, 6% { transform: rotate(0); } 24%, 76% { transform: rotate(-8deg); } 94%, 100% { transform: rotate(0); } }
+@keyframes art-chop { from { transform: translateY(-6px) rotate(-4deg); } to { transform: translateY(14px) rotate(4deg); } }
+@keyframes art-drop { 0% { transform: translateY(-34px); opacity: 0; } 20% { opacity: 1; } 40%, 85% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(0); opacity: 0; } }
+@keyframes art-sheet { 0%, 8% { transform: scaleX(0.28) scaleY(1.7); } 55%, 90% { transform: scaleX(1) scaleY(1); } 100% { transform: scaleX(0.28) scaleY(1.7); } }
+@keyframes art-sweep { from { transform: translateX(-84px) rotate(14deg); } to { transform: translateX(84px) rotate(14deg); } }
+@keyframes art-twinkle { 0%, 100% { transform: scale(0.6) rotate(0); opacity: 0.4; } 50% { transform: scale(1.15) rotate(20deg); opacity: 1; } }
+@keyframes art-roll { 0% { transform: translateX(70px) scaleX(0.4); opacity: 0; } 22%, 86% { transform: none; opacity: 1; } 100% { transform: translateX(-6px); opacity: 0; } }
+@keyframes art-push { 0%, 6% { transform: translateX(26px) rotate(-24deg); } 24%, 100% { transform: translateX(-18px) rotate(-24deg); } }
+@keyframes art-fade { 0%, 30% { opacity: 0; } 50%, 86% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ---------- Photo marquee (CSS loop; direction handled in PhotoMarquee.tsx) ---------- */
+.marquee-track { animation: marquee 36s linear infinite; }
+.marquee-viewport:hover .marquee-track, .marquee-viewport:focus-within .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (min-width: 640px) { .marquee-track { animation-duration: 42s; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .art *, .marquee-track { animation: none !important; }
+  /* no pinned card swap: the stacked version is the only one */
+  .steps-pinned { display: none !important; }
+  .steps-stacked-wrap { display: block !important; }
+  .steps-stacked { display: block !important; }
+  /* the photo strip becomes a plain swipeable row */
+  .marquee-viewport { overflow-x: auto; }
+  .marquee-clone, .marquee-pause { display: none; }
+}
+
+/* ---------- Menu cards: entrance only after a tab switch (CSS, no per-card JS) ---------- */
+[data-fresh="true"] .menu-card { animation: card-in 0.35s cubic-bezier(0.22, 0.61, 0.36, 1) both; animation-delay: min(calc(var(--i) * 30ms), 300ms); }
+@keyframes card-in { from { opacity: 0; transform: translateY(12px); } }
+@media (prefers-reduced-motion: reduce) { [data-fresh="true"] .menu-card { animation: none; } }
+
+/* ---------- Below-the-fold sections: skip layout/paint until near the viewport ----------
+   Cuts the first layout pass (the biggest main-thread cost on a throttled phone). `auto` in
+   contain-intrinsic-size remembers the real height once a section has rendered. HashNav.tsx switches this
+   off briefly for in-page jumps so they land exactly. */
+.cv { content-visibility: auto; contain-intrinsic-size: auto 1800px; }
+.cv-off .cv { content-visibility: visible; }
+
+/* ---------- Offers bottom sheet ---------- */
+dialog.offers-sheet::backdrop { background: rgba(31, 20, 25, 0.6); }
+dialog.offers-sheet[open] { animation: sheet-up 0.32s cubic-bezier(0.22, 0.61, 0.36, 1); }
+@keyframes sheet-up { from { transform: translateY(40px); opacity: 0; } }
+html.has-dialog { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { dialog.offers-sheet[open] { animation: none; } }
+
+/* ---------- Footer awning ----------
+   The page ends in a straight edge; the maroon footer hangs below it under a scalloped shop awning (alternating pink and
+   cream stripes, outlined in maroon). The awning is a flat repeating SVG tile, and the footer content slides out from under it
+   (Footer.tsx). overflow: clip (not hidden) on main so position: sticky inside the page keeps working. */
+.curtain-main { position: relative; z-index: 1; background: var(--color-cream); overflow: clip; }
+.curtain-footer { z-index: 0; overflow: hidden; }
+.awning {
+  position: absolute; left: 0; right: 0; top: 0; z-index: 2; height: 4rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='64'%3E%3Cpath d='M1.5 0V30a30.5 30.5 0 0 0 61 0V0Z' fill='%23eb3592' stroke='%23340a1b' stroke-width='3'/%3E%3Cpath d='M65.5 0V30a30.5 30.5 0 0 0 61 0V0Z' fill='%23fef2f3' stroke='%23340a1b' stroke-width='3'/%3E%3C/svg%3E") repeat-x top left / 128px 64px;
+}
+@media (prefers-reduced-motion: reduce) { .curtain-footer { overflow: visible; } }
+
+/* ---------- Film strip (photo strip) ----------
+   Perforations are a repeating flat SVG (no gradients) along the top and bottom of every frame, so they move with the film. */
+.film-frame::before, .film-frame::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 22px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='22'%3E%3Crect x='7' y='5' width='14' height='12' rx='2' fill='%23fef2f3'/%3E%3C/svg%3E") repeat-x;
+}
+.film-frame::before { top: 4px; }
+.film-frame::after { bottom: 4px; }
+
+/* ---------- Menu board: the photo window follows the active row (--active is set by MenuBoard) ----------
+   opacity = 1 when --i equals --active, else 0, using (a-b)^2 so no per-index rules are needed. */
+.board-shot { opacity: clamp(0, calc(1 - (var(--i) - var(--active)) * (var(--i) - var(--active))), 1); transition: opacity 0.2s ease; }
+.board-window { box-shadow: 10px 10px 0 var(--color-pink); border-bottom-right-radius: 5rem; overflow: hidden; }
+.board-row::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--color-pink);
+  opacity: clamp(0, calc(1 - (var(--i) - var(--active)) * (var(--i) - var(--active))), 1);
+}
+@media (max-width: 1023px) { .board-row::before { display: none; } }
+@media (prefers-reduced-motion: reduce) { .board-shot { transition: none; } }

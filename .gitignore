@@ -1,0 +1,33 @@
+# dependencies and build output
+node_modules/
+.next/
+out/
+.vercel/
+next-env.d.ts
+
+# env files (the template .env.example is committed)
+.env*
+!.env.example
+
+# reference material (studied for motion only, never imported or deployed)
+reference/
+
+# extracted code of the previous site
+old-site/
+
+# raw / unshipped media
+source-assets/_not-shipped/
+source-assets/cutouts/
+source-assets/menu/
+source-assets/offers/
+source-assets/vibe/
+source-assets/video/
+
+# local QA output
+screenshots/
+.lighthouse/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,608 @@
+{
+  "categories": [
+    {
+      "id": "ice-cream-rolls",
+      "title": "Ice Cream Rolls",
+      "blurb": "Hand-rolled on a freezing plate, right in front of you.",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Guava Chilli",
+          "price": 125,
+          "veg": true,
+          "desc": "Combination of vanilla creamy milk base and guava, twist of chilli tangles your taste buds.",
+          "image": "/img/menu/ice-cream-rolls-roll1.webp"
+        },
+        {
+          "name": "Oreo Overload",
+          "price": 125,
+          "veg": true,
+          "desc": "Oreo mashed with vanilla creamy milk and topped with chocolate sauce and oreo crumbs.",
+          "image": "/img/menu/ice-cream-rolls-roll2.webp"
+        },
+        {
+          "name": "Cheese Pineapple Cherry",
+          "price": 125,
+          "veg": true,
+          "desc": "A twist of cheese and pineapple combinedly mashed with vanilla creamy milk base, topped with fresh pineapple.",
+          "image": null
+        },
+        {
+          "name": "Dry Fruit Kesari Twist",
+          "price": 125,
+          "veg": true,
+          "desc": "The vanilla creamy milk with a twist of saffron and Dry Fruits and topped with dry fruits.",
+          "image": "/img/menu/ice-cream-rolls-roll10.webp"
+        },
+        {
+          "name": "Blueberry Twist",
+          "price": 125,
+          "veg": true,
+          "desc": "Fresh berries mashed with vanilla milk, twist with blueberries on top.",
+          "image": "/img/menu/ice-cream-rolls-roll14.webp"
+        },
+        {
+          "name": "Fruit & nut",
+          "price": 125,
+          "veg": true,
+          "desc": "Dry Fruits mashed with a chocolate creamy milk  and topped with chocolate sauce and dry fruits.",
+          "image": "/img/menu/ice-cream-rolls-roll16.webp"
+        },
+        {
+          "name": "Choco Chip Cookie Dough",
+          "price": 125,
+          "veg": true,
+          "desc": "Mellow combo of chocolate, cookie dough, truffle paste served with choco chips and chocolate sauce.",
+          "image": "/img/menu/ice-cream-rolls-choco-chip-cookie-dough.webp"
+        },
+        {
+          "name": "Brownie Bomb",
+          "price": 125,
+          "veg": true,
+          "desc": "Fantasy richness with chocolate, brownie and truffle paste offered with chocolate sauce.",
+          "image": "/img/menu/ice-cream-rolls-bomb.webp"
+        },
+        {
+          "name": "Snicker",
+          "price": 125,
+          "veg": true,
+          "desc": "A snicker fest combined with peanut butter and chocolate sauce",
+          "image": null
+        },
+        {
+          "name": "Butterscotch Caramel Popcorn",
+          "price": 125,
+          "veg": true,
+          "desc": "Stunning flavors mashed with caramel popcorn, made with a quirky combo of butterscotch, vanilla and caramel.",
+          "image": null
+        },
+        {
+          "name": "Pista Nuts",
+          "price": 125,
+          "veg": true,
+          "desc": "The pistachio mashed with Pista ice cream, topped with nuts.",
+          "image": "/img/menu/ice-cream-rolls-pista-nuts-roll.webp"
+        }
+      ]
+    },
+    {
+      "id": "waffle-cones",
+      "title": "Waffle Cones",
+      "hidden": false,
+      "items": [
+        {
+          "name": "American Nuts",
+          "price": 70,
+          "veg": true,
+          "desc": "Taste the burst of flavors in waffle cone with creamy ice cream & choco chips.",
+          "image": "/img/menu/waffle-cones-cone1.webp"
+        },
+        {
+          "name": "Dry Fruit",
+          "price": 70,
+          "veg": true,
+          "desc": "A classic vanilla ice cream, loaded with nuts & mixed fruit jam in a waffle cone.",
+          "image": "/img/menu/waffle-cones-cone2.webp"
+        },
+        {
+          "name": "Pista",
+          "price": 70,
+          "veg": true,
+          "desc": "Pista ice cream, loaded with Pista nuts, served in a waffle cone with toppings.",
+          "image": "/img/menu/waffle-cones-cone3.webp"
+        },
+        {
+          "name": "Black Currant",
+          "price": 70,
+          "veg": true,
+          "desc": "Creamy blackcurrant ice cream in waffle cone with black raisins topping.",
+          "image": "/img/menu/waffle-cones-cone4.webp"
+        },
+        {
+          "name": "Chocolate",
+          "price": 70,
+          "veg": true,
+          "desc": "Choco-loaded chocolate scoop in waffle cone with chocolate sauce &  chips. ",
+          "image": "/img/menu/waffle-cones-cone5.webp"
+        },
+        {
+          "name": "Vanilla",
+          "price": 70,
+          "veg": true,
+          "desc": "A waffle cone overflowing with creamy vanilla, choc chips & colorful sprinklers.",
+          "image": "/img/menu/waffle-cones-cone6.webp"
+        },
+        {
+          "name": "Strawberry",
+          "price": 70,
+          "veg": true,
+          "desc": "A cone of pure joy with strawberry ice cream, choco chips, sauce & sprinkles.",
+          "image": "/img/menu/waffle-cones-cone7.webp"
+        },
+        {
+          "name": "Belgium chocolate",
+          "price": 70,
+          "veg": true,
+          "desc": "A rich Premium dark choco ice cream with chips, crispy waffle cone, choco sauce.",
+          "image": "/img/menu/waffle-cones-cone8.webp"
+        },
+        {
+          "name": "Butterscotch",
+          "price": 70,
+          "veg": true,
+          "desc": "Yummy creamy butterscotch loaded in a waffle cone with nuts & choco sauce.",
+          "image": "/img/menu/waffle-cones-cone9.webp"
+        },
+        {
+          "name": "Mango",
+          "price": 70,
+          "veg": true,
+          "desc": "Take a scoop of creamy mango goodness in a crispy waffle cone with sprinklers.",
+          "image": "/img/menu/waffle-cones-cone10.webp"
+        }
+      ]
+    },
+    {
+      "id": "shakes",
+      "title": "Shakes",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Oreo",
+          "price": 99,
+          "veg": true,
+          "desc": "Vanilla and chocolate ice cream with Oreo cookies, dairy milk, and truffle paste.",
+          "image": "/img/menu/shakes-oreo-shake.webp"
+        },
+        {
+          "name": "Kit kat",
+          "price": 99,
+          "veg": true,
+          "desc": "A chocoholic fantasy shake of luscious silky texture with crunchy kit kat bits.",
+          "image": "/img/menu/shakes-kit-kat-shake.webp"
+        },
+        {
+          "name": "Ferrero Rocher Shake",
+          "price": 99,
+          "veg": true,
+          "desc": "Take a sip of rich & Creamy shake with gentle hints of hazelnut & chocolate.",
+          "image": "/img/menu/shakes-ferrero-rocher-shake.webp"
+        },
+        {
+          "name": "Granola blueberry",
+          "price": 99,
+          "veg": true,
+          "desc": "A combo of granola and blueberry gives a crunchy twist to your taste buds.",
+          "image": "/img/menu/shakes-blueberry-shake.webp"
+        },
+        {
+          "name": "Caramel banana",
+          "price": 99,
+          "veg": true,
+          "desc": "A delicious quick burst of rich salted caramel ice cream and fresh banana.",
+          "image": "/img/menu/shakes-caramel-banana.webp"
+        },
+        {
+          "name": "Saffron Cream",
+          "price": 99,
+          "veg": true,
+          "desc": "Fantasy shake with Vanilla, saffron cream, almonds, cashews & dairy milk.",
+          "image": "/img/menu/shakes-saffron-cream.webp"
+        },
+        {
+          "name": "Cold coffee shake",
+          "price": 99,
+          "veg": true,
+          "desc": "Delicious & creamy mix of strong coffee and  vanilla ice cream, whole milk.",
+          "image": "/img/menu/shakes-cold-coffee-shake.webp"
+        },
+        {
+          "name": "Dairy Milk Shake",
+          "price": 99,
+          "veg": true,
+          "desc": "Dairy milk & chocolate ice cream blend with richness of milk & sauce topping.",
+          "image": "/img/menu/shakes-dairymilk-shake.webp"
+        },
+        {
+          "name": "Belgium Shake",
+          "price": 99,
+          "veg": true,
+          "desc": "Pure bliss of belgium ice cream and chocolate milkshake with choco chips.",
+          "image": "/img/menu/shakes-belgium-shake.webp"
+        },
+        {
+          "name": "Strawberry Rush Shake",
+          "price": 99,
+          "veg": true,
+          "desc": "Delicious cold drink made with strawberry ice cream and flavoring berry fruit.",
+          "image": "/img/menu/shakes-berry-rush-shake.webp"
+        }
+      ]
+    },
+    {
+      "id": "sundaes",
+      "title": "Exotic Sundaes",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Hot Chocolate Fudge",
+          "price": 125,
+          "veg": true,
+          "desc": "The classic sundae with vanilla ice cream, topped with peanut & choco sauce.",
+          "image": "/img/menu/sundaes-hot-choco-fuge.webp"
+        },
+        {
+          "name": "Soft Cake Fudge",
+          "price": 150,
+          "veg": true,
+          "desc": "Soft chocolate sponge topped onto vanilla ice cream and choco sauce.",
+          "image": "/img/menu/sundaes-soft-cake-fudge.webp"
+        },
+        {
+          "name": "Strawberry Sundae",
+          "price": 150,
+          "veg": true,
+          "desc": "A yummy strawberry ice cream topped with Melba sauce, crackers and jellies.",
+          "image": "/img/menu/sundaes-sundae-strawberry.webp"
+        },
+        {
+          "name": "Chocolate Nut Sundae",
+          "price": 160,
+          "veg": true,
+          "desc": "Indulge in double chocolate scoop with crunchy roasted nuts & heavenly sauce.",
+          "image": "/img/menu/sundaes-choco-nut-sundae.webp"
+        },
+        {
+          "name": "Butterscotch Sin",
+          "price": 160,
+          "veg": true,
+          "desc": "This double scoop is topped with butterscotch nuts, sauce, almonds & cashews.",
+          "image": "/img/menu/sundaes-butterscotch-sin.webp"
+        },
+        {
+          "name": "Brownie Surprise",
+          "price": 160,
+          "veg": true,
+          "desc": "Refreshing brownie twist with vanilla ice cream, choco sauce & choco chips.",
+          "image": "/img/menu/sundaes-browine-surprise.webp"
+        }
+      ]
+    },
+    {
+      "id": "gourmet-plates",
+      "title": "Gourmet Plates",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Mango Madness",
+          "price": 150,
+          "veg": true,
+          "desc": "Mango mousse served with mango rolls and finished off with some mango pulp.",
+          "image": "/img/menu/gourmet-plates-mango-madness.webp"
+        },
+        {
+          "name": "Lychee Rush",
+          "price": 150,
+          "veg": true,
+          "desc": "Lychee fruits served with lychee rolls and drowned with special cream sauce.",
+          "image": "/img/menu/gourmet-plates-lychee-rush.webp"
+        },
+        {
+          "name": "Choco Lava Therapy",
+          "price": 170,
+          "veg": true,
+          "desc": "Chocolate lava cake topped with our choco sauce and served with vanilla rolls.",
+          "image": "/img/menu/gourmet-plates-choco-lava-therapy.webp"
+        },
+        {
+          "name": "Strawberry Paradise",
+          "price": 170,
+          "veg": true,
+          "desc": "Strawberry mousse on sponge, served with rolls, rice crisps & cream sauce.",
+          "image": "/img/menu/gourmet-plates-strawberry-paradise.webp"
+        },
+        {
+          "name": "Devil's Chocolate",
+          "price": 180,
+          "veg": true,
+          "desc": "Rich Chocolate truffle rolls served with choco sauce & topped with choco chips.",
+          "image": "/img/menu/gourmet-plates-deveils-choco.webp"
+        }
+      ]
+    },
+    {
+      "id": "signatures",
+      "title": "Signatures",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Rollover's Chocolate Karma",
+          "price": 149,
+          "veg": true,
+          "desc": "Choco karma with churro crumbs, warm chocolate sauce, a teaser for taste.",
+          "image": "/img/menu/signatures-choco-karma.webp"
+        },
+        {
+          "name": "Rollover Skillet Cake",
+          "price": 149,
+          "veg": true,
+          "desc": "Warm and gooey skillet cookie cake served with vanilla ice cream & sauce.",
+          "image": "/img/menu/signatures-skillet-cake.webp"
+        },
+        {
+          "name": "Sizzling Brownie",
+          "price": 149,
+          "veg": true,
+          "desc": "Enjoy sinfully delicious brownie dessert with ice cream and hot fudge sauce.",
+          "image": "/img/menu/signatures-sizzling-brownie.webp"
+        }
+      ]
+    },
+    {
+      "id": "momos",
+      "title": "Momos",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Chicken Momos Fried",
+          "price": 99,
+          "veg": false,
+          "desc": "6 fried momos and zesty schezwan chutney will tantalise your taste buds.",
+          "image": "/img/menu/momos-chickenfried.webp"
+        },
+        {
+          "name": "Chicken Momos Steam",
+          "price": 99,
+          "veg": false,
+          "desc": "6 Steamy chicken momos, delicate perfection with bold schezwan chutney.",
+          "image": "/img/menu/momos-chicken-steamed.webp"
+        },
+        {
+          "name": "Peri Peri Chicken Fried",
+          "price": 99,
+          "veg": false,
+          "desc": "Satisfy spicy cravings with 6 peri peri chicken momos with schezwan chutney.",
+          "image": "/img/menu/momos-peri-peri-chickenfried.webp"
+        },
+        {
+          "name": "Peri Peri Chicken Steam",
+          "price": 99,
+          "veg": false,
+          "desc": "Perfect match with 6 peri peri chicken momos and schezwan chutney. ",
+          "image": "/img/menu/momos-peri-peri-chickensteamed.webp"
+        },
+        {
+          "name": "Paneer Momos Fried",
+          "price": 99,
+          "veg": true,
+          "desc": "Enjoy the rich, creamy flavor of 6 paneer momos with schezwan chutney.",
+          "image": "/img/menu/momos-panner-fried-momos.webp"
+        },
+        {
+          "name": "Paneer Momos Steam",
+          "price": 99,
+          "veg": true,
+          "desc": "6 Pieces paneer with other herbs steamed and served with Schezwan chutney.",
+          "image": "/img/menu/momos-panner-steamed.webp"
+        },
+        {
+          "name": "Mix Veg Momos Fried",
+          "price": 99,
+          "veg": true,
+          "desc": "Perfect balance of crisp and spice in 6 mixed veg momos with schezwan chutney.",
+          "image": "/img/menu/momos-mix-veg-fried.webp"
+        },
+        {
+          "name": "Mix Veg Momos Steam",
+          "price": 99,
+          "veg": true,
+          "desc": "Out burst the flavors with 6 veggie-filled steamed momos and chutney.",
+          "image": "/img/menu/momos-mix-veg-steamed.webp"
+        }
+      ]
+    },
+    {
+      "id": "munchies",
+      "title": "Munchies",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Chilli Garlic Potato Pops",
+          "price": 100,
+          "veg": true,
+          "desc": "16 pieces of Crunchy golden potato nuggets seasoned with chilli and garlic.",
+          "image": "/img/menu/munchies-potato-pops.webp"
+        },
+        {
+          "name": "Onion Rings",
+          "price": 100,
+          "veg": true,
+          "desc": "Enjoy the crispy outer layer and luscious softness of our 4 onion rings with ketchup.",
+          "image": "/img/menu/munchies-onionrings.webp"
+        },
+        {
+          "name": "Veg Nuggets",
+          "price": 100,
+          "veg": true,
+          "desc": "10 pieces of Potato nuggets with veggie and bold spices mix, crispy and delicious.",
+          "image": "/img/menu/munchies-veg-nuggets.webp"
+        },
+        {
+          "name": "Chicken Nuggets",
+          "price": 120,
+          "veg": false,
+          "desc": "8 pieces of deep fried crispy chicken nuggets with hint of salt and pepper.",
+          "image": "/img/menu/munchies-chickennuggets.webp"
+        },
+        {
+          "name": "Mr.Fries",
+          "price": 120,
+          "veg": true,
+          "desc": "The ultimate snack indulgence, perfectly dusted in your favorite seasoning.",
+          "image": "/img/menu/munchies-frenchfries.webp"
+        },
+        {
+          "name": "Chicken Popcorn",
+          "price": 125,
+          "veg": false,
+          "desc": "16-pieces of chicken popcorn, made with spices for a delicious twist.",
+          "image": "/img/menu/munchies-chickenpopcorn.webp"
+        },
+        {
+          "name": "Chicken Cheese Balls",
+          "price": 140,
+          "veg": false,
+          "desc": "8 Chicken spicy & cheesy balls, fried to perfection & tossed in rich spices.",
+          "image": "/img/menu/munchies-chickencheeseballs.webp"
+        },
+        {
+          "name": "Chicken Strips",
+          "price": 170,
+          "veg": false,
+          "desc": "4 pieces of Crunchy fried chicken fingers taste awesome with ketchup.",
+          "image": "/img/menu/munchies-strips.webp"
+        },
+        {
+          "name": "Chicken Wings",
+          "price": 180,
+          "veg": false,
+          "desc": "5 pieces of Chicken wings, spicy and fried chicken appetizer made with tossing.",
+          "image": "/img/menu/munchies-wings.webp"
+        },
+        {
+          "name": "Chicken Drumsticks Fried",
+          "price": 200,
+          "veg": false,
+          "desc": "4 pieces of our tasty, spicy and fried chicken drumettes, perfect for appetizers.",
+          "image": "/img/menu/munchies-drumsticks.webp"
+        }
+      ]
+    },
+    {
+      "id": "burgers",
+      "title": "Burgers",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Veg Cheese Burger",
+          "price": 110,
+          "veg": true,
+          "desc": "The ultimate veggie burger, with a seared patty, lettuce, cheese & mayo sauce.",
+          "image": "/img/menu/burgers-veg-cheeseburger.webp"
+        },
+        {
+          "name": "Chicken Cheese Burger",
+          "price": 140,
+          "veg": false,
+          "desc": "Savor the crunch with our crispy chicken patty burger topped with classic fixings.",
+          "image": "/img/menu/burgers-chicken-cheese.webp"
+        }
+      ]
+    },
+    {
+      "id": "sandwiches",
+      "title": "Sandwiches",
+      "hidden": false,
+      "items": [
+        {
+          "name": "Smoked Paneer Sandwich",
+          "price": 110,
+          "veg": true,
+          "desc": "Grilled paneer, marinated in tantalizing spice blend, smoky perfection.",
+          "image": "/img/menu/sandwiches-smoked-panner.webp"
+        },
+        {
+          "name": "Choco Cheese Sandwich",
+          "price": 110,
+          "veg": true,
+          "desc": "Relish the heavenly rich chocolate and savory cheese with our grilled sandwich.",
+          "image": "/img/menu/sandwiches-choco-cheese.webp"
+        },
+        {
+          "name": "Smoked Chicken Tikka Sandwich",
+          "price": 110,
+          "veg": false,
+          "desc": "The Classic combo of fresh veggies, bread & smoked chicken with perfect texture.",
+          "image": "/img/menu/sandwiches-smoked-chicken-tikka.webp"
+        },
+        {
+          "name": "Veg Cheese Sandwich",
+          "price": 110,
+          "veg": true,
+          "desc": "Perfectly Grilled veggies & cilantro chutney make for a taste sensation!",
+          "image": "/img/menu/sandwiches-veg-cheese-sandwich.webp"
+        }
+      ]
+    },
+    {
+      "id": "beverages",
+      "title": "Beverages",
+      "hidden": true,
+      "note": "HIDDEN: old-site data was placeholder (paneer sandwich copy/photo). Add real descriptions and photos, then set hidden:false.",
+      "items": [
+        {
+          "name": "Orange",
+          "price": 120,
+          "veg": true,
+          "desc": "[DESCRIPTION]",
+          "image": null
+        },
+        {
+          "name": "Strawberry",
+          "price": 120,
+          "veg": true,
+          "desc": "[DESCRIPTION]",
+          "image": null
+        },
+        {
+          "name": "Mojito",
+          "price": 120,
+          "veg": true,
+          "desc": "[DESCRIPTION]",
+          "image": null
+        },
+        {
+          "name": "Lime & Lemon",
+          "price": 120,
+          "veg": true,
+          "desc": "[DESCRIPTION]",
+          "image": null
+        },
+        {
+          "name": "Blueberry",
+          "price": 120,
+          "veg": true,
+          "desc": "[DESCRIPTION]",
+          "image": null
+        },
+        {
+          "name": "Jeera",
+          "price": 120,
+          "veg": true,
+          "desc": "[DESCRIPTION]",
+          "image": null
+        }
+      ]
+    }
+  ]
+}

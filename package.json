@@ -1,0 +1,35 @@
+{
+  "name": "rollover-warangal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/postbuild.mjs",
+    "start": "npx serve out",
+    "optimize-media": "node scripts/optimize-media.mjs",
+    "check": "node scripts/check-seo.mjs && node scripts/validate-jsonld.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "dependencies": {
+    "motion": "^14.7.1",
+    "next": "^15.5.28",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "axe-core": "^4.14.0",
+    "jsonld": "^9.0.0",
+    "postcss": "^8.5.30",
+    "schema-dts": "^2.1.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
