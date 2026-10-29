@@ -208,6 +208,10 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .veg-n { --vc: #9a3412; }
 
 @media (prefers-reduced-motion: reduce) {
+  .ph-par > img, .ph-frame:hover .ph-par > img { transition: none; transform: none; }
+  .ulink { transition: none; }
+  .btn { transition: none; }
+  .menu-li:hover .nm { transform: none; }
   .wipe-in, .fade-in { animation: none; }
   .step-cap, .step-cap h3 { transition: none; }
   .menu-row[open] .row-photo { animation: none; }

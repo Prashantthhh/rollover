@@ -7,8 +7,13 @@ export const site = {
   phone: "+91 86880 66805",
   phoneHref: "tel:+918688066805",
   whatsappHref: "https://wa.me/918688066805",
+  // Confirmed by the owner: the full address is "1-1-3&4, V S M Complex, Chaitanyapuri Colony, Prashanthnagar Colony,
+  // Hanamkonda 506004", landmark "Opposite Tara Gardens". Both colony names are correct, so both are shown.
   address: {
-    line: "1-1-3&4, V S M Complex, Chaitanyapuri Colony",
+    street: "1-1-3&4, V S M Complex",
+    area: "Chaitanyapuri Colony, Prashanthnagar Colony",
+    line: "1-1-3&4, V S M Complex, Chaitanyapuri Colony, Prashanthnagar Colony",
+    landmark: "Opposite Tara Gardens",
     locality: "Hanamkonda",
     region: "Telangana",
     postalCode: "506004",
@@ -56,3 +61,10 @@ export const site = {
  * openingHoursSpecification is put into the structured data. Set to true once the cafe confirms src/data/site.ts hours.
  */
 export const HOURS_CONFIRMED = false;
+
+/**
+ * The rating (4.2 stars, 1,300+ reviews) was read off the Google Maps listing on 27 Oct 2026 and has not been re-checked.
+ * While false, the places that show it carry a visible "[CONFIRM] rating" marker. Set to true after re-checking.
+ * scripts/check-confirm.mjs fails a production build while any "[CONFIRM" marker is on the page.
+ */
+export const RATING_CONFIRMED = false;

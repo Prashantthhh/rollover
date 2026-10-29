@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/postbuild.mjs",
+    "build": "next build && node scripts/postbuild.mjs && node scripts/check-confirm.mjs",
     "start": "npx serve out",
     "optimize-media": "node scripts/optimize-media.mjs",
     "check": "node scripts/check-seo.mjs && node scripts/validate-jsonld.mjs",

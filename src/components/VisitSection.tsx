@@ -29,14 +29,12 @@ export default function VisitSection() {
         <div className="mt-20 grid gap-x-8 gap-y-16 sm:mt-32 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="font-display text-[clamp(1.6rem,2.6vw,2.6rem)] leading-[1.15] tracking-[-0.02em]">
-              <em>Opposite Tara Gardens,</em> Prashanthnagar Colony, Hanamkonda.
+              <em>{a.landmark},</em> {a.area}, {a.locality}.
             </p>
             <address className="caption-i mt-8 not-italic leading-relaxed opacity-90">
-              {a.line}
+              {a.street}, {a.area}
               <br />
               {a.locality}, {a.region} {a.postalCode}
-              <br />
-              <span className="caption mt-2 inline-block normal-case tracking-normal">[CONFIRM] the street address: the old site lists Chaitanyapuri Colony; this page leads with &ldquo;opposite Tara Gardens, Prashanthnagar Colony&rdquo;.</span>
             </address>
 
             <dl className="mt-12 border-t border-current/60">

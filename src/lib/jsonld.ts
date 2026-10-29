@@ -32,6 +32,7 @@ export function localBusinessJsonLd(): WithContext<IceCreamShop> {
     servesCuisine: ["Ice cream", "Desserts", "Fast food"],
     menu: `${site.url}/#menu`,
     hasMap: site.maps.placeUrl,
+    disambiguatingDescription: site.address.landmark,
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.line,

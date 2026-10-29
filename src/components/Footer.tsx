@@ -31,11 +31,11 @@ export default function Footer() {
           <div>
             <h2 className="caption">Find us</h2>
             <address className="caption-i mt-4 not-italic leading-relaxed">
-              <em className="font-display text-xl not-italic">Opposite Tara Gardens</em>
+              <em className="font-display text-xl not-italic">{site.address.landmark}</em>
               <br />
-              Prashanthnagar Colony, Hanamkonda
+              {site.address.line}
               <br />
-              {site.address.line}, {site.address.postalCode}
+              {site.address.locality}, {site.address.region} {site.address.postalCode}
             </address>
             <p className="mt-4"><a className="caption ulink" href={site.maps.directionsUrl} target="_blank" rel="noopener noreferrer">Directions <span aria-hidden="true">↗</span></a></p>
           </div>

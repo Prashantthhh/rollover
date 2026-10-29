@@ -1,6 +1,6 @@
 import { categories, rupees } from "../data/menu";
 import menuData from "../data/menu.json";
-import { site } from "../data/site";
+import { RATING_CONFIRMED, site } from "../data/site";
 import HandDrawn from "./HandDrawn";
 import Photo from "./Photo";
 
@@ -72,7 +72,7 @@ export default function Intro() {
             <div className="border-t border-current/60 pt-3">
               <dt className="caption">On Google</dt>
               <dd className="mt-3 font-display text-[clamp(2.2rem,3.8vw,3.6rem)] leading-none"><span data-count={site.rating.value} data-decimals="1" className="tabular-nums">{site.rating.value.toFixed(1)}</span><span className="t-accent ml-1 text-[0.6em]" aria-label="stars">&#9733;</span></dd>
-              <dd className="caption-i mt-2 opacity-80">{site.rating.label.replace(/^on Google · /, "")}</dd>
+              <dd className="caption-i mt-2 opacity-80">{site.rating.label.replace(/^on Google · /, "")}{!RATING_CONFIRMED && <span className="caption ml-2 normal-case tracking-normal">[CONFIRM]</span>}</dd>
             </div>
             <div className="border-t border-current/60 pt-3">
               <dt className="caption">On the menu</dt>

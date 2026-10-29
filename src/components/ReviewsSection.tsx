@@ -1,5 +1,5 @@
 import { reviews } from "../data/reviews";
-import { site } from "../data/site";
+import { RATING_CONFIRMED, site } from "../data/site";
 import Split from "./Split";
 
 /**
@@ -32,6 +32,7 @@ export default function ReviewsSection() {
               {count ? <>From more than <span data-count={Number(count.replace(/,/g, ""))} className="tabular-nums">{count}</span> reviews on Google. </> : null}
               Ask around Hanamkonda, or read what guests wrote.
             </p>
+            {!RATING_CONFIRMED && <p className="caption mt-3 normal-case tracking-normal">[CONFIRM] rating and review count</p>}
             <a href={site.maps.reviewsUrl} target="_blank" rel="noopener noreferrer" className="btn mt-8">
               See the Google reviews <span aria-hidden="true">↗</span>
             </a>

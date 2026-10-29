@@ -52,7 +52,7 @@ export default function Specials() {
           <div className="ph-frame ph-reveal lg:col-span-6 lg:col-start-1" data-cursor="View" style={{ aspectRatio: "1.15" }}>
             <div className="absolute inset-0 flex items-end justify-center p-6 sm:p-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/img/cutouts/cookie-dough.webp" alt={`${lead.name}, ${lead.category.toLowerCase()}`} width={900} height={800} loading="lazy" decoding="async" className="max-h-full w-auto max-w-full object-contain transition-transform duration-[1100ms] ease-out hover:scale-[1.04]" />
+              <img src="/img/cutouts/cookie-dough.webp" alt={`${lead.name}, ${lead.category.toLowerCase()}`} width={900} height={800} loading="lazy" decoding="async" className="max-h-full w-auto max-w-full object-contain transition-transform duration-[1100ms] ease-out hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:scale-100" />
             </div>
           </div>
           <div className="lg:col-span-5 lg:col-start-8 lg:pb-6">
