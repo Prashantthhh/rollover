@@ -1,5 +1,5 @@
 import { reviews } from "../data/reviews";
-import { RATING_CONFIRMED, site } from "../data/site";
+import { RATING_CONFIRMED, SHOW_SLOT_HINTS, site } from "../data/site";
 import Split from "./Split";
 
 /**
@@ -39,6 +39,7 @@ export default function ReviewsSection() {
           </div>
         </div>
 
+        {(reviews.length > 0 || SHOW_SLOT_HINTS) && (
         <div className="mt-24 sm:mt-40">
           {reviews.length > 0 ? (
             <ul className="grid gap-x-8 gap-y-20 lg:grid-cols-3">
@@ -54,12 +55,13 @@ export default function ReviewsSection() {
                 </li>
               ))}
             </ul>
-          ) : (
+          ) : SHOW_SLOT_HINTS ? (
             <p className="caption max-w-xl border border-dashed border-current/60 p-4 normal-case tracking-normal">
               Pull-quote slot &middot; a real guest review goes here. Add it to src/data/reviews.ts (name and their own words); nothing is written by hand.
             </p>
-          )}
+          ) : null}
         </div>
+        )}
       </div>
     </section>
   );

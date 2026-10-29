@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SHOW_SLOT_HINTS } from "../data/site";
 
 export type DoodlePath = { d: string };
 
@@ -45,6 +46,7 @@ export default function HandDrawn({
   }, [paths]);
 
   if (!paths?.length) {
+    if (!SHOW_SLOT_HINTS) return null;
     return (
       <span data-doodle-slot={slot} className={`pointer-events-none ${className}`}>
         <span aria-hidden="true" className="absolute inset-0 border border-dashed border-current/60" />

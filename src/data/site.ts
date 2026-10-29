@@ -68,3 +68,10 @@ export const HOURS_CONFIRMED = false;
  * scripts/check-confirm.mjs fails a production build while any "[CONFIRM" marker is on the page.
  */
 export const RATING_CONFIRMED = false;
+
+/**
+ * Placeholder slots (the doodle slots and the empty pull-quote slot in Reviews) are labelled dashed boxes that show where the
+ * owner's hand-drawn doodles and a real guest quote will go. Visitors should not see them, so they are hidden while this is false;
+ * the code stays in place. Set to true to see them again while working. A doodle given real `paths` always renders.
+ */
+export const SHOW_SLOT_HINTS = false;

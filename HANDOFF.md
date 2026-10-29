@@ -14,10 +14,12 @@ fails while any marker is left, so set it on launch day and fix whatever it list
 | `[CONFIRM] hours` | Visit section, footer | Opening hours (now Mon-Fri 11 AM to 11 PM, Sat-Sun 10 AM to 11 PM, copied from the old site) | Fix `hours` in `src/data/site.ts`, then set `HOURS_CONFIRMED = true` (same file). This also adds the opening hours to the structured data and the "open now" status |
 | `[CONFIRM]` rating and review count | Standfirst stats, reviews section | 4.2 stars and 1,300+ reviews (read off Google Maps on 27 Oct 2026) | Re-check on Google Maps, update `rating` in `src/data/site.ts`, then set `RATING_CONFIRMED = true` (same file) |
 | `[CONFIRM IF ACTIVE]` | Footer, next to "Partner with us" | Whether the partner / ambassador programme still runs, and the WhatsApp link | Fix `partner.href` in `src/data/site.ts` and set `partner.active = true`; or remove the link from `src/components/Footer.tsx` |
-| `[CONFIRM which item]` | Menu header, "Doodle slot 2" placeholder | Which item is the bestseller (the doodle arrow points at it) | Pass the traced doodle `paths` to `<HandDrawn slot={2}>` in `src/components/MenuSection.tsx` (the placeholder, and its marker, disappear), or delete the slot |
+| `[CONFIRM which item]` | Menu header, "Doodle slot 2" placeholder | Which item is the bestseller (the doodle arrow points at it) | Hidden now (see below). When you add the doodle, move `<HandDrawn slot={2} paths=...>` out of the `SHOW_SLOT_HINTS` block in `src/components/MenuSection.tsx` and point it at the bestseller |
 
-The other doodle placeholders (slots 1 and 3, and the empty pull-quote slot in Reviews) carry no `[CONFIRM` text, so they do not block the build, but
-they are visible to visitors: fill them (`<HandDrawn paths=...>`, `src/data/reviews.ts`) or remove them before launch too.
+**Placeholder slots are hidden.** The doodle slots (1, 2, 3) and the empty pull-quote slot in Reviews are labelled dashed boxes for the owner's
+hand-drawn doodles and a real guest quote. They are switched off by `SHOW_SLOT_HINTS = false` in `src/data/site.ts` (the code stays); set it to
+`true` locally to see where they go. While hidden, the "[CONFIRM which item]" marker is not on the page either, but the bestseller still needs
+deciding before the arrow doodle is drawn. A doodle given real `paths` renders whatever the flag says; real reviews in `src/data/reviews.ts` show automatically.
 
 ## 1. Run it
 

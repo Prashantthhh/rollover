@@ -1,6 +1,6 @@
 import { categories, rupees } from "../data/menu";
 import menuData from "../data/menu.json";
-import { RATING_CONFIRMED, site } from "../data/site";
+import { RATING_CONFIRMED, SHOW_SLOT_HINTS, site } from "../data/site";
 import HandDrawn from "./HandDrawn";
 import Photo from "./Photo";
 
@@ -21,7 +21,7 @@ export default function Intro() {
             <p className="caption">No. 01</p>
             <hr className="my-3 border-0 border-t border-current/60" />
             <p className="caption-i max-w-[12rem] opacity-80">A rolled ice cream shop in Hanamkonda, and how it got that way.</p>
-            <p className="caption mt-8 border border-dashed border-current/60 p-2 text-[0.625rem] normal-case tracking-normal">Doodle slot 1 &middot; a hand-drawn circle round the price, drawn on as this enters.</p>
+            {SHOW_SLOT_HINTS && <p className="caption mt-8 border border-dashed border-current/60 p-2 text-[0.625rem] normal-case tracking-normal">Doodle slot 1 &middot; a hand-drawn circle round the price, drawn on as this enters.</p>}
           </div>
 
           <div className="lg:col-span-7 lg:col-start-4">

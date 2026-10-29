@@ -3,6 +3,7 @@ import HandDrawn from "./HandDrawn";
 import MenuHover from "./MenuHover";
 import MenuPanel from "./MenuPanel";
 import MenuTabs from "./MenuTabs";
+import { SHOW_SLOT_HINTS } from "../data/site";
 import OrderButton from "./OrderButton";
 import Split from "./Split";
 
@@ -36,10 +37,13 @@ export default function MenuSection() {
             <div className="lg:col-span-3 lg:pb-4">
               <p className="caption-i max-w-[16rem] opacity-80">Prices in rupees. Hover a line on a computer, or tap one on your phone, to see it.</p>
               <div className="mt-5"><OrderButton label="Get it delivered" className="btn" /></div>
-              <div className="mt-12 hidden grid-cols-2 gap-x-6 lg:grid">
-                <div className="relative h-14"><HandDrawn slot={2} note="arrow to the bestseller [CONFIRM which item]" className="absolute inset-0" /></div>
-                <div className="relative h-14"><HandDrawn slot={3} note={'handwritten "try this one!"'} className="absolute inset-0" /></div>
-              </div>
+              {/* doodle placeholders: only rendered with SHOW_SLOT_HINTS; once real doodle paths exist, move them out of this block */}
+              {SHOW_SLOT_HINTS && (
+                <div className="mt-12 hidden grid-cols-2 gap-x-6 lg:grid">
+                  <div className="relative h-14"><HandDrawn slot={2} note="arrow to the bestseller [CONFIRM which item]" className="absolute inset-0" /></div>
+                  <div className="relative h-14"><HandDrawn slot={3} note={'handwritten "try this one!"'} className="absolute inset-0" /></div>
+                </div>
+              )}
             </div>
 
           </div>
