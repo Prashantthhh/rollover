@@ -3,7 +3,7 @@ import { HERO_TREATMENT } from "../data/art";
 import HeroVideo from "./HeroVideo";
 import OrderButton from "./OrderButton";
 
-const lines = ["Rolled while", "you watch."];
+const lines = ["Rolled while", "you watch."]; // the second line renders "watch." in italic
 
 /**
  * Cover page. Full-bleed real footage with the headline set huge across the bottom; each line is revealed by a
@@ -21,23 +21,23 @@ export default function Hero() {
       <p aria-hidden="true" className="caption fade-in absolute left-4 top-5 sm:left-8 sm:top-7" style={{ "--i": 0 } as CSSProperties}>The cold plate issue</p>
 
       <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1800px] flex-col px-4 pb-5 sm:px-8 sm:pb-7">
-        <h1 className="font-display text-[clamp(3.6rem,14.2vw,17rem)] leading-[0.86] tracking-[-0.045em]">
+        <h1 className="font-display text-[clamp(3rem,11vw,12.5rem)] leading-[0.9] tracking-[-0.035em]">
           <span className="sr-only">{lines.join(" ")}</span>
           <span aria-hidden="true">
             {lines.map((t, i) => (
-              <span key={t} className={`wipe-line ${i === 1 ? "text-pink" : ""}`} style={{ "--i": i } as CSSProperties}>{t}</span>
+              <span key={t} className={`wipe-line ${i === 1 ? "text-pink" : ""}`}><span className="wipe-in" style={{ "--i": i } as CSSProperties}>{i === 1 ? <>you <em>watch.</em></> : t}</span></span>
             ))}
           </span>
         </h1>
 
-        <div className="fade-in mt-6 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 border-t border-white/70 pt-4" style={{ "--i": 2 } as CSSProperties}>
+        <div className="fade-in mt-6 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 border-t border-white/50 pt-5" style={{ "--i": 2 } as CSSProperties}>
           <p className="caption-i max-w-[22rem]">
             <span className="caption mr-2">Fig. 1</span>
             Made on a cold steel plate, in front of you. Opposite Tara Gardens, Prashanthnagar Colony.
           </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <OrderButton label="Order delivery" className="btn btn-pink" />
-            <a href="#visit" className="btn btn-cream">Find the shop</a>
+          <div className="flex flex-wrap items-center gap-6">
+            <OrderButton label="Order" className="btn btn-pink" />
+            <a href="#visit" className="caption ulink px-1">Find the shop</a>
           </div>
         </div>
       </div>

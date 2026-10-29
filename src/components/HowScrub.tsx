@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { steps } from "../data/steps";
+import Split from "./Split";
 
 const SRC = "/video/how-scrub.mp4";
 const FPS = 30;
@@ -51,7 +52,8 @@ export default function HowScrub() {
       el.style.setProperty("--sp", cur.toFixed(4));
     };
     const tick = () => {
-      cur += (target - cur) * 0.2;
+      // Lenis (desktop) already eases the scroll itself, so follow it more tightly to stay frame-accurate
+      cur += (target - cur) * ((window as unknown as { __lenis?: unknown }).__lenis ? 0.6 : 0.2);
       if (Math.abs(target - cur) < 0.0004) { cur = target; raf = 0; } else raf = requestAnimationFrame(tick);
       apply();
     };
@@ -85,21 +87,25 @@ export default function HowScrub() {
   }, []);
 
   return (
-    <section id="how" ref={root} data-step="0" className="how-root relative" aria-labelledby="how-h">
+    <section id="how" ref={root} data-step="0" data-tone="blush" className="how-root relative" aria-labelledby="how-h">
       {/* page head */}
-      <div className="mx-auto max-w-[1600px] px-4 pb-14 sm:px-8 sm:pb-20">
-        <div className="flex items-baseline justify-between border-t border-ink pt-3">
+      <div className="mx-auto max-w-[1600px] px-4 pb-24 pt-8 sm:px-8 sm:pb-36 sm:pt-16">
+        <div className="flex items-baseline justify-between border-t border-current/60 pt-3">
           <p className="caption">No. 02 &mdash; How it&apos;s made</p>
           <p className="caption">p. 02</p>
         </div>
-        <h2 id="how-h" className="mt-6 max-w-[14ch] font-display text-[clamp(3.4rem,10.5vw,11rem)] leading-[0.9] tracking-[-0.04em] sm:mt-10">
-          Three moves, one <span className="text-pink">cold plate.</span>
-        </h2>
+        <div className="drift">
+          <Split
+            id="how-h"
+            className="mt-10 max-w-[13ch] font-display text-[clamp(2.7rem,7.6vw,8.2rem)] leading-[0.95] tracking-[-0.03em] sm:mt-16"
+            parts={[{ t: "Three moves, one " }, { t: "cold plate.", em: true, accent: true }]}
+          />
+        </div>
       </div>
 
       {/* pinned, scrubbed stage */}
       <div ref={run} className="how-run">
-        <div className="how-stage border-y border-ink bg-paper">
+        <div className="how-stage border-y border-current/60">
           <div className="grid h-full grid-rows-[56%_1fr] lg:grid-cols-12 lg:grid-rows-1">
             <figure className="relative order-1 overflow-hidden bg-ink lg:order-2 lg:col-span-8 lg:col-start-5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -110,7 +116,7 @@ export default function HowScrub() {
                 muted playsInline preload="none" tabIndex={-1} aria-hidden="true"
               />
               <figcaption className="caption on-video absolute bottom-3 right-4 text-white [text-shadow:0_1px_8px_rgb(0_0_0/0.6)] sm:bottom-5 sm:right-6">
-                Fig. 2 &mdash; the same hands, start to finish
+                Fig. 5 &mdash; the same hands, start to finish
               </figcaption>
             </figure>
 
@@ -125,14 +131,14 @@ export default function HowScrub() {
                 {steps.map((s, i) => (
                   <div key={s.id} data-i={i} className="step-cap absolute inset-x-0 top-1/2 -translate-y-1/2 lg:top-[38%]" aria-hidden="true">
                     <p className="caption mb-2 lg:mb-4">Step 0{i + 1} of 03</p>
-                    <h3 className="font-display text-[clamp(2.6rem,6.2vw,6.4rem)] leading-[0.92] tracking-[-0.035em]">{s.title}</h3>
-                    <p className="mt-3 max-w-[26rem] text-[0.95rem] leading-snug sm:text-base lg:mt-6">{s.text}</p>
+                    <h3 className="font-display text-[clamp(2.1rem,4.4vw,4.6rem)] leading-[0.98] tracking-[-0.03em]">{s.title}</h3>
+                    <p className="lead mt-3 max-w-[26rem] !text-[1rem] leading-relaxed lg:mt-6">{s.text}</p>
                   </div>
                 ))}
               </div>
 
               <div aria-hidden="true">
-                <div className="h-px bg-ink/30"><div className="how-bar h-[3px] -translate-y-px bg-pink" /></div>
+                <div className="h-px bg-current/30"><div className="how-bar h-px bg-[var(--accent)]" /></div>
                 <div className="caption mt-2 flex justify-between">{steps.map((s) => <span key={s.id}>{s.title.split(" ")[0]}</span>)}</div>
               </div>
             </div>
@@ -143,10 +149,10 @@ export default function HowScrub() {
       {/* fallback: three stills (reduced motion, Data Saver, no JS) */}
       <div className="how-static mx-auto max-w-[1600px] px-4 pb-20 sm:px-8">
         {steps.map((s, i) => (
-          <figure key={s.id} className={`grid items-end gap-x-8 gap-y-4 border-t border-ink py-8 lg:grid-cols-12`}>
+          <figure key={s.id} className={`grid items-end gap-x-8 gap-y-4 border-t border-current/60 py-12 lg:grid-cols-12`}>
             <div className="lg:col-span-4">
               <p className="caption">Step 0{i + 1} of 03</p>
-              <h3 className="mt-2 font-display text-5xl leading-[0.95] sm:text-7xl">{s.title}</h3>
+              <h3 className="mt-2 font-display text-4xl leading-[0.98] sm:text-6xl">{s.title}</h3>
               <p className="mt-4 max-w-sm">{s.text}</p>
             </div>
             <div className="relative aspect-[16/10] bg-ink lg:col-span-8 lg:col-start-5">

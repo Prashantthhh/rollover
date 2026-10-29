@@ -61,7 +61,7 @@ export default function MenuHover() {
   }, []);
 
   return (
-    <div ref={card} aria-hidden="true" className="pointer-events-none fixed left-0 top-0 z-40 hidden w-[280px] bg-paper p-2 opacity-0 transition-opacity duration-200 md:block" style={{ willChange: "transform, opacity", boxShadow: "0 0 0 1px var(--color-ink)" }}>
+    <div ref={card} aria-hidden="true" className="pointer-events-none fixed left-0 top-0 z-40 hidden w-[280px] bg-paper p-2 text-ink opacity-0 transition-opacity duration-200 md:block" style={{ willChange: "transform, opacity", boxShadow: "0 0 0 1px var(--color-ink)" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img ref={img} alt="" width={264} height={330} decoding="async" className="aspect-[4/5] w-full object-cover" />
       <p ref={cap} className="caption-i mt-2 truncate" />

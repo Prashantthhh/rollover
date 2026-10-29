@@ -47,8 +47,8 @@ export default function HandDrawn({
   if (!paths?.length) {
     return (
       <span data-doodle-slot={slot} className={`pointer-events-none ${className}`}>
-        <span aria-hidden="true" className="absolute inset-0 border border-dashed border-ink/60" />
-        {label !== "none" && <span className={`caption absolute top-full z-10 mt-1 w-max max-w-[13rem] bg-paper px-1 text-[0.6875rem] normal-case tracking-normal text-ink ${label === "right" ? "right-0 text-right" : "left-0"}`}>Doodle slot {slot} &middot; {note}</span>}
+        <span aria-hidden="true" className="absolute inset-0 border border-dashed border-current/60" />
+        {label !== "none" && <span className={`caption absolute top-full z-10 mt-1 w-full bg-[var(--bg)] px-1 text-[0.625rem] normal-case tracking-normal ${label === "right" ? "right-0 text-right" : "left-0"}`}>Doodle slot {slot} &middot; {note}</span>}
       </span>
     );
   }

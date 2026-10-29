@@ -43,7 +43,7 @@ export default function MenuTabs({ tabs: categories }: { tabs: { id: string; tit
   };
 
   return (
-    <div className="-mx-4 overflow-x-auto border-y border-ink px-4 [scrollbar-width:none] sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden">
+    <div className="-mx-4 overflow-x-auto border-y border-current/60 px-4 [scrollbar-width:none] sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden">
       <div role="tablist" aria-label="Menu categories" onKeyDown={onKey} className="flex w-max gap-7 sm:gap-10">
         {categories.map((c, i) => (
           <button
@@ -56,10 +56,10 @@ export default function MenuTabs({ tabs: categories }: { tabs: { id: string; tit
             aria-controls={`panel-${c.id}`}
             tabIndex={i === active ? 0 : -1}
             onClick={() => { userMoved.current = true; setActive(i); }}
-            className={`flex items-baseline gap-2 whitespace-nowrap border-b-[3px] py-3.5 ${i === active ? "border-pink text-ink" : "border-transparent text-ink/70 hover:text-ink"}`}
+            className={`flex items-baseline gap-2 whitespace-nowrap border-b py-4 ${i === active ? "border-current" : "border-transparent opacity-60 hover:opacity-100"}`}
           >
             <span className="caption">{String(i + 1).padStart(2, "0")}</span>
-            <span className="font-display text-2xl leading-none sm:text-3xl">{c.title}</span>
+            <span className={`font-display text-xl leading-none sm:text-2xl ${i === active ? "it" : ""}`}>{c.title}</span>
           </button>
         ))}
       </div>

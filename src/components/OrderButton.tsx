@@ -23,7 +23,7 @@ export default function OrderButton({ label, className = "btn btn-pink", align =
 
   return (
     <div ref={ref} className="relative inline-block">
-      <button ref={button} type="button" className={className} aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((o) => !o)}>
+      <button ref={button} type="button" data-cursor="Order" className={className} aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((o) => !o)}>
         {label}
         <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" className={`transition-transform ${open ? "rotate-180" : ""}`}><path d="M2 5l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </button>

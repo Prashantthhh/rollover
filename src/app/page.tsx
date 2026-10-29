@@ -5,6 +5,7 @@ import Intro from "../components/Intro";
 import JsonLd from "../components/JsonLd";
 import MenuSection from "../components/MenuSection";
 import Nav from "../components/Nav";
+import PhraseBand from "../components/PhraseBand";
 import VisitSection from "../components/VisitSection";
 import { localBusinessJsonLd } from "../lib/jsonld";
 
@@ -17,9 +18,11 @@ export default function Home() {
       <main id="main" className="curtain-main">
         <Hero />
         <Intro />
+        <PhraseBand />
         <HowScrub />
+        <PhraseBand className="mt-0" />
         <MenuSection />
-        <VisitSection />
+        <div data-tone="paper"><VisitSection /></div>
       </main>
       <Footer />
       <JsonLd data={localBusinessJsonLd()} />
