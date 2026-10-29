@@ -43,3 +43,9 @@ The "Feeling lucky?" banner and the wheel are hidden completely while `OFFERS_CO
 - **Veg / non-veg corrections:** see `old-site/VEG_CHANGES.md`.
 - **Google Analytics:** a GA4 measurement ID, set as `NEXT_PUBLIC_GA_ID` in Vercel (nothing loads without it).
 - **Google Business Profile:** confirm the name, address, phone and hours there match the site exactly (this drives the map pack and the structured data).
+
+## Video clips (placeholders cut from the old footage)
+The old site only had four videos (`5.mp4`, `background.mp4`, `Vid3.mp4`, `Vid4.mp4`); Vid3 and Vid4 are promo graphics, so everything real comes from `background.mp4`. Its shots are only 0.4–1 s long, so the clips below are short and slowed down (`scripts/bake-clips.mjs`). Sharper, longer footage would replace all of them.
+- **Photo band** ("Hot day in Hanamkonda? Sorted."): 7 s montage of chop, spread, roll, plate.
+- **"Watch it get rolled" step loops**: each of the three steps has a real clip. Step 2 (Spread) only has a 0.6 s shot, so it is slowed and played forward then back. Please shoot a proper close-up of each step: pouring the base, chopping with two scrapers, spreading thin, scraping the rolls (3–4 s each, landscape, steady).
+- **Photo strip**: 6 clean menu photos (Guava Chilli, Fruit & nut, Choco Chip Cookie Dough, Brownie Bomb, Pista Nuts, Granola blueberry) plus 5 frames from the video. The menu photos are only ~230–280 px wide and look soft; new 1200 px+ shots of the same rolls would fix that. All promo posters were removed from the strip.

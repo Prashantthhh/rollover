@@ -2,7 +2,7 @@
 
 import { steps } from "../data/steps";
 import Reveal from "./Reveal";
-import StepArtLive from "./StepArtLive";
+import StepClip from "./StepClip";
 
 const blocks = ["bg-cream", "bg-pink", "bg-cream"];
 
@@ -25,7 +25,7 @@ export default function StepsStacked() {
               </div>
             </div>
             <div aria-hidden="true" className={`mt-5 aspect-[4/3] border-[3px] border-maroon p-3 ${blocks[i]} ${i === 1 ? "rounded-t-[5rem]" : ""}`}>
-              <StepArtLive id={s.id} />
+              <StepClip id={s.id} />
             </div>
           </li>
         ))}

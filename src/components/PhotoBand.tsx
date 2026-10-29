@@ -1,18 +1,18 @@
-import Image from "next/image";
-import { BAND_PHOTO } from "../data/art";
+import { BAND_VIDEO } from "../data/art";
+import LoopVideo from "./LoopVideo";
 import { site } from "../data/site";
 import menu from "../data/menu.json";
 
 const rollsFrom = Math.min(...menu.categories.find((c) => c.id === "ice-cream-rolls")!.items.map((i) => i.price));
 
 /**
- * A full-width photo between the menu and the vibe section, with one line of type. The photo is set in
- * src/data/art.ts (BAND_PHOTO). This band also carries the ONE sticker left on the whole page.
+ * A full-width muted video loop between the menu and the vibe section, with one line of type. The clip is set in
+ * src/data/art.ts (BAND_VIDEO). This band also carries the ONE sticker left on the whole page.
  */
 export default function PhotoBand() {
   return (
     <section aria-label="Photo" className="relative h-[64svh] min-h-[22rem] w-full overflow-hidden border-y-[3px] border-maroon bg-maroon">
-      <Image src={BAND_PHOTO.src} alt={BAND_PHOTO.alt} fill sizes="100vw" fetchPriority="low" className="object-cover" style={{ objectPosition: BAND_PHOTO.position }} />
+      <LoopVideo src={BAND_VIDEO.src} poster={BAND_VIDEO.poster} label={BAND_VIDEO.alt} className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: BAND_VIDEO.position }} />
       <p className="absolute bottom-0 left-0 max-w-[88%] bg-maroon px-5 py-3 font-display text-[2rem] leading-[1.05] text-cream sm:max-w-[70%] sm:px-8 sm:py-5 sm:text-5xl lg:text-6xl">
         Hot day in Hanamkonda? Sorted.
       </p>

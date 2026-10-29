@@ -6,7 +6,7 @@ import SplitHeading from "./SplitHeading";
 /** A strip of film rolling past, with the heading above on cream. */
 export default function PhotoStrip() {
   return (
-    <section id="photos" className="cv bg-cream">
+    <section id="photos" className="bg-cream">
       <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-6 px-4 pb-10 pt-20">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.14em] sm:text-base">On the counter</p>

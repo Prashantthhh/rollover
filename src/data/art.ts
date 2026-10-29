@@ -17,8 +17,8 @@
  */
 export const HERO_TREATMENT: "duotone" | "halftone" | "none" = "duotone";
 
-/** Full-width photo band between the menu and the vibe section. Swap for a new photo when one arrives. */
-export const BAND_PHOTO = { src: "/img/vibe/death-by-chocolate-2.webp", alt: "Chocolate sauce being poured over a dessert in a glass bowl", position: "50% 38%" };
+/** Full-width video band between the menu and the vibe section (scripts/bake-clips.mjs cuts it from the cafe's own footage). */
+export const BAND_VIDEO = { src: "/video/band.mp4", poster: "/video/band-poster.webp", alt: "Ice cream rolls being chopped, spread, rolled and plated", position: "50% 50%" };
 
 export const SHOW_SLOT_HINTS = true; // draws a dashed placeholder where an asset is missing; set false before launch
 

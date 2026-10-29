@@ -20,6 +20,16 @@ export default function PhotoMarquee({ photos }: { photos: Photo[] }) {
     const el = track.current;
     if (!el) return;
     let last = window.scrollY, dir = 1, raf = 0;
+    const anims = () => el.getAnimations();
+    // A negative playback rate on an animation sitting near time 0 runs off the start and FINISHES it, and a finished
+    // loop never comes back. So keep currentTime many whole loops from zero (a whole-loop shift looks identical).
+    const rearm = () => {
+      for (const a of anims()) {
+        const d = Number(a.effect?.getComputedTiming().duration) || 36000;
+        if (a.playState === "idle" || a.playState === "finished") { a.currentTime = d * 1000; a.playbackRate = dir; a.play(); }
+        else if (Number(a.currentTime) < d * 100) a.currentTime = Number(a.currentTime) + d * 1000;
+      }
+    };
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
@@ -29,16 +39,19 @@ export default function PhotoMarquee({ photos }: { photos: Photo[] }) {
         const next = d > 0 ? 1 : -1;
         if (next === dir) return;
         dir = next;
-        el.getAnimations().forEach((a) => a.updatePlaybackRate(dir));
+        rearm();
+        anims().forEach((a) => a.updatePlaybackRate(dir));
       });
     };
     // Listen only while the strip is on screen: reading scrollY elsewhere (e.g. during the hero shrink) forces a layout flush every frame.
+    // Each time it comes back into view, re-arm the animation so it always runs again.
     const io = new IntersectionObserver(([e]) => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
-      if (e.isIntersecting) { last = window.scrollY; window.addEventListener("scroll", onScroll, { passive: true }); }
+      if (e.isIntersecting) { last = window.scrollY; rearm(); window.addEventListener("scroll", onScroll, { passive: true }); }
     });
     io.observe(el);
+    rearm();
     return () => { io.disconnect(); window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
   }, []);
 
@@ -50,12 +63,11 @@ export default function PhotoMarquee({ photos }: { photos: Photo[] }) {
       <div className="marquee-viewport overflow-hidden border-y-[3px] border-maroon bg-maroon">
         <ul ref={track} className="marquee-track flex w-max" style={{ animationPlayState: paused ? "paused" : undefined }}>
           {[0, 1].map((copy) =>
-            shots.map((p, i) => (
+            shots.map((p) => (
               <li key={`${copy}-${p.name}`} className={`${copy ? "marquee-clone" : ""} film-frame relative shrink-0 px-2 pb-9 pt-9`} aria-hidden={copy ? true : undefined}>
                 <div className="relative h-56 w-44 border-[3px] border-cream bg-cream sm:h-72 sm:w-56">
                   <Image src={p.image!} alt={copy ? "" : p.name} fetchPriority="low" fill sizes="(min-width: 640px) 224px, 176px" className="object-cover" />
                 </div>
-                <span aria-hidden="true" className="absolute bottom-2 left-3 text-[10px] font-extrabold tracking-[0.2em] text-cream">{String(i + 1).padStart(2, "0")}A</span>
               </li>
             )),
           )}

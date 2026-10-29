@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import * as m from "motion/react-m";
 import { steps } from "../data/steps";
-import StepArtLive from "./StepArtLive";
+import StepClip from "./StepClip";
 
 const blocks = ["bg-cream", "bg-pink", "bg-cream"];
 
@@ -67,7 +67,7 @@ export default function StepsPinned({ heading }: { heading: React.ReactNode }) {
               animate={pose(i, active)}
               transition={{ type: "spring", stiffness: 210, damping: 26 }}
             >
-              <StepArtLive id={s.id} active={i === active} />
+              <StepClip id={s.id} active={i === active} />
             </m.div>
           ))}
         </div>

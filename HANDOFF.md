@@ -47,10 +47,10 @@ Slots for hand-made assets live in `src/data/art.ts`: drop a file in `public/art
 (`SHOW_SLOT_HINTS`; set it to `false` before launch). New photos and hero footage: see section 4.
 
 **Hero video treatment.** `HERO_TREATMENT` in `src/data/art.ts` picks `"duotone"` (pink + maroon), `"halftone"` (dot screen) or `"none"`.
-The look is baked into the files, so the browser does no extra work: `node scripts/bake-hero.mjs` regenerates
+The look is baked into the files, so the browser does no extra work: `node scripts/bake-clips.mjs` cuts the photo-band video, the three step loops and the strip frames from the same footage. `node scripts/bake-hero.mjs` regenerates
 `public/video/hero-duotone.mp4`, `hero-halftone.mp4` and their posters from `source-assets/video/background.mp4`
 (needs ffmpeg). When new footage arrives, point `SRC` and the three `trim` cuts in that script at it and re-run.
-Only the duotone files are kept in `public/video/`; re-run the script to bring the halftone back. The full-width photo band between the menu and the vibe section is `BAND_PHOTO` in the same file.
+Only the duotone files are kept in `public/video/`; re-run the script to bring the halftone back. The full-width video band between the menu and the vibe section is `BAND_VIDEO` in the same file.
 
 ## 3. The switches (read these first)
 

@@ -9,7 +9,7 @@ import SplitHeading from "./SplitHeading";
 export default function MenuSection() {
   return (
     <section id="menu" className="cv dark-block bg-maroon text-cream">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 pb-14 pt-20 sm:pb-16 sm:pt-24">
         <div className="relative mb-10 flex flex-wrap items-end justify-between gap-6 border-b-[3px] border-cream pb-8">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.14em] sm:text-base">Prices in rupees</p>

@@ -18,7 +18,7 @@ export default function MenuPanel({ category }: { category: MenuCategory }) {
             key={it.name}
             data-i={i}
             style={{ "--i": i } as React.CSSProperties}
-            className="board-row menu-card relative flex gap-4 border-b-[3px] border-cream py-5 pl-4 first:pt-0 lg:pl-6"
+            className="board-row menu-card relative flex gap-4 border-b-[3px] border-cream py-5 pl-4 first:pt-0 last:border-b-0 last:pb-0 lg:pl-6"
           >
             {it.image && (
               <div className="relative mt-1 h-16 w-16 shrink-0 border-2 border-cream lg:hidden">
