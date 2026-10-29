@@ -3,6 +3,22 @@
 A static site: Next.js 15 (App Router, `output: "export"`), Tailwind CSS 4, the `motion` package for animation.
 `npm run build` writes plain HTML/CSS/JS to `out/`, which any static host can serve. It is set up for Vercel.
 
+## Before launch
+
+Every `[CONFIRM` marker on the page must be gone before the real domain goes live. `scripts/check-confirm.mjs` (run by `npm run build`)
+only warns until you set the environment variable `LAUNCH_CHECK=1` in Vercel (Project Settings > Environment Variables). With it set, the build
+fails while any marker is left, so set it on launch day and fix whatever it lists. Run `npm run build` to see the current list.
+
+| Marker on the page | Where it shows | What to confirm | How to clear it |
+|---|---|---|---|
+| `[CONFIRM] hours` | Visit section, footer | Opening hours (now Mon-Fri 11 AM to 11 PM, Sat-Sun 10 AM to 11 PM, copied from the old site) | Fix `hours` in `src/data/site.ts`, then set `HOURS_CONFIRMED = true` (same file). This also adds the opening hours to the structured data and the "open now" status |
+| `[CONFIRM]` rating and review count | Standfirst stats, reviews section | 4.2 stars and 1,300+ reviews (read off Google Maps on 27 Oct 2026) | Re-check on Google Maps, update `rating` in `src/data/site.ts`, then set `RATING_CONFIRMED = true` (same file) |
+| `[CONFIRM IF ACTIVE]` | Footer, next to "Partner with us" | Whether the partner / ambassador programme still runs, and the WhatsApp link | Fix `partner.href` in `src/data/site.ts` and set `partner.active = true`; or remove the link from `src/components/Footer.tsx` |
+| `[CONFIRM which item]` | Menu header, "Doodle slot 2" placeholder | Which item is the bestseller (the doodle arrow points at it) | Pass the traced doodle `paths` to `<HandDrawn slot={2}>` in `src/components/MenuSection.tsx` (the placeholder, and its marker, disappear), or delete the slot |
+
+The other doodle placeholders (slots 1 and 3, and the empty pull-quote slot in Reviews) carry no `[CONFIRM` text, so they do not block the build, but
+they are visible to visitors: fill them (`<HandDrawn paths=...>`, `src/data/reviews.ts`) or remove them before launch too.
+
 ## 1. Run it
 
 ```powershell
