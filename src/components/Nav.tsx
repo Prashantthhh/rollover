@@ -5,6 +5,7 @@ import OrderButton from "./OrderButton";
 
 const links = [
   { href: "#how", label: "How it's made" },
+  { href: "#specials", label: "Specials" },
   { href: "#menu", label: "Menu" },
   { href: "#visit", label: "Visit" },
 ];

@@ -12,7 +12,7 @@ import Split from "./Split";
  */
 export default function MenuSection() {
   // running figure numbers, so each photo caption is unique across categories
-  let figs = 5;
+  let figs = 11;
   const offsets = categories.map((c) => { const o = figs; figs += c.items.length; return o; });
 
   return (

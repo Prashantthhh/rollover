@@ -8,43 +8,35 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
+/** The 404, set as the last page of the issue: a huge italic 404, one line of copy and three ways back. */
 export default function NotFound() {
   return (
-    <main id="main" className="flex min-h-svh flex-col bg-cream text-maroon">
-      <header className="border-b-[3px] border-maroon bg-cream">
-        <div className="mx-auto flex h-16 max-w-6xl items-center px-4">
-          <a href="/" aria-label="RollOver Warangal, home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/brand/logo.webp" alt="RollOver: ice creams, hand crafted" width={586} height={133} className="h-9 w-auto sm:h-11" />
+    <main id="main" className="flex min-h-svh flex-col">
+      <header className="border-b border-current/60">
+        <div className="mx-auto flex h-14 max-w-[1600px] items-center justify-between px-4 sm:px-8">
+          <a href="/" className="font-display text-[1.45rem] leading-none tracking-[-0.03em]" aria-label="RollOver Warangal, home">
+            Roll<span className="t-accent">O</span>ver
           </a>
+          <p className="caption">No. 404 &mdash; Hanamkonda</p>
         </div>
       </header>
 
-      <div className="mx-auto grid w-full max-w-6xl flex-1 items-center gap-10 px-4 py-14 lg:grid-cols-[1fr_1fr] lg:gap-16">
-        <div>
-          <p className="font-display text-[8rem] leading-[0.85] text-pink sm:text-[12rem]" aria-hidden="true">404</p>
-          <h1 className="mt-4 font-display text-[2.6rem] leading-[1.05] sm:text-6xl">This roll fell off the plate.</h1>
-          <p className="mt-4 max-w-md text-lg leading-snug">We could not find that page. The menu, the specials and the ice cream are all still on the home page.</p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a href="/" className="btn btn-pink">Back home</a>
-            <a href="/#menu" className="btn btn-cream">Open the menu</a>
-            <OrderButton label="Get it delivered" className="btn btn-cream" />
+      <div className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-4 py-24 sm:px-8">
+        <p aria-hidden="true" className="font-display text-[clamp(9rem,34vw,32rem)] leading-[0.75] tracking-[-0.06em]">
+          <em className="t-accent">404</em>
+        </p>
+        <div className="mt-16 grid gap-x-8 gap-y-10 border-t border-current/60 pt-6 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <h1 className="font-display text-[clamp(2rem,4vw,4rem)] leading-[1.05] tracking-[-0.03em]">This roll fell off the <em>plate.</em></h1>
+            <p className="lead measure mt-5 max-w-[28rem]">We couldn&apos;t find that page. The menu, the specials and the ice cream are all still on the home page.</p>
           </div>
-          <p className="mt-8 text-base">Or call the shop on <a className="underline decoration-2 underline-offset-4" href={site.phoneHref}>{site.phone}</a>.</p>
+          <div className="flex flex-wrap items-start gap-x-6 gap-y-4 lg:col-span-5 lg:col-start-8">
+            <a href="/" className="btn btn-pink">Back home</a>
+            <a href="/#menu" className="btn">Open the menu</a>
+            <OrderButton label="Order" className="btn" />
+          </div>
         </div>
-
-        {/* a plate with the roll that fell off it: flat shapes, maroon outline */}
-        <svg aria-hidden="true" viewBox="0 0 400 300" focusable="false" className="mx-auto w-full max-w-md [stroke-linecap:round] [stroke-linejoin:round]">
-          <rect x="0" y="262" width="400" height="10" className="fill-maroon" />
-          <ellipse cx="150" cy="232" rx="120" ry="26" className="fill-cream stroke-maroon stroke-4" />
-          <ellipse cx="150" cy="224" rx="92" ry="17" className="fill-pink stroke-maroon stroke-3" />
-          <g transform="rotate(-8 292 232)">
-            <rect x="236" y="214" width="124" height="44" rx="22" className="fill-cream stroke-maroon stroke-4" />
-            <circle cx="360" cy="236" r="22" className="fill-pink stroke-maroon stroke-4" />
-            <path d="M360 236m-8 0a8 8 0 1 1 8 8" fill="none" className="stroke-maroon stroke-3" />
-          </g>
-          <path d="M214 196q8-22-4-46" fill="none" className="stroke-maroon stroke-3" strokeDasharray="2 12" />
-        </svg>
+        <p className="caption mt-16">Or call the shop on <a className="ulink" href={site.phoneHref}>{site.phone}</a></p>
       </div>
     </main>
   );

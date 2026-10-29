@@ -1,84 +1,78 @@
-import Image from "next/image";
 import { featured } from "../data/featured";
 import { rupees } from "../data/menu";
-import menuData from "../data/menu.json";
-import Reveal from "./Reveal";
-import SplitHeading from "./SplitHeading";
-import VegMark from "./VegMark";
-
-const rollsFrom = Math.min(...menuData.categories.find((c) => c.id === "ice-cream-rolls")!.items.map((i) => i.price));
+import Photo from "./Photo";
+import Split from "./Split";
 
 type Item = (typeof featured)[number];
 
-/** Name + category chip and a price pill, sitting on top of a photo tile. */
-function Caption({ it, className = "" }: { it: Item; className?: string }) {
-  return (
-    <div className={`absolute inset-x-3 bottom-3 flex items-end justify-between gap-2 sm:inset-x-4 sm:bottom-4 ${className}`}>
-      <div className="min-w-0 rounded-[20px] bg-white px-4 py-2.5">
-        <h3 className="truncate font-display text-lg leading-tight sm:text-xl">{it.name}</h3>
-        <p className="flex items-center gap-1.5 text-xs font-bold text-ink/70"><VegMark veg={it.veg} />{it.category}</p>
-      </div>
-      <span className="pill shrink-0 !bg-pink">{rupees(it.price)}</span>
-    </div>
-  );
-}
+const Veg = ({ veg }: { veg: boolean }) => <i role="img" aria-label={veg ? "Vegetarian" : "Non-vegetarian"} className={`veg ${veg ? "veg-y" : "veg-n"}`} />;
 
-function PhotoTile({ it, className }: { it: Item; className: string }) {
+function Pick({ it, n, className }: { it: Item; n: number; className: string }) {
   return (
-    <Reveal className={`relative min-h-[14rem] overflow-hidden rounded-[28px] bg-white ${className}`}>
-      <div className="scroll-zoom absolute inset-0">
-        {it.image && <Image src={it.image} alt={`${it.name}, ${it.category.toLowerCase()}`} fill sizes="(min-width: 1024px) 25vw, 50vw" fetchPriority="low" className="object-cover" />}
-      </div>
-      <Caption it={it} />
-    </Reveal>
+    <Photo
+      src={it.image!}
+      alt={`${it.name}, ${it.category.toLowerCase()}`}
+      ratio={1}
+      className={className}
+      caption={
+        <span className="flex items-baseline justify-between gap-4">
+          <span className="flex items-center gap-2"><span className="caption">Fig. {n}</span><Veg veg={it.veg} /><span className="font-display text-xl leading-none">{it.name}</span></span>
+          <span className="tabular-nums">{rupees(it.price)}</span>
+        </span>
+      }
+    />
   );
 }
 
 /**
- * Specials as a bento grid: tiles of different sizes and colours, big photos, price as a small pill.
- * 12 columns on desktop, 2 on phones. The big pink tile is the first featured item with its cut-out; the accent
- * tile carries the "rolls from" line. Photos are the old menu photos (small files), so they sit in tiles no bigger than ~420px.
+ * Specials as a magazine spread: one lead item with its cut-out beside a large italic name, then the other five as
+ * photographs staggered across the grid, each with a figure number, name and price. No tiles, no badges.
+ * The menu photos are small files, so each one sits in a frame no wider than about 440px.
  */
 export default function Specials() {
-  const [lead, b, c, d, e, f] = featured;
+  const [lead, ...rest] = featured;
   return (
-    <section id="specials" className="cv relative bg-cream">
-      <div className="mx-auto max-w-[1600px] px-4 py-20 sm:px-8 sm:py-28">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.16em] sm:text-base">Rolls from {rupees(rollsFrom)}</p>
-            <SplitHeading text="Where to start" className="mt-3 font-display text-[3.4rem] leading-[0.95] sm:text-7xl lg:text-[8rem]" />
-          </div>
-          <a href="#menu" className="btn btn-ink">Open the menu <span aria-hidden="true">↓</span></a>
+    <section id="specials" data-tone="paper" className="relative py-28 sm:py-40">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+        <div className="flex items-baseline justify-between border-t border-current/60 pt-3">
+          <p className="caption">No. 03 &mdash; Where to start</p>
+          <p className="caption">p. 03</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-12 lg:auto-rows-[17rem]">
-          {/* big pink tile with the cut-out */}
-          <Reveal className="relative col-span-2 min-h-[26rem] overflow-hidden rounded-[32px] bg-pink lg:col-span-6 lg:row-span-2">
-            <div className="p-6 sm:p-9">
-              <p className="flex items-center gap-2 text-sm font-bold"><VegMark veg={lead.veg} />{lead.category}</p>
-              <h3 className="mt-2 max-w-[10ch] font-display text-[2.8rem] leading-[0.95] sm:text-6xl lg:text-7xl">{lead.name}</h3>
-            </div>
-            <span className="pill absolute right-5 top-5 text-lg sm:right-8 sm:top-8">{rupees(lead.price)}</span>
-            <div className="zoom-free absolute inset-x-6 bottom-4 top-[46%] flex items-end justify-center sm:inset-x-10 sm:bottom-6">
+        <div className="drift mt-10 sm:mt-16">
+          <Split
+            id="specials-h"
+            className="max-w-[12ch] font-display text-[clamp(2.7rem,7.6vw,8.2rem)] leading-[0.95] tracking-[-0.03em]"
+            parts={[{ t: "Where to " }, { t: "start.", em: true, accent: true }]}
+          />
+        </div>
+
+        {/* lead */}
+        <div className="mt-20 grid items-end gap-x-8 gap-y-10 sm:mt-32 lg:grid-cols-12">
+          <div className="ph-frame ph-reveal lg:col-span-6 lg:col-start-1" data-cursor="View" style={{ aspectRatio: "1.15" }}>
+            <div className="absolute inset-0 flex items-end justify-center p-6 sm:p-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/img/cutouts/cookie-dough.webp" alt={`${lead.name}, ${lead.category.toLowerCase()}`} width={900} height={800} loading="lazy" decoding="async" className="max-h-full w-auto max-w-full object-contain" />
+              <img src="/img/cutouts/cookie-dough.webp" alt={`${lead.name}, ${lead.category.toLowerCase()}`} width={900} height={800} loading="lazy" decoding="async" className="max-h-full w-auto max-w-full object-contain transition-transform duration-[1100ms] ease-out hover:scale-[1.04]" />
             </div>
-          </Reveal>
+          </div>
+          <div className="lg:col-span-5 lg:col-start-8 lg:pb-6">
+            <p className="caption flex items-center gap-2"><Veg veg={lead.veg} />{lead.category}</p>
+            <h3 className="mt-4 max-w-[10ch] font-display text-[clamp(2.2rem,4.4vw,4.6rem)] leading-[1] tracking-[-0.03em]">Choco chip <em>cookie dough</em></h3>
+            <p className="lead measure mt-6 max-w-[26rem] opacity-90">Mellow chocolate, cookie dough and truffle paste, rolled on the plate and finished with choco chips and sauce.</p>
+            <p className="mt-8 flex items-baseline gap-6">
+              <span className="font-display text-4xl tabular-nums">{rupees(lead.price)}</span>
+              <a href="#menu" className="caption ulink">See it on the menu</a>
+            </p>
+          </div>
+        </div>
 
-          <PhotoTile it={b} className="lg:col-span-3" />
-          <PhotoTile it={c} className="row-span-2 min-h-[28rem] lg:col-span-3" />
-          <PhotoTile it={d} className="lg:col-span-3" />
-
-          <Reveal className="relative col-span-2 flex min-h-[14rem] flex-col justify-between overflow-hidden rounded-[28px] bg-accent p-6 sm:p-8 lg:col-span-4">
-            <p className="text-sm font-bold uppercase tracking-[0.16em]">Made in front of you</p>
-            <div>
-              <p className="font-display text-6xl leading-[0.9] sm:text-7xl">{rupees(rollsFrom)}</p>
-              <p className="mt-2 text-lg font-medium">for a roll, fresh off the cold plate.</p>
-            </div>
-          </Reveal>
-          <PhotoTile it={e} className="lg:col-span-4" />
-          <PhotoTile it={f} className="lg:col-span-4" />
+        {/* the other five, staggered */}
+        <div className="mt-24 grid gap-x-8 gap-y-20 sm:mt-40 md:grid-cols-12">
+          <Pick it={rest[0]} n={6} className="md:col-span-4 md:col-start-1" />
+          <Pick it={rest[1]} n={7} className="md:col-span-4 md:col-start-5 md:mt-28" />
+          <Pick it={rest[2]} n={8} className="md:col-span-4 md:col-start-9 md:mt-12" />
+          <Pick it={rest[3]} n={9} className="md:col-span-4 md:col-start-3 md:mt-8" />
+          <Pick it={rest[4]} n={10} className="md:col-span-4 md:col-start-8 md:mt-36" />
         </div>
       </div>
     </section>

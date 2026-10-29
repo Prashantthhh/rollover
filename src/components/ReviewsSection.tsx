@@ -1,45 +1,64 @@
 import { reviews } from "../data/reviews";
 import { site } from "../data/site";
-import ReviewCards from "./ReviewCards";
-import Reveal from "./Reveal";
-import SplitHeading from "./SplitHeading";
+import Split from "./Split";
 
 /**
- * Reviews. The rating is a shop-window sign: a maroon board hung from two chains with the number in huge Shrikhand.
- * The Google button is a square block. Real review slips (torn receipts) appear under it once src/data/reviews.ts has entries.
+ * Reviews: one huge rating numeral that counts up, with the Google link. Real guest quotes appear as pull quotes once
+ * src/data/reviews.ts has entries (never write one by hand); until then a labelled slot marks where the first one goes.
  */
 export default function ReviewsSection() {
+  const [, count] = site.rating.label.match(/([\d,]+)\+?\s+reviews/) ?? [];
   return (
-    <section id="reviews" className="cv relative overflow-hidden bg-pink text-maroon">
-      <div className="mx-auto max-w-6xl px-4 pb-20 pt-24 sm:pb-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,34rem)_1fr] lg:gap-20">
-          <Reveal className="relative mx-auto w-full max-w-lg">
-            {/* chains */}
-            <span aria-hidden="true" className="absolute -top-24 left-[18%] h-24 w-[6px] bg-maroon" />
-            <span aria-hidden="true" className="absolute -top-24 right-[18%] h-24 w-[6px] bg-maroon" />
-            <div className="relative border-[3px] border-maroon bg-maroon p-3 shadow-[10px_10px_0_var(--color-cream)]">
-              <div className="border-[3px] border-cream px-6 pb-6 pt-5 text-center text-cream">
-                <p className="text-xs font-extrabold uppercase tracking-[0.22em] sm:text-sm">Rated by our guests</p>
-                <p className="font-display text-[7.5rem] leading-[0.95] sm:text-[10rem]">
-                  {site.rating.value}
-                  <span aria-hidden="true" className="text-pink">★</span>
-                  <span className="sr-only"> out of 5 stars</span>
-                </p>
-                <p className="border-t-[3px] border-dashed border-cream pt-3 text-base font-bold uppercase tracking-[0.12em] sm:text-lg">{site.rating.label}</p>
-              </div>
-            </div>
-          </Reveal>
+    <section id="reviews" data-tone="paper" className="relative py-28 sm:py-40">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+        <div className="flex items-baseline justify-between border-t border-current/60 pt-3">
+          <p className="caption">No. 06 &mdash; What people say</p>
+          <p className="caption">p. 06</p>
+        </div>
 
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] sm:text-base">Reviews</p>
-            <SplitHeading text="What people are saying" className="mt-2 font-display text-[3rem] leading-[1.02] sm:text-6xl lg:text-7xl" />
-            <p className="mt-4 max-w-md text-lg leading-snug">Ask around Hanamkonda, or read what guests wrote on Google.</p>
-            <a href={site.maps.reviewsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-maroon mt-7">
+        <div className="mt-12 grid items-end gap-x-8 gap-y-12 sm:mt-20 lg:grid-cols-12">
+          <p className="font-display text-[clamp(8rem,24vw,22rem)] leading-[0.8] tracking-[-0.05em] lg:col-span-7" aria-label={`${site.rating.value} out of 5 stars`}>
+            <span data-count={site.rating.value} data-decimals="1" className="inline-block tabular-nums" style={{ minWidth: "2.1ch" }}>{site.rating.value.toFixed(1)}</span>
+            <span aria-hidden="true" className="t-accent ml-[0.05em] text-[0.5em]">&#9733;</span>
+          </p>
+          <div className="lg:col-span-4 lg:col-start-9 lg:pb-4">
+            <Split
+              as="h2"
+              id="reviews-h"
+              className="font-display text-[clamp(1.9rem,3.2vw,3.2rem)] leading-[1.05] tracking-[-0.02em]"
+              parts={[{ t: "What people are " }, { t: "saying", em: true, accent: true }]}
+            />
+            <p className="lead measure mt-5 max-w-[24rem]">
+              {count ? <>From more than <span data-count={Number(count.replace(/,/g, ""))} className="tabular-nums">{count}</span> reviews on Google. </> : null}
+              Ask around Hanamkonda, or read what guests wrote.
+            </p>
+            <a href={site.maps.reviewsUrl} target="_blank" rel="noopener noreferrer" className="btn mt-8">
               See the Google reviews <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
-        {reviews.length > 0 && <ReviewCards reviews={reviews} />}
+
+        <div className="mt-24 sm:mt-40">
+          {reviews.length > 0 ? (
+            <ul className="grid gap-x-8 gap-y-20 lg:grid-cols-3">
+              {reviews.map((r, i) => (
+                <li key={r.name + i} className={i % 2 ? "lg:mt-24" : ""}>
+                  <figure className="border-t border-current/60 pt-6">
+                    <blockquote className="font-display text-[clamp(1.5rem,2.2vw,2.2rem)] leading-[1.2] tracking-[-0.01em]">&ldquo;{r.text}&rdquo;</blockquote>
+                    <figcaption className="caption mt-6 flex justify-between gap-4">
+                      <span>{r.name}{r.rating ? <span className="sr-only">, {r.rating} out of 5</span> : null}</span>
+                      {r.when && <span>{r.when}</span>}
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="caption max-w-xl border border-dashed border-current/60 p-4 normal-case tracking-normal">
+              Pull-quote slot &middot; a real guest review goes here. Add it to src/data/reviews.ts (name and their own words); nothing is written by hand.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 type Photo = { name: string; image: string | null };
 
 /**
- * Looping photo strip. CSS translates a doubled track by -50% (compositor only).
+ * Looping row of photographs. CSS translates a doubled track by -50% (compositor only). It only runs while it is on screen.
  * - Direction follows the page: scrolling up reverses it (Animation.updatePlaybackRate, so it turns smoothly).
  * - Pauses on hover and focus; there is also a real Pause button (WCAG 2.2.2: moving content > 5 s).
  * - Reduced motion: no animation; the strip becomes a normal swipeable row (see globals.css).
@@ -48,7 +48,11 @@ export default function PhotoMarquee({ photos }: { photos: Photo[] }) {
     const io = new IntersectionObserver(([e]) => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
-      if (e.isIntersecting) { last = window.scrollY; rearm(); window.addEventListener("scroll", onScroll, { passive: true }); }
+      if (e.isIntersecting) {
+        last = window.scrollY; rearm();
+        if (el.style.animationPlayState !== "paused") anims().forEach((a) => a.play());
+        window.addEventListener("scroll", onScroll, { passive: true });
+      } else anims().forEach((a) => a.pause()); // an infinite animation costs main-thread time even offscreen
     });
     io.observe(el);
     rearm();
@@ -59,15 +63,15 @@ export default function PhotoMarquee({ photos }: { photos: Photo[] }) {
 
   return (
     <div className="marquee relative">
-      {/* A strip of film: maroon base, perforations top and bottom, cream-edged frames with frame numbers. */}
-      <div className="marquee-viewport overflow-hidden border-y-[3px] border-maroon bg-maroon">
+      <div className="marquee-viewport overflow-hidden" data-cursor="View">
         <ul ref={track} className="marquee-track flex w-max" style={{ animationPlayState: paused ? "paused" : undefined }}>
           {[0, 1].map((copy) =>
-            shots.map((p) => (
-              <li key={`${copy}-${p.name}`} className={`${copy ? "marquee-clone" : ""} film-frame relative shrink-0 px-2 pb-9 pt-9`} aria-hidden={copy ? true : undefined}>
-                <div className="relative h-56 w-44 border-[3px] border-cream bg-cream sm:h-72 sm:w-56">
-                  <Image src={p.image!} alt={copy ? "" : p.name} fetchPriority="low" fill sizes="(min-width: 640px) 224px, 176px" className="object-cover" />
+            shots.map((p, i) => (
+              <li key={`${copy}-${p.name}`} className={`${copy ? "marquee-clone" : ""} mr-6 shrink-0 sm:mr-10 ${i % 2 ? "mt-12 sm:mt-20" : ""}`} aria-hidden={copy ? true : undefined}>
+                <div className="relative h-64 w-52 bg-paper-deep sm:h-[26rem] sm:w-80">
+                  <Image src={p.image!} alt={copy ? "" : p.name} fetchPriority="low" fill sizes="(min-width: 640px) 320px, 208px" className="object-cover" />
                 </div>
+                <p className="caption-i mt-3 max-w-52 truncate sm:max-w-80"><span className="caption mr-2">Fig. {80 + i}</span>{p.name}</p>
               </li>
             )),
           )}
@@ -77,7 +81,7 @@ export default function PhotoMarquee({ photos }: { photos: Photo[] }) {
         type="button"
         onClick={() => setPaused((v) => !v)}
         aria-pressed={paused}
-        className="marquee-pause btn btn-cream mx-auto mt-6 !min-h-11 !px-4 !text-base"
+        className="marquee-pause btn mx-auto mt-12 flex"
       >
         <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
           {paused ? <path d="M3 1.5v11l9-5.5Z" /> : <path d="M2.5 1.5h3v11h-3zM8.500 1.500h3v11h-3z" />}
