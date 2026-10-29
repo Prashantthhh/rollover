@@ -1,32 +1,24 @@
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import HowScrub from "../components/HowScrub";
+import Intro from "../components/Intro";
 import JsonLd from "../components/JsonLd";
-import HowRolls from "../components/HowRolls";
 import MenuSection from "../components/MenuSection";
 import Nav from "../components/Nav";
-import OffersSection from "../components/OffersSection";
-import PhotoBand from "../components/PhotoBand";
-import PhotoStrip from "../components/PhotoStrip";
-import ReviewsSection from "../components/ReviewsSection";
-import Specials from "../components/Specials";
-import VibeSection from "../components/VibeSection";
 import VisitSection from "../components/VisitSection";
 import { localBusinessJsonLd } from "../lib/jsonld";
 
+// Editorial redesign, first pass: cover, standfirst, "How it's made" (scrubbed), menu. Visit and the footer are still the
+// old layouts; the remaining sections (specials, reviews, offers, photo strip) come in the next pass.
 export default function Home() {
   return (
     <>
       <Nav />
       <main id="main" className="curtain-main">
         <Hero />
-        <HowRolls />
-        <Specials />
+        <Intro />
+        <HowScrub />
         <MenuSection />
-        <PhotoBand />
-        <VibeSection />
-        <PhotoStrip />
-        <ReviewsSection />
-        <OffersSection />
         <VisitSection />
       </main>
       <Footer />

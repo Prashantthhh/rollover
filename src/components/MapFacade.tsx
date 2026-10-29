@@ -30,7 +30,7 @@ export default function MapFacade() {
           <p className="font-display text-3xl leading-tight">Chaitanyapuri Colony,<br />Hanamkonda</p>
           <div className="flex flex-wrap justify-center gap-4">
             <button type="button" onClick={() => setShow(true)} className="btn btn-maroon">Show the map</button>
-            <a href={site.maps.placeUrl} target="_blank" rel="noopener noreferrer" className="btn btn-cream">Open in Google Maps <span aria-hidden="true">↗</span></a>
+            <a href={site.maps.placeUrl} target="_blank" rel="noopener noreferrer" className="btn">Open in Google Maps <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       )}

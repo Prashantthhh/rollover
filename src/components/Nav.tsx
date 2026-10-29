@@ -1,20 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence } from "motion/react";
-import * as m from "motion/react-m";
 import OrderButton from "./OrderButton";
 
 const links = [
+  { href: "#how", label: "How it's made" },
   { href: "#menu", label: "Menu" },
-  { href: "#specials", label: "Specials" },
-  { href: "#gallery", label: "Gallery" },
   { href: "#visit", label: "Visit" },
 ];
 
-const list = { hidden: {}, show: { transition: { staggerChildren: 0.04, delayChildren: 0.06 } } };
-const item = { hidden: { opacity: 0, y: -10 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 500, damping: 34 } } };
-
+/** Masthead: wordmark left, issue line centre, contents and the order button right. A hairline underneath, like a magazine page head. */
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
@@ -30,59 +25,46 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header ref={header} className="sticky top-0 z-50 bg-cream">
-      <nav aria-label="Main" className="mx-auto flex h-16 max-w-[1600px] items-center gap-3 px-4 sm:px-8">
-        <a href="#top" className="mr-auto shrink-0" aria-label="RollOver Warangal, home">
-          {/* plain <img>: always above the fold, so no lazy loading, and no preload hint competing with the hero poster */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/brand/logo.webp" srcSet="/img/brand/logo-sm.webp 480w, /img/brand/logo.webp 586w" sizes="195px" alt="RollOver: ice creams, hand crafted" width={586} height={133} loading="lazy" decoding="async" className="h-8 w-auto min-[400px]:h-10 sm:h-11" />
+    <header ref={header} className="sticky top-0 z-50 border-b border-ink bg-paper">
+      <nav aria-label="Main" className="mx-auto flex h-14 max-w-[1600px] items-center gap-4 px-4 sm:px-8">
+        <a href="#top" className="shrink-0 font-display text-[1.7rem] leading-none tracking-[-0.03em]" aria-label="RollOver Warangal, home">
+          Roll<span className="text-pink">O</span>ver
         </a>
+        <p className="caption ml-6 hidden border-l border-ink pl-6 lg:block">No. 01 &mdash; Hanamkonda</p>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="ml-auto hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="rounded-full px-4 py-2 text-base font-bold hover:bg-white">{l.label}</a>
-            </li>
+            <li key={l.href}><a href={l.href} className="caption ulink">{l.label}</a></li>
           ))}
         </ul>
 
-        <OrderButton label="Order" align="right" className="btn btn-pink !min-h-11 !px-5 !text-base sm:!px-6" />
+        <div className="ml-auto md:ml-0"><OrderButton label="Order" align="right" className="btn btn-pink !min-h-10 !px-4" /></div>
 
         <button
           ref={toggle}
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-white md:hidden"
+          className="caption flex h-10 items-center border border-ink px-3 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((o) => !o)}
         >
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-            {open ? <path d="M4 4l12 12M16 4L4 16" /> : <path d="M3 6h14M3 10h14M3 14h14" />}
-          </svg>
+          {open ? "Close" : "Index"}
         </button>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <m.div
-            id="mobile-menu"
-            className="dark-block absolute inset-x-3 top-full mt-2 origin-top rounded-[28px] bg-ink p-3 text-cream md:hidden"
-            initial={{ opacity: 0, y: -18, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, transition: { duration: 0.14 } }}
-            transition={{ type: "spring", stiffness: 420, damping: 32 }}
-          >
-            <m.ul variants={list} initial="hidden" animate="show">
-              {links.map((l) => (
-                <m.li key={l.href} variants={item}>
-                  <a href={l.href} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 font-display text-4xl leading-tight hover:bg-cream hover:text-ink">{l.label}</a>
-                </m.li>
-              ))}
-            </m.ul>
-          </m.div>
-        )}
-      </AnimatePresence>
+      {open && (
+        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-ink bg-paper px-4 pb-6 pt-2 md:hidden">
+          <ul>
+            {links.map((l, i) => (
+              <li key={l.href} className="border-t border-ink/30 first:border-t-0">
+                <a href={l.href} onClick={() => setOpen(false)} className="flex items-baseline gap-4 py-3 font-display text-5xl leading-none">
+                  <span className="caption w-6">0{i + 1}</span>{l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

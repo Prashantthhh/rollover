@@ -6,6 +6,7 @@ const nextConfig = {
   images: { loader: "custom", loaderFile: "./src/lib/imageLoader.ts" },
   productionBrowserSourceMaps: false, // never publish source maps
   reactStrictMode: true,
-  experimental: { inlineCss: true },
+  // BUILD_CPUS=1 keeps the static export to one worker on machines with little free memory (the default is one per core).
+  experimental: { inlineCss: true, ...(process.env.BUILD_CPUS ? { cpus: Number(process.env.BUILD_CPUS) } : {}) },
 };
 export default nextConfig;
