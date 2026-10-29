@@ -1,17 +1,18 @@
 import { findItem } from "./menu";
 
 /**
- * Specials shown on the home page. Rolls first. These are editorial picks (the old site had no sales data),
+ * Specials shown on the home page (bento grid; the first one is the big tile). Clean photos only. These are editorial picks (the old site had no sales data),
  * so swap the names below to whatever the cafe wants to push. Names must match menu.json exactly.
  */
 export const featured = [
   findItem("ice-cream-rolls", "Choco Chip Cookie Dough"),
   findItem("ice-cream-rolls", "Pista Nuts"),
+  findItem("ice-cream-rolls", "Fruit & nut"),
+  findItem("ice-cream-rolls", "Guava Chilli"),
   findItem("ice-cream-rolls", "Brownie Bomb"),
-  findItem("gourmet-plates", "Choco Lava Therapy"),
-  findItem("gourmet-plates", "Strawberry Paradise"),
-  findItem("shakes", "Ferrero Rocher Shake"),
+  findItem("shakes", "Granola blueberry"),
 ];
+
 
 /**
  * Photo strip: clean food photos only (no promo text, logos, script fonts or graphic backgrounds, no other accounts' marks).

@@ -1,122 +1,113 @@
 @import "tailwindcss";
 
-/* ---------- Design tokens: retro Indian ice cream parlour ----------
-   Three flat colours only: brand pink, cream, deep maroon. No gradients, no tints, no soft shadows.
-   Maroon on pink and pink on maroon are both ~4.5:1 (AA for any size); maroon on cream and cream on maroon are ~15:1. */
+/* ---------- Design tokens: fresh modern ----------
+   Hot pink, one fresh accent (pistachio mint; butter yellow via <html data-accent="butter">), warm off-white and near-black.
+   No gradients. Soft or no shadows, generous radii (24-32px). Ink on pink is ~6:1, ink on mint ~13:1, ink on off-white ~17:1.
+   `maroon` stays as an alias of ink so sections that have not been redesigned yet keep working. */
 @theme {
   --color-pink: #eb3592;
-  --color-cream: #fef2f3;
-  --color-maroon: #340a1b;
-  /* Older names still used by sections that have not been redesigned yet, mapped onto the three flats. */
-  --color-ink: #340a1b;
-  --color-pink-soft: #fef2f3;
-  --color-sun: #fef2f3;
+  --color-accent: #bfe8c9;
+  --color-cream: #fbf7f0;
+  --color-ink: #17110f;
+  --color-maroon: #17110f;
+  --color-pink-soft: #fbf7f0;
+  --color-sun: #fbf7f0;
 
-  --font-display: var(--font-shrikhand), "Arial Black", system-ui, sans-serif;
-  --font-sans: var(--font-archivo), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-clash), "Arial Black", system-ui, sans-serif;
+  --font-sans: var(--font-satoshi), system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --shadow-pop: 4px 4px 0 var(--color-maroon);
-  --shadow-pop-lg: 8px 8px 0 var(--color-maroon);
+  --radius-card: 28px;
+  --shadow-soft: 0 10px 30px -12px rgb(23 17 15 / 0.25);
 }
+html[data-accent="butter"] { --color-accent: #f8e8a4; }
 
-html { scroll-padding-top: 5rem; font-synthesis: none; } /* Shrikhand has one weight: never fake a bold */
-@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+html { scroll-padding-top: 5rem; font-synthesis: none; }
+@media (prefers-reduced-motion: no-preference) { html:not(.lenis) { scroll-behavior: smooth; } }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 html, body { overflow-x: clip; }
 body {
   background: var(--color-cream);
-  color: var(--color-maroon);
+  color: var(--color-ink);
   font-family: var(--font-sans);
+  font-size: 1.0625rem;
   -webkit-font-smoothing: antialiased;
 }
+/* big, confident, tight headings */
+.font-display { font-weight: 600; letter-spacing: -0.035em; }
 
-:focus-visible { outline: 3px solid var(--color-maroon); outline-offset: 3px; }
-.dark-block :focus-visible { outline-color: var(--color-cream); } /* focus ring that shows on maroon */
+:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; border-radius: 6px; }
+.dark-block :focus-visible { outline-color: var(--color-cream); }
 
 /* ---------- Components ---------- */
-/* Buttons are square blocks with a hard offset shadow; .btn-pill is the one rounded variant. */
+/* Pill buttons: flat colour, no border, no shadow. The cursor "magnet" (FreshMotion) moves them a few px. */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-  min-height: 3rem; padding: 0.6rem 1.4rem; white-space: nowrap;
-  border: 3px solid var(--color-maroon); border-radius: 0;
-  font-family: var(--font-sans); font-weight: 700; font-size: 1.2rem; line-height: 1; letter-spacing: 0.03em; text-transform: uppercase;
-  color: var(--color-maroon); box-shadow: 5px 5px 0 var(--color-maroon); cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: 3.25rem; padding: 0.7rem 1.7rem; white-space: nowrap;
+  border: 0; border-radius: 999px;
+  font-family: var(--font-sans); font-weight: 700; font-size: 1.05rem; line-height: 1; letter-spacing: -0.005em;
+  color: var(--color-ink); cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.2s ease, color 0.2s ease;
 }
 .btn-pill { border-radius: 999px; }
 .btn-pink { background: var(--color-pink); }
-.btn-cream, .btn-sun { background: var(--color-cream); }
-.btn-maroon { background: var(--color-maroon); color: var(--color-cream); }
-@media (prefers-reduced-motion: no-preference) {
-  .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--color-maroon); }
-  .btn:active { transform: translate(4px, 4px); box-shadow: 1px 1px 0 var(--color-maroon); }
-}
-.dark-block .btn { box-shadow: 5px 5px 0 var(--color-pink); border-color: var(--color-cream); }
+.btn-cream, .btn-sun { background: #fff; }
+.btn-maroon, .btn-ink { background: var(--color-ink); color: #fff; }
+.btn-accent { background: var(--color-accent); }
+@media (hover: hover) { .btn-pink:hover { background: var(--color-ink); color: #fff; } .btn-cream:hover, .btn-sun:hover, .btn-accent:hover { background: var(--color-ink); color: #fff; } .btn-ink:hover, .btn-maroon:hover { background: var(--color-pink); color: var(--color-ink); } }
+.dark-block .btn { box-shadow: none; }
+/* until the remaining sections are redesigned: no hard offset shadows anywhere */
+[class*="shadow-["] { box-shadow: none !important; }
+
+/* small flat pill (prices, tags) */
+.pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 0.3rem 0.85rem; font-weight: 700; font-size: 0.95rem; line-height: 1.2; background: #fff; color: var(--color-ink); white-space: nowrap; }
 
 /* ---------- Word rise (shared by RiseWords and SplitHeading) ---------- */
 .word-mask {
   display: inline-block; overflow: hidden; vertical-align: bottom;
-  /* room for descenders and tape padding without changing layout */
   padding: 0.05em 0.14em 0.16em; margin: -0.05em -0.14em -0.16em;
 }
-.tape { background: var(--color-cream); }
-.word-rise { display: inline-block; animation: word-rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both; animation-delay: calc(0.1s + var(--i, 0) * 55ms); }
+.tape { background: transparent; }
+.word-rise { display: inline-block; animation: word-rise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both; animation-delay: calc(0.1s + var(--i, 0) * 60ms); }
 @keyframes word-rise { from { transform: translateY(105%); } to { transform: none; } }
 
-/* ---------- Hero: full-bleed video shrinks into an arched window as you scroll ----------
-   One number drives it all: --p (0 = start, 1 = framed). HeroScrub writes --p from scroll progress.
-   The frame rectangle is defined once (--ft/--fr/--fb/--fl, % of the stage) and the clip-path insets are
-   interpolated from the start inset (--st/--sr/--sb/--sl) to that frame, so the video always lands inside the
-   maroon frame. The top corners curve into an arch (p squared, so the curve only appears late); the bottom stays square.
-   Phones: edge-to-edge start, headline block above the stage (scrolls away), shorter runway.
-   Desktop: start inset to <=1200px wide, text pinned on top. */
-.hero-wrap { --stage: max(36rem, calc(100svh - 4rem)); --d: 51svh; position: relative; }
-.hero-text { position: relative; z-index: 10; pointer-events: none; }
-.hero-runway { height: var(--d); }
-.hero-stage {
-  --p: 0; --pad: 12px;
-  --ft: 12%; --fr: 6%; --fb: 8%; --fl: 6%;
-  --st: 0px; --sr: 0px; --sb: 0px; --sl: 0px;
-  position: sticky; top: 4rem; height: var(--stage); background: var(--color-cream);
-}
-@media (min-width: 768px) {
-  .hero-wrap { --d: 85svh; }
-  /* text and stage share one grid area that spans stage + runway, so both stay pinned for the same distance
-     and leave together */
-  .hero-wrap { display: grid; grid-template-rows: var(--stage) var(--d); }
-  .hero-text, .hero-stage { grid-area: 1 / 1 / 3 / 2; align-self: start; }
-  .hero-runway { grid-area: 2 / 1; }
-  .hero-text { position: sticky; top: 4rem; height: var(--stage); }
-  .hero-stage {
-    --ft: 6%; --fr: 4%; --fb: 8%; --fl: 54%;
-    --st: 0px; --sb: 0px; --sr: max(0px, calc((100% - 1200px) / 2)); --sl: var(--sr);
+/* ---------- Images ease from 1.12x to 1x as they scroll through the viewport (CSS scroll-driven, no JS) ---------- */
+@keyframes img-settle { from { transform: scale(1.14); } to { transform: scale(1); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-zoom { overflow: hidden; }
+    .scroll-zoom > img, .zoom-free > img { animation: img-settle linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; will-change: transform; }
   }
 }
-.hero-frame { position: absolute; top: var(--ft); right: var(--fr); bottom: var(--fb); left: var(--fl); border-radius: 999px 999px 0 0; }
-/* the hard offset "shadow" is a flat pink copy of the frame, shifted */
-.hero-frame-offset { transform: translate(14px, 14px); }
+
+/* ---------- Hero: full-screen video that shrinks into a rounded rectangle as you scroll ----------
+   One number drives it: --p (0 = full-bleed, 1 = framed). HeroScrub writes it from scroll progress; the clip-path
+   insets and radius are derived from it here, so nothing animates layout. The headline fades out as the video shrinks;
+   the button row stays put (over the video at the start, in the cream band below it at the end). */
+.hero-wrap { position: relative; }
+.hero-stage {
+  --p: 0; --m: 12px; --mx: 12px; --bar: 6.25rem;
+  position: sticky; top: 4rem; height: calc(100svh - 4rem); min-height: 34rem; background: var(--color-cream);
+}
+@media (min-width: 1100px) { .hero-stage { --mx: max(16px, calc((100% - 1600px) / 2)); } }
+.hero-runway { height: 60svh; }
+@media (min-width: 768px) { .hero-runway { height: 80svh; } }
 .hero-clip {
-  position: absolute; inset: 0; overflow: hidden;
+  position: absolute; inset: 0; overflow: hidden; background: var(--color-ink);
   clip-path: inset(
-    calc(var(--st) + var(--p) * (var(--ft) + var(--pad) - var(--st)))
-    calc(var(--sr) + var(--p) * (var(--fr) + var(--pad) - var(--sr)))
-    calc(var(--sb) + var(--p) * (var(--fb) + var(--pad) - var(--sb)))
-    calc(var(--sl) + var(--p) * (var(--fl) + var(--pad) - var(--sl)))
-    round calc(var(--p) * var(--p) * 999px) calc(var(--p) * var(--p) * 999px) 0 0
+    calc(var(--p) * var(--m)) calc(var(--p) * var(--mx)) calc(var(--p) * var(--bar)) calc(var(--p) * var(--mx))
+    round calc(var(--p) * 32px)
   );
 }
-/* frame parts appear once the video is nearly home; doodles fade in with them */
-.hero-frame-bg { opacity: clamp(0, calc((var(--p) - 0.5) * 4), 1); }
-.hero-pop { opacity: clamp(0, calc((var(--p) - 0.8) * 5), 1); }
+.hero-fade { opacity: clamp(0, calc(1 - var(--p) * 2.6), 1); transform: translate3d(0, calc(var(--p) * -2.5rem), 0); }
+.hero-fade[data-gone="true"] { visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .word-rise { animation: none; }
-  /* no pin, no scrub: show the finished (framed) state */
   .hero-runway { display: none; }
-  .hero-wrap { grid-template-rows: var(--stage); }
-  .hero-text, .hero-stage { grid-area: 1 / 1; }
-  .hero-stage { position: relative; top: 0; --p: 1 !important; }
-  .hero-text { position: relative; top: 0; }
+  .hero-stage { position: relative; top: 0; --p: 0 !important; }
 }
 
 /* ---------- Photo marquee (CSS loop; direction handled in PhotoMarquee.tsx) ---------- */
@@ -176,13 +167,3 @@ html.has-dialog { overflow: hidden; }
 .film-frame::before { top: 4px; }
 .film-frame::after { bottom: 4px; }
 
-/* ---------- Menu board: the photo window follows the active row (--active is set by MenuBoard) ----------
-   opacity = 1 when --i equals --active, else 0, using (a-b)^2 so no per-index rules are needed. */
-.board-shot { opacity: clamp(0, calc(1 - (var(--i) - var(--active)) * (var(--i) - var(--active))), 1); transition: opacity 0.2s ease; }
-.board-window { box-shadow: 10px 10px 0 var(--color-pink); border-bottom-right-radius: 5rem; overflow: hidden; }
-.board-row::before {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--color-pink);
-  opacity: clamp(0, calc(1 - (var(--i) - var(--active)) * (var(--i) - var(--active))), 1);
-}
-@media (max-width: 1023px) { .board-row::before { display: none; } }
-@media (prefers-reduced-motion: reduce) { .board-shot { transition: none; } }

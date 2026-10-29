@@ -15,7 +15,7 @@
  *   "halftone" the same, broken into a 45-degree dot screen like a printed poster (960x540, 12 fps to stay under 2 MB)
  *   "none"     the raw footage
  */
-export const HERO_TREATMENT: "duotone" | "halftone" | "none" = "duotone";
+export const HERO_TREATMENT: "duotone" | "halftone" | "none" = "none";
 
 /** Full-width video band between the menu and the vibe section (scripts/bake-clips.mjs cuts it from the cafe's own footage). */
 export const BAND_VIDEO = { src: "/video/band.mp4", poster: "/video/band-poster.webp", alt: "Ice cream rolls being chopped, spread, rolled and plated", position: "50% 50%" };

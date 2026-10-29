@@ -8,80 +8,77 @@ import VegMark from "./VegMark";
 
 const rollsFrom = Math.min(...menuData.categories.find((c) => c.id === "ice-cream-rolls")!.items.map((i) => i.price));
 
-/**
- * Price-tag shapes: an angled-shoulder tag with a punched hole, drawn with clip-path. A clipped shape cannot carry
- * a box-shadow, so the hard offset shadow is a drop-shadow filter on the wrapper (no blur, so it stays flat).
- */
-const TAG = "polygon(0 0, calc(100% - 2.2rem) 0, 100% 2.2rem, 100% 100%, 0 100%)";
+type Item = (typeof featured)[number];
 
-function Price({ n, big = false }: { n: number; big?: boolean }) {
-  return <span className={`font-display leading-none ${big ? "text-6xl sm:text-7xl" : "text-4xl"}`}>{rupees(n)}</span>;
+/** Name + category chip and a price pill, sitting on top of a photo tile. */
+function Caption({ it, className = "" }: { it: Item; className?: string }) {
+  return (
+    <div className={`absolute inset-x-3 bottom-3 flex items-end justify-between gap-2 sm:inset-x-4 sm:bottom-4 ${className}`}>
+      <div className="min-w-0 rounded-[20px] bg-white px-4 py-2.5">
+        <h3 className="truncate font-display text-lg leading-tight sm:text-xl">{it.name}</h3>
+        <p className="flex items-center gap-1.5 text-xs font-bold text-ink/70"><VegMark veg={it.veg} />{it.category}</p>
+      </div>
+      <span className="pill shrink-0 !bg-pink">{rupees(it.price)}</span>
+    </div>
+  );
+}
+
+function PhotoTile({ it, className }: { it: Item; className: string }) {
+  return (
+    <Reveal className={`relative min-h-[14rem] overflow-hidden rounded-[28px] bg-white ${className}`}>
+      <div className="scroll-zoom absolute inset-0">
+        {it.image && <Image src={it.image} alt={`${it.name}, ${it.category.toLowerCase()}`} fill sizes="(min-width: 1024px) 25vw, 50vw" fetchPriority="low" className="object-cover" />}
+      </div>
+      <Caption it={it} />
+    </Reveal>
+  );
 }
 
 /**
- * Specials as price tags. One big tag for the first item and a stack of long luggage-tag strips for the rest,
- * on a flat pink shop-sign board. Not cards: the shapes, sizes and colours differ, and the tags carry the price as
- * the biggest thing on them.
+ * Specials as a bento grid: tiles of different sizes and colours, big photos, price as a small pill.
+ * 12 columns on desktop, 2 on phones. The big pink tile is the first featured item with its cut-out; the accent
+ * tile carries the "rolls from" line. Photos are the old menu photos (small files), so they sit in tiles no bigger than ~420px.
  */
 export default function Specials() {
-  const [lead, ...rest] = featured;
+  const [lead, b, c, d, e, f] = featured;
   return (
-    <section id="specials" className="cv relative bg-pink text-maroon">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:py-24">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+    <section id="specials" className="cv relative bg-cream">
+      <div className="mx-auto max-w-[1600px] px-4 py-20 sm:px-8 sm:py-28">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] sm:text-base">Rolls from {rupees(rollsFrom)}</p>
-            <SplitHeading text="Where to start" className="mt-2 font-display text-[3rem] leading-[1.02] sm:text-6xl lg:text-7xl" />
+            <p className="text-sm font-bold uppercase tracking-[0.16em] sm:text-base">Rolls from {rupees(rollsFrom)}</p>
+            <SplitHeading text="Where to start" className="mt-3 font-display text-[3.4rem] leading-[0.95] sm:text-7xl lg:text-[8rem]" />
           </div>
-          <a href="#menu" className="btn btn-cream">Open the menu <span aria-hidden="true">↓</span></a>
+          <a href="#menu" className="btn btn-ink">Open the menu <span aria-hidden="true">↓</span></a>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
-          {/* the big tag */}
-          <Reveal className="lg:-rotate-2">
-            <div style={{ filter: "drop-shadow(8px 8px 0 var(--color-maroon))" }}>
-              <article className="relative bg-cream p-5 pt-14" style={{ clipPath: TAG }}>
-                <span aria-hidden="true" className="absolute left-5 top-5 h-6 w-6 rounded-full bg-pink" />
-                <div className="relative aspect-[4/3] border-[3px] border-maroon">
-                  {lead.image && <Image src={lead.image} alt={`${lead.name}, ${lead.category.toLowerCase()}`} fill sizes="(min-width: 1024px) 416px, 90vw" fetchPriority="low" className="object-cover" />}
-                </div>
-                <div className="mt-4 flex items-end justify-between gap-4">
-                  <div>
-                    <h3 className="font-display text-3xl leading-tight">{lead.name}</h3>
-                    <p className="mt-1 flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><VegMark veg={lead.veg} />{lead.category}</p>
-                  </div>
-                  <Price n={lead.price} big />
-                </div>
-              </article>
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-12 lg:auto-rows-[17rem]">
+          {/* big pink tile with the cut-out */}
+          <Reveal className="relative col-span-2 min-h-[26rem] overflow-hidden rounded-[32px] bg-pink lg:col-span-6 lg:row-span-2">
+            <div className="p-6 sm:p-9">
+              <p className="flex items-center gap-2 text-sm font-bold"><VegMark veg={lead.veg} />{lead.category}</p>
+              <h3 className="mt-2 max-w-[10ch] font-display text-[2.8rem] leading-[0.95] sm:text-6xl lg:text-7xl">{lead.name}</h3>
+            </div>
+            <span className="pill absolute right-5 top-5 text-lg sm:right-8 sm:top-8">{rupees(lead.price)}</span>
+            <div className="zoom-free absolute inset-x-6 bottom-4 top-[46%] flex items-end justify-center sm:inset-x-10 sm:bottom-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/img/cutouts/cookie-dough.webp" alt={`${lead.name}, ${lead.category.toLowerCase()}`} width={900} height={800} loading="lazy" decoding="async" className="max-h-full w-auto max-w-full object-contain" />
             </div>
           </Reveal>
 
-          {/* the strips */}
-          <ul className="flex flex-col gap-6">
-            {rest.map((it, i) => {
-              const dark = i % 2 === 1;
-              return (
-                <Reveal as="li" key={it.name} delay={i * 0.05} className={dark ? "lg:ml-10" : "lg:-ml-2"}>
-                  <div style={{ filter: "drop-shadow(6px 6px 0 var(--color-maroon))" }}>
-                    <article
-                      className={`relative flex items-stretch gap-4 py-3 pl-12 ${dark ? "bg-maroon text-cream" : "bg-cream"}`}
-                      style={{ clipPath: "polygon(1.6rem 0, 100% 0, 100% 100%, 1.6rem 100%, 0 50%)" }}
-                    >
-                      <span aria-hidden="true" className="absolute left-6 top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-pink" />
-                      <div className={`relative hidden w-24 shrink-0 border-[3px] sm:block ${dark ? "border-cream" : "border-maroon"}`}>
-                        {it.image && <Image src={it.image} alt={`${it.name}, ${it.category.toLowerCase()}`} fill sizes="96px" fetchPriority="low" className="object-cover" />}
-                      </div>
-                      <div className="min-w-0 flex-1 self-center">
-                        <h3 className="font-display text-2xl leading-tight sm:text-3xl">{it.name}</h3>
-                        <p className="mt-1 flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><VegMark veg={it.veg} />{it.category}</p>
-                      </div>
-                      <div className={`-my-3 flex shrink-0 items-center px-4 sm:px-6 ${dark ? "bg-pink text-maroon" : "bg-maroon text-cream"}`}><Price n={it.price} /></div>
-                    </article>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </ul>
+          <PhotoTile it={b} className="lg:col-span-3" />
+          <PhotoTile it={c} className="row-span-2 min-h-[28rem] lg:col-span-3" />
+          <PhotoTile it={d} className="lg:col-span-3" />
+
+          <Reveal className="relative col-span-2 flex min-h-[14rem] flex-col justify-between overflow-hidden rounded-[28px] bg-accent p-6 sm:p-8 lg:col-span-4">
+            <p className="text-sm font-bold uppercase tracking-[0.16em]">Made in front of you</p>
+            <div>
+              <p className="font-display text-6xl leading-[0.9] sm:text-7xl">{rupees(rollsFrom)}</p>
+              <p className="mt-2 text-lg font-medium">for a roll, fresh off the cold plate.</p>
+            </div>
+          </Reveal>
+          <PhotoTile it={e} className="lg:col-span-4" />
+          <PhotoTile it={f} className="lg:col-span-4" />
         </div>
       </div>
     </section>

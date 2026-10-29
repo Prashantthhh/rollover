@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Shrikhand, Archivo } from "next/font/google";
+import localFont from "next/font/local";
 import HashNav from "../components/HashNav";
+import FreshMotion from "../components/FreshMotion";
 import MotionProvider from "../components/MotionProvider";
 import { site } from "../data/site";
 import { SEO } from "../lib/seo";
 import "./globals.css";
 
-// Fonts: display "swap" (text paints at once in the fallback face). Only the display face, which the hero
-// headline uses, is preloaded; the body face loads when it is first needed.
-// Display: Shrikhand (one weight, used big). Body: Archivo (sturdy, signage-like). Alternative body face: Atkinson Hyperlegible.
-const shrikhand = Shrikhand({ weight: "400", subsets: ["latin"], variable: "--font-shrikhand", display: "swap", preload: true });
-const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo", display: "swap", preload: false });
+// Fonts (Fontshare, free for commercial use; licences in public/fonts-licenses), self-hosted variable woff2.
+// Display: Clash Display (headings). Body: Satoshi. "swap" paints text at once in the fallback face.
+const clash = localFont({ src: "./fonts/ClashDisplay-Variable.woff2", weight: "200 700", variable: "--font-clash", display: "swap", preload: true });
+const satoshi = localFont({ src: "./fonts/Satoshi-Variable.woff2", weight: "300 900", variable: "--font-satoshi", display: "swap", preload: true });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -37,17 +37,18 @@ export const viewport: Viewport = { themeColor: "#eb3592" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${shrikhand.variable} ${archivo.variable}`}>
+    <html lang="en-IN" className={`${clash.variable} ${satoshi.variable}`}>
       <body>
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-sun focus:px-4 focus:py-2 focus:font-semibold">
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-semibold">
           Skip to content
         </a>
         <noscript>
           {/* No JS: show every heading and the framed hero state instead of the hidden start poses. */}
-          <style>{`.split-word{transform:none!important}.word-rise{animation:none!important}.hero-runway{display:none!important}.hero-stage{position:relative!important;top:0!important;--p:1!important}.hero-text{position:relative!important;top:0!important}`}</style>
+          <style>{`.split-word{transform:none!important}.word-rise{animation:none!important}.hero-runway{display:none!important}.hero-stage{position:relative!important;top:0!important;--p:0!important}`}</style>
         </noscript>
         <MotionProvider>{children}</MotionProvider>
         <HashNav />
+        <FreshMotion />
         {GA_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />

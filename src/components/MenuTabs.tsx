@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as m from "motion/react-m";
 
-const HIDDEN = "inset(0px 99999px 0px 0px)";
+const HIDDEN = "inset(0px 99999px 0px 0px round 999px)";
 
 /**
  * Category tabs (WAI-ARIA tabs pattern: arrow keys, Home/End, roving tabindex).
@@ -26,7 +26,7 @@ export default function MenuTabs({ tabs: categories }: { tabs: { id: string; tit
     const wrap = strip.current, tab = tabs.current[active];
     if (!wrap || !tab) return;
     const left = tab.offsetLeft, right = wrap.scrollWidth - (left + tab.offsetWidth);
-    setClip(`inset(0px ${right}px 0px ${left}px)`);
+    setClip(`inset(0px ${right}px 0px ${left}px round 999px)`);
     requestAnimationFrame(() => setInstant(false)); // the first measurement is placed without animating
   }, [active]);
 
@@ -74,11 +74,11 @@ export default function MenuTabs({ tabs: categories }: { tabs: { id: string; tit
 
   return (
     <div>
-      <div className="-mx-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div ref={strip} role="tablist" aria-label="Menu categories" onKeyDown={onKey} className="relative flex w-max gap-7 border-b-[3px] border-cream">
+      <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div ref={strip} role="tablist" aria-label="Menu categories" onKeyDown={onKey} className="relative flex w-max gap-1 rounded-full bg-white p-1.5">
           <m.span
             aria-hidden="true"
-            className="absolute -bottom-[3px] left-0 h-[9px] w-full bg-pink"
+            className="absolute inset-y-1.5 left-0 w-full bg-pink"
             initial={false}
             animate={{ clipPath: clip }}
             transition={instant ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 34 }}
@@ -94,7 +94,7 @@ export default function MenuTabs({ tabs: categories }: { tabs: { id: string; tit
               aria-controls={`panel-${c.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => { userMoved.current = true; setActive(i); }}
-              className={`relative z-10 whitespace-nowrap px-1 pb-4 pt-2 text-[0.95rem] font-extrabold uppercase leading-none tracking-[0.1em] text-cream ${i === active && !ready ? "[box-shadow:0_6px_0_var(--color-pink)]" : ""}`}
+              className={`relative z-10 whitespace-nowrap rounded-full px-4 py-2.5 text-base font-bold leading-none sm:px-5 sm:py-3 ${i === active && !ready ? "bg-pink" : ""}`}
             >
               {c.title}
             </button>

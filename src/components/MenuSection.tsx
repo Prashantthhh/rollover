@@ -1,30 +1,33 @@
 import { categories } from "../data/menu";
-import Doodle from "./Doodle";
+import MenuHover from "./MenuHover";
 import MenuPanel from "./MenuPanel";
 import MenuTabs from "./MenuTabs";
 import OrderButton from "./OrderButton";
 import SplitHeading from "./SplitHeading";
 
-/** The menu as a maroon board: cream and pink type on flat maroon, square corners, dotted price leaders. */
+/** The menu as a wide rounded panel in the accent colour: pill tabs, big type, white cards. */
 export default function MenuSection() {
   return (
-    <section id="menu" className="cv dark-block bg-maroon text-cream">
-      <div className="mx-auto max-w-6xl px-4 pb-14 pt-20 sm:pb-16 sm:pt-24">
-        <div className="relative mb-10 flex flex-wrap items-end justify-between gap-6 border-b-[3px] border-cream pb-8">
+    <>
+    <section id="menu" className="cv mx-2 rounded-[32px] bg-accent sm:mx-4 sm:rounded-[44px]">
+      <div data-menu-hover className="mx-auto max-w-[1400px] px-4 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] sm:text-base">Prices in rupees</p>
-            <SplitHeading text="What's on the board" className="mt-2 font-display text-[2.7rem] leading-[1.05] sm:text-6xl lg:text-7xl" />
+            <p className="text-sm font-bold uppercase tracking-[0.16em] sm:text-base">Prices in rupees</p>
+            <SplitHeading text="The menu" className="mt-3 font-display text-[3.6rem] leading-[0.95] sm:text-8xl lg:text-[9rem]" />
           </div>
-          <Doodle slot="menuBoard" className="absolute -top-3 right-0 hidden w-16 text-cream md:block" />
-          <OrderButton label="Get it delivered" className="btn btn-pink" align="right" />
+          <OrderButton label="Get it delivered" className="btn btn-ink" align="right" />
         </div>
         <MenuTabs tabs={categories.map((c) => ({ id: c.id, title: c.title }))} />
         {categories.map((c, i) => (
-          <div key={c.id} role="tabpanel" id={`panel-${c.id}`} aria-labelledby={`tab-${c.id}`} hidden={i !== 0} tabIndex={0} className="mt-5">
+          <div key={c.id} role="tabpanel" id={`panel-${c.id}`} aria-labelledby={`tab-${c.id}`} hidden={i !== 0} tabIndex={0} className="mt-8 md:mt-10">
             <MenuPanel category={c} />
           </div>
         ))}
       </div>
     </section>
+    {/* outside the section: content-visibility contains position: fixed */}
+    <MenuHover />
+    </>
   );
 }
