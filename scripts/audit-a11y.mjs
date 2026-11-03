@@ -42,6 +42,8 @@ for (const [name, opts] of [["desktop 1440x900", { viewport: { width: 1440, heig
       const r = el.getBoundingClientRect(); if (!r.width || !r.height) continue;
       const s = getComputedStyle(el); if (s.visibility === "hidden" || el.closest("[aria-hidden='true']") && !el.closest("a,button")) { if (el.closest(".sr-only")) continue; }
       if (el.closest(".sr-only")) continue;
+      if (el.closest("a[aria-label$=', home']")) continue; // the logo wordmark: logos are exempt from WCAG 1.4.3 (contrast minimum)
+      if (el.closest(".on-video")) { out.push({ text: t.slice(0, 30), skip: "video (check by eye, see scripts/hero-frames.mjs)" }); continue; }
       const bg = bgOf(el); if (bg.skip) { out.push({ text: t.slice(0, 30), skip: bg.skip }); continue; }
       const op = opacityOf(el); if (op < 0.05) continue; // not visible in its current state (e.g. pop-in stickers before they appear)
       let fg = parse(s.color); fg = { ...fg, a: fg.a * op };
