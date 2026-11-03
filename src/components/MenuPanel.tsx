@@ -17,7 +17,7 @@ export default function MenuPanel({ category, offset, listId }: { category: Menu
       {category.items.map((it, i) => {
         const fig = `Fig. ${offset + i + 1}`;
         return (
-          <li key={it.name} data-veg={it.veg ? "1" : "0"} data-photo={it.image ?? undefined} data-soon={it.image ? undefined : ""} data-caption={`${fig} — ${it.name}`} className={`menu-li border-t border-current/25 ${i === 0 ? "is-first" : ""}`}>
+          <li key={it.name} data-veg={it.veg ? "1" : "0"} data-photo={it.image ?? undefined} data-soon={it.image ? undefined : ""} data-caption={`${fig} — ${it.name}${it.placeholder ? " (representative photo)" : ""}`} className={`menu-li border-t border-current/25 ${i === 0 ? "is-first" : ""}`}>
             <details className="menu-row">
               <summary className="grid cursor-pointer grid-cols-[2rem_minmax(0,1fr)_auto] items-start gap-x-3 py-5 md:grid-cols-[4rem_minmax(0,1.2fr)_minmax(0,1fr)_auto] md:gap-x-8 md:py-7">
                 <span className="no caption pt-2 md:self-center md:pt-0">{String(i + 1).padStart(2, "0")}</span>
@@ -39,7 +39,7 @@ export default function MenuPanel({ category, offset, listId }: { category: Menu
                 ) : (
                   <PhotoSoon className="aspect-[4/3] max-w-[34rem]" />
                 )}
-                <figcaption className="caption-i mt-2">{fig} &mdash; {it.name}, {rupees(it.price)}</figcaption>
+                <figcaption className="caption-i mt-2">{fig} &mdash; {it.name}, {rupees(it.price)}{it.placeholder && " · representative photo"}</figcaption>
               </figure>
             </details>
           </li>

@@ -85,7 +85,7 @@ export default function Specials() {
           <ul className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-3">
             {savouryRows.slice(0, 3).map((r) => (
               <li key={r.id}>
-                {r.photo && <Photo src={r.photo} alt={r.alt} ratio={1} className="mb-5" />}
+                {r.photo && <Photo src={r.photo} alt={r.alt} ratio={1} className="mb-5" caption={r.placeholder ? "Representative photo" : undefined} />}
                 <p className="caption flex items-center gap-2"><Veg veg={r.item.veg} />{r.word}</p>
                 <h3 className="mt-3 font-display text-[clamp(1.9rem,3vw,3rem)] leading-[1.02] tracking-[-0.02em]">{r.item.name}</h3>
                 <p className="caption-i mt-3 max-w-[22rem] opacity-80">{r.item.desc.trim()}</p>

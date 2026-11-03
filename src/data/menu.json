@@ -197,7 +197,8 @@
           "price": 70,
           "veg": true,
           "desc": "Taste the burst of flavors in waffle cone with creamy ice cream & choco chips.",
-          "image": null
+          "image": "/img/menu/waffle-cones-american-nuts.webp",
+          "placeholder": true
         },
         {
           "name": "Dry Fruit",
@@ -465,7 +466,8 @@
           "price": 140,
           "veg": false,
           "desc": "8 Chicken spicy & cheesy balls, fried to perfection & tossed in rich spices.",
-          "image": null
+          "image": "/img/menu/munchies-chicken-cheese-balls.webp",
+          "placeholder": true
         },
         {
           "name": "Chicken Strips",
@@ -596,35 +598,40 @@
           "price": 120,
           "veg": true,
           "desc": "",
-          "image": null
+          "image": "/img/menu/beverages-orange.webp",
+          "placeholder": true
         },
         {
           "name": "Strawberry",
           "price": 120,
           "veg": true,
           "desc": "",
-          "image": null
+          "image": "/img/menu/beverages-strawberry.webp",
+          "placeholder": true
         },
         {
           "name": "Mojito",
           "price": 120,
           "veg": true,
           "desc": "",
-          "image": null
+          "image": "/img/menu/beverages-mojito.webp",
+          "placeholder": true
         },
         {
           "name": "Lime & Lemon",
           "price": 120,
           "veg": true,
           "desc": "",
-          "image": null
+          "image": "/img/menu/beverages-lime-and-lemon.webp",
+          "placeholder": true
         },
         {
           "name": "Blueberry",
           "price": 120,
           "veg": true,
           "desc": "",
-          "image": null
+          "image": "/img/menu/beverages-blueberry.webp",
+          "placeholder": true
         },
         {
           "name": "Jeera",

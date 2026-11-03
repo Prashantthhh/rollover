@@ -24,11 +24,17 @@ site. Their menu cards show a "Photo coming soon" tile until real photos arrive:
 - Butterscotch Caramel Popcorn (repost watermark "@urwashi_17")
 - Snicker (corner logo "Ice Cream Roll")
 
-## Menu items still showing "Photo coming soon" (11 of 75)
+## Menu items still showing "Photo coming soon" (4 of 75)
 The menu was re-checked against rolloverwarangal.com on 3 Nov 2026. These dishes have no photo of their own yet:
-- **Another business's name in the picture (2, removed 3 Nov 2026):** Chicken Cheese Balls (the poster says "My Chicken Store") and the Mango cone (a template handle, "@reallygreatsite"). Real photos please.
+- **Another business's name in the picture (2, removed 3 Nov 2026):** Chicken Cheese Balls (the poster said "My Chicken Store") and the American Nuts cone (a template handle, "@reallygreatsite"). They now have stock placeholders (below); real photos please.
 - **Ice cream rolls (3):** Cheese Pineapple Cherry, Snicker, Butterscotch Caramel Popcorn (watermarks, see above).
-- **Beverages (6, all ₹120):** Orange, Strawberry, Mojito, Lime & Lemon, Blueberry, Jeera. The live site shows photos for these, but they look like generic stock/AI images (not the cafe, no cafe interior), so we did not reuse them. Real photos please.
+- **Beverages (all ₹120):** Jeera has no photo and no honest stock match. The other five (Orange, Strawberry, Mojito, Lime & Lemon, Blueberry) show stock placeholders (below). The live site's own drink photos look like generic stock/AI images, so we did not reuse them. Real photos please.
+
+## Stock placeholder photos to replace (Pexels, `placeholder: true`)
+These are free-licence stock photos, captioned "representative photo" on the site. Credits: `credits/photo-sources.md`. Swap each for a RollOver photo after the shoot (change the path, remove `placeholder`):
+- **Home page (4):** Burgers, Momos, Munchies and Sandwiches in "Not just dessert" and the savoury row under the specials (`src/data/savoury.ts`).
+- **Menu (7):** Chicken Cheese Balls, American Nuts, Orange, Strawberry, Mojito, Lime & Lemon, Blueberry (`src/data/menu.json`).
+- Still no photo and no stock match: the three ice cream rolls above and Jeera.
 
 **The remaining menu images are stock posters to replace after the shoot.** About 40 of the photos under the cursor on the menu pages are stock food images on poster templates, with the dish name baked into the picture (every burger, momos, munchies and sandwich photo, and most shakes, cones and sundaes). They were on the old site and none is a photograph of RollOver's own food, so we do not use them on the home page. Plain shots of each dish would replace them one by one (swap the file in `public/img/menu` and the path in `src/data/menu.json`). The contact sheets are in `reference/live-photos/` (not committed).
 

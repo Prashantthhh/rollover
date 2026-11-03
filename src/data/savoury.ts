@@ -4,14 +4,15 @@ import { categories, findItem, fromPrice, rupees } from "./menu";
  * The savoury side of the home page ("Not just dessert", and the savoury picks under the specials).
  * `photo` is the one place to add a real photograph: put a path such as "/img/menu/burger-hero.webp" there and the figure
  * appears in both places. While it is null NOTHING is rendered for it (no placeholder tile on the home page).
- * Only real RollOver photographs of the dish go here, never stock or AI images. See "Shoot list" in NEEDS_FROM_CLIENT.md.
+ * These four are Pexels stock photos (placeholder: true, credits in credits/photo-sources.md), shown with a "representative photo"
+ * caption until RollOver's own shots (see "Shoot list" in NEEDS_FROM_CLIENT.md) replace them: change the path and drop `placeholder`.
  * `lead` is the dish the specials show for that category (the name must match menu.json exactly).
  */
-export const savoury: { id: string; word: string; lead: string; photo: string | null; alt: string }[] = [
-  { id: "burgers", word: "Burgers", lead: "Veg Cheese Burger", photo: null, alt: "A RollOver burger on the table" },
-  { id: "momos", word: "Momos", lead: "Chicken Momos Fried", photo: null, alt: "A plate of RollOver momos with chutney" },
-  { id: "munchies", word: "Munchies", lead: "Mr.Fries", photo: null, alt: "Fries and fried snacks on the table" },
-  { id: "sandwiches", word: "Sandwiches", lead: "Smoked Paneer Sandwich", photo: null, alt: "A toasted RollOver sandwich, cut in half" },
+export const savoury: { id: string; word: string; lead: string; photo: string | null; placeholder?: boolean; alt: string }[] = [
+  { id: "burgers", word: "Burgers", lead: "Veg Cheese Burger", photo: "/img/savoury/burgers.webp", placeholder: true, alt: "A cheeseburger with lettuce and tomato on a wooden board (stock photo)" },
+  { id: "momos", word: "Momos", lead: "Chicken Momos Fried", photo: "/img/savoury/momos.webp", placeholder: true, alt: "Steamed momos on a black plate with a dipping sauce (stock photo)" },
+  { id: "munchies", word: "Munchies", lead: "Mr.Fries", photo: "/img/savoury/munchies.webp", placeholder: true, alt: "Golden French fries in paper (stock photo)" },
+  { id: "sandwiches", word: "Sandwiches", lead: "Smoked Paneer Sandwich", photo: "/img/savoury/sandwiches.webp", placeholder: true, alt: "A toasted cheese sandwich, stacked (stock photo)" },
 ];
 
 /** Count and starting price of each savoury category, from the menu data. */

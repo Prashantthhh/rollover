@@ -1,6 +1,7 @@
 import raw from "./menu.json";
 
-export type MenuItem = { name: string; price: number; veg: boolean; desc: string; image: string | null };
+/** `placeholder: true` marks a stock photo (Pexels, see credits/photo-sources.md) standing in until RollOver's own photo replaces it. */
+export type MenuItem = { name: string; price: number; veg: boolean; desc: string; image: string | null; placeholder?: boolean };
 /**
  * `id` is also the URL slug (/menu/c/<id>) and matches the old rolloverwarangal.com slugs, so existing links keep working.
  * `short` is the label in the category row; `tagline` is the italic line under the heading (taglineConfirmed false = the

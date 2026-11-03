@@ -65,9 +65,9 @@ export default function NotJustDessert() {
                 key={r.id}
                 src={r.photo!}
                 alt={r.alt}
-                ratio={i === 0 ? 1.2 : 0.85}
-                className={["md:col-span-6", "md:col-span-3 md:col-start-8 md:mt-24", "md:col-span-3 md:col-start-11"][i] ?? "md:col-span-4"}
-                caption={<><span className="caption mr-2">Fig. {i + 1}</span>{r.item.name}, {r.from}</>}
+                ratio={[1.2, 0.85, 0.85, 1.2][i] ?? 1}
+                className={["md:col-span-7", "md:col-span-4 md:col-start-9 md:mt-28", "md:col-span-4 md:col-start-1", "md:col-span-6 md:col-start-7 md:mt-24"][i] ?? "md:col-span-4"}
+                caption={<><span className="caption mr-2">Fig. {i + 1}</span>{r.item.name}, from {r.from}{r.placeholder && " · representative photo"}</>}
               />
             ))}
           </div>
