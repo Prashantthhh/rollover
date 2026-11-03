@@ -25,7 +25,6 @@ The menu was re-checked against rolloverwarangal.com on 3 Nov 2026. These dishes
 Also on the menu: several existing photos are old promo posters with text on them (for example Veg Nuggets). Plain shots of the dish would look better under the cursor.
 
 ## Menu copy and facts to confirm
-- **Category taglines.** The italic line under each category heading (for example "Cold, thick and best with a straw.") is our own wording for ten of the eleven categories. All taglines are hidden for now (headings only). To show them: approve or rewrite each line, set `taglineConfirmed` to true in `src/data/menu.json`, and set `SHOW_TAGLINES` to true in `src/data/site.ts`. Ice Cream Rolls keeps its earlier line, also hidden for consistency.
 - **Smoked Chicken Tikka Sandwich** is marked Veg on the live site. We keep it Non-veg because it is chicken. Please confirm, and correct the live site if it is wrong.
 - **Beverages heading.** The live site calls the category "Beverages" in its heading and "Drinks" in its tab; we do the same.
 

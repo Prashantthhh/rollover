@@ -91,7 +91,7 @@ Only the duotone files are kept in `public/video/`; re-run the script to bring t
 **Add or remove a category.** Add an object to `categories` (`id`, `title`, `short`, `tagline`, `taglineConfirmed`, `hidden: false`, `items: []`).
 The `id` is the page address (`/menu/c/<id>`); the first 11 match the old rolloverwarangal.com addresses, so do not rename them. The category row and the
 `/menu/c/...` pages follow the order of the file, and the home page lists them too. A new category also needs a line icon in
-`src/components/CategoryIcon.tsx` (keyed by `id`). Taglines marked `taglineConfirmed: false` show a `[CONFIRM]` tag until signed off. To hide one
+`src/components/CategoryIcon.tsx` (keyed by `id`). A tagline shows only when `taglineConfirmed` is true (and `SHOW_TAGLINES` in `site.ts` is on). To hide one
 without deleting it, set `"hidden": true`.
 
 **Item with no photo yet.** Set `"image": null`. The row shows a pink "Photo coming soon" tile (under the cursor on a computer, expanded on tap on a phone).

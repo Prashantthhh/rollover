@@ -80,4 +80,4 @@ export const SHOW_SLOT_HINTS = false;
  * The italic tagline under each menu category heading. Hidden (heading only) until the cafe approves the wording: set a category's
  * `taglineConfirmed` to true in menu.json once its line is signed off, then set this to true. Only confirmed lines are ever shown.
  */
-export const SHOW_TAGLINES = false;
+export const SHOW_TAGLINES = true;

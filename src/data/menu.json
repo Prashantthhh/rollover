@@ -91,8 +91,8 @@
       "id": "gourmet-plates",
       "title": "Gourmet Plates",
       "short": "Plates",
-      "tagline": "Our rolls, plated up for a slower dessert.",
-      "taglineConfirmed": false,
+      "tagline": "Dessert, plated up for taking your time.",
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -137,7 +137,7 @@
       "title": "Exotic Sundaes",
       "short": "Sundaes",
       "tagline": "Tall glasses, a lot of toppings.",
-      "taglineConfirmed": false,
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -189,7 +189,7 @@
       "title": "Waffle Cones",
       "short": "Cones",
       "tagline": "Scoops in a crisp, golden cone.",
-      "taglineConfirmed": false,
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -269,7 +269,7 @@
       "title": "Shakes",
       "short": "Shakes",
       "tagline": "Cold, thick and best with a straw.",
-      "taglineConfirmed": false,
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -349,7 +349,7 @@
       "title": "Momos",
       "short": "Momos",
       "tagline": "Small parcels, made for sharing.",
-      "taglineConfirmed": false,
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -415,7 +415,7 @@
       "title": "Munchies",
       "short": "Munchies",
       "tagline": "Crunchy things for the middle of the table.",
-      "taglineConfirmed": false,
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -494,8 +494,8 @@
       "id": "signatures",
       "title": "Signatures",
       "short": "Signatures",
-      "tagline": "The ones we would put our name on.",
-      "taglineConfirmed": false,
+      "tagline": "The ones we’d put our name on.",
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -525,8 +525,8 @@
       "id": "burgers",
       "title": "Burgers",
       "short": "Burgers",
-      "tagline": "Two ways to get happily messy.",
-      "taglineConfirmed": false,
+      "tagline": "Big bites, happily messy.",
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -549,8 +549,8 @@
       "id": "sandwiches",
       "title": "Sandwiches",
       "short": "Sandwiches",
-      "tagline": "Toasted, pressed and gone in minutes.",
-      "taglineConfirmed": false,
+      "tagline": "Hot, toasted and gone in minutes.",
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -588,7 +588,7 @@
       "title": "Beverages",
       "short": "Drinks",
       "tagline": "Something cold to go with it.",
-      "taglineConfirmed": false,
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
