@@ -118,14 +118,14 @@ for (const [name, opts] of [["desktop 1440x900", { viewport: { width: 1440, heig
   console.log(`Order now: Enter opens=${opened}, Esc closes and returns focus to the button=${closedBack}`);
   if (!opened || !closedBack) fail("Order now keyboard behaviour");
   if (opts.isMobile) {
-    const burger = kp.locator("button[aria-label='Open menu']");
+    const burger = kp.locator("button[aria-controls='mobile-menu']");
     await burger.focus(); await kp.keyboard.press("Enter"); await kp.waitForTimeout(500);
     const links = await kp.locator("#mobile-menu a").count();
     await kp.keyboard.press("Tab"); const inMenu = await kp.evaluate(() => !!document.activeElement.closest("#mobile-menu"));
     await kp.keyboard.press("Escape"); await kp.waitForTimeout(400);
-    const back = await kp.evaluate(() => document.activeElement?.getAttribute("aria-label"));
-    console.log(`mobile menu: opens with Enter (${links} links), Tab enters the panel=${inMenu}, Esc returns focus to "${back}"`);
-    if (!links || !inMenu || !/menu/i.test(back || "")) fail("mobile menu keyboard behaviour");
+    const back = await kp.evaluate(() => { const a = document.activeElement; return a?.getAttribute("aria-controls") === "mobile-menu" ? `the nav button ("${a.textContent.trim()}", expanded=${a.getAttribute("aria-expanded")})` : null; });
+    console.log(`mobile menu: opens with Enter (${links} links), Tab enters the panel=${inMenu}, Esc returns focus to ${back ?? "something else"}`);
+    if (!links || !inMenu || !back || /expanded=true/.test(back)) fail("mobile menu keyboard behaviour");
   }
   // ---- the menu page (/menu/c/munchies): axe, category links, labelled filter and search, filtering by keyboard ----
   await kp.goto(new globalThis.URL("menu/c/munchies", URL).href, { waitUntil: "networkidle" });
