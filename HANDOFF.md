@@ -88,10 +88,13 @@ Only the duotone files are kept in `public/video/`; re-run the script to bring t
 
 **Add a menu item.** Copy an existing item inside its category's `items` list and edit it. For a photo see "Replace or add a photo" below.
 
-**Add or remove a category.** Add an object to `categories` (`id`, `title`, `hidden: false`, `items: []`). Tabs appear in the
-order of the file. To hide one without deleting it, set `"hidden": true` (Beverages is hidden until it has real photos and descriptions).
+**Add or remove a category.** Add an object to `categories` (`id`, `title`, `short`, `tagline`, `taglineConfirmed`, `hidden: false`, `items: []`).
+The `id` is the page address (`/menu/c/<id>`); the first 11 match the old rolloverwarangal.com addresses, so do not rename them. The category row and the
+`/menu/c/...` pages follow the order of the file, and the home page lists them too. A new category also needs a line icon in
+`src/components/CategoryIcon.tsx` (keyed by `id`). Taglines marked `taglineConfirmed: false` show a `[CONFIRM]` tag until signed off. To hide one
+without deleting it, set `"hidden": true`.
 
-**Item with no photo yet.** Set `"image": null`. The card shows a pink "Photo coming soon" tile.
+**Item with no photo yet.** Set `"image": null`. The row shows a pink "Photo coming soon" tile (under the cursor on a computer, expanded on tap on a phone).
 
 **Specials on the home page and the photo strip.** `src/data/featured.ts`: two lists of `findItem("category-id", "Exact item name")`.
 The build fails with a clear message if a name does not match `menu.json`.

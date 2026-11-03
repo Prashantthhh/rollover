@@ -1,7 +1,7 @@
 import { HOURS_CONFIRMED, site } from "../data/site";
 import { to12h } from "../lib/hours";
 
-const explore = [
+const exploreHome = [
   { href: "#how", label: "How it's made" },
   { href: "#specials", label: "Specials" },
   { href: "#menu", label: "Menu" },
@@ -19,7 +19,8 @@ const social = [
  * .wordmark in globals.css), with the real address, hours and order links set small underneath. The footer keeps the ink
  * colour whatever the page tone is.
  */
-export default function Footer() {
+export default function Footer({ home = true }: { home?: boolean }) {
+  const explore = home ? exploreHome : exploreHome.map((l) => ({ ...l, href: l.href === "#menu" ? "/menu" : `/${l.href}` }));
   return (
     <footer data-tone="ink" className="relative overflow-hidden bg-ink text-paper">
       <div className="mx-auto max-w-[1600px] px-4 pt-32 sm:px-8 sm:pt-52">

@@ -4,7 +4,7 @@
 // Set PLAYWRIGHT_MODULE=<path to playwright/index.mjs> to use an existing install.
 // It runs: axe-core (WCAG 2.0/2.1 A+AA + best practice), a contrast check of every text/background pair,
 // an alt-text / label inventory, and a keyboard-only walkthrough (Tab order, visible focus, Esc behaviour,
-// tab arrow keys) at desktop and phone width.
+// the menu page filter and search) at desktop and phone width.
 import fs from "fs";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || "playwright");
 const URL = process.env.URL || "http://localhost:4173/";
@@ -127,13 +127,20 @@ for (const [name, opts] of [["desktop 1440x900", { viewport: { width: 1440, heig
     console.log(`mobile menu: opens with Enter (${links} links), Tab enters the panel=${inMenu}, Esc returns focus to "${back}"`);
     if (!links || !inMenu || !/menu/i.test(back || "")) fail("mobile menu keyboard behaviour");
   }
-  await kp.evaluate(() => { document.documentElement.classList.add("cv-off"); document.getElementById("menu").scrollIntoView(); });
-  await kp.waitForTimeout(500);
-  const tab = kp.locator("[role=tab]").first();
-  await tab.focus(); await kp.keyboard.press("ArrowRight"); await kp.keyboard.press("ArrowRight"); await kp.keyboard.press("End"); await kp.keyboard.press("Home");
-  const sel = await kp.evaluate(() => ({ selected: document.querySelector("[role=tab][aria-selected=true]").textContent, panelsShown: [...document.querySelectorAll("[role=tabpanel]")].filter((p) => !p.hidden).length }));
-  console.log(`menu tabs: arrows/Home/End work, selected "${sel.selected}", visible panels=${sel.panelsShown}`);
-  if (sel.panelsShown !== 1 || !/Rolls/.test(sel.selected)) fail("menu tabs keyboard behaviour");
+  // ---- the menu page (/menu/c/munchies): axe, category links, labelled filter and search, filtering by keyboard ----
+  await kp.goto(new globalThis.URL("menu/c/munchies", URL).href, { waitUntil: "networkidle" });
+  await kp.addScriptTag({ content: axeSrc });
+  const menuAxe = await kp.evaluate(() => axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"] } }).then((r) => r.violations.map((v) => `${v.id} x${v.nodes.length}`)));
+  console.log(`menu page axe: ${menuAxe.length} violations ${menuAxe.join(", ")}`);
+  menuAxe.forEach((x) => fail(`menu page axe ${x}`));
+  const cats = await kp.evaluate(() => ({ links: document.querySelectorAll("nav[aria-label='Menu categories'] a[href^='/menu/c/']").length, current: document.querySelector("nav[aria-label='Menu categories'] [aria-current='page']")?.textContent ?? "" }));
+  console.log(`menu page: ${cats.links} category links, current "${cats.current}"`);
+  if (cats.links !== 11 || !/Munchies/.test(cats.current)) fail("menu category links / aria-current");
+  await kp.getByRole("button", { name: "Veg", exact: true }).focus(); await kp.keyboard.press("Enter");
+  await kp.getByLabel(/^Search/).fill("potato");
+  const filtered = await kp.evaluate(() => ({ shown: [...document.querySelectorAll("#dish-list > li:not([hidden])")].length, status: document.querySelector("[role=status]").textContent, pressed: document.querySelector("button[aria-pressed=true]").textContent }));
+  console.log(`menu filter + search by keyboard: ${filtered.shown} dishes, "${filtered.status}", pressed "${filtered.pressed}"`);
+  if (filtered.shown !== 2 || filtered.pressed !== "Veg") fail("menu filter / search behaviour");
   await ctx.close();
 }
 console.log(failures ? `\n${failures} FAILURE(S)` : "\nALL CHECKS PASSED");

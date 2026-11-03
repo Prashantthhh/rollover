@@ -190,6 +190,11 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .plus::before { width: 0.75rem; height: 1px; }
 .plus::after { width: 1px; height: 0.75rem; }
 .menu-row[open] .plus::after { display: none; }
+/* the first visible row of a filtered list has no hairline under the list rule (set by MenuControls) */
+.menu-li.is-first { border-top-color: transparent; }
+/* the one accent detail in each category icon */
+.menu-search::-webkit-search-cancel-button { filter: grayscale(1); cursor: pointer; }
+.ic-acc { stroke: var(--accent, #eb3592); }
 .menu-row[open] .row-photo { animation: row-open 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 @keyframes row-open { from { opacity: 0; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0); } }
 /* mouse devices: no inline photo and no + box; the photo follows the cursor instead (MenuHover), and the name slides right in italic */

@@ -3,7 +3,9 @@
     {
       "id": "ice-cream-rolls",
       "title": "Ice Cream Rolls",
-      "blurb": "Hand-rolled on a freezing plate, right in front of you.",
+      "short": "Rolls",
+      "tagline": "Hand-rolled on a freezing plate, right in front of you.",
+      "taglineConfirmed": true,
       "hidden": false,
       "items": [
         {
@@ -86,8 +88,108 @@
       ]
     },
     {
+      "id": "gourmet-plates",
+      "title": "Gourmet Plates",
+      "short": "Plates",
+      "tagline": "Our rolls, plated up for a slower dessert.",
+      "taglineConfirmed": false,
+      "hidden": false,
+      "items": [
+        {
+          "name": "Mango Madness",
+          "price": 150,
+          "veg": true,
+          "desc": "Mango mousse served with mango rolls and finished off with some mango pulp.",
+          "image": "/img/menu/gourmet-plates-mango-madness.webp"
+        },
+        {
+          "name": "Lychee Rush",
+          "price": 150,
+          "veg": true,
+          "desc": "Lychee fruits served with lychee rolls and drowned with special cream sauce.",
+          "image": "/img/menu/gourmet-plates-lychee-rush.webp"
+        },
+        {
+          "name": "Choco Lava Therapy",
+          "price": 170,
+          "veg": true,
+          "desc": "Chocolate lava cake topped with our choco sauce and served with vanilla rolls.",
+          "image": "/img/menu/gourmet-plates-choco-lava-therapy.webp"
+        },
+        {
+          "name": "Strawberry Paradise",
+          "price": 170,
+          "veg": true,
+          "desc": "Strawberry mousse on sponge, served with rolls, rice crisps & cream sauce.",
+          "image": "/img/menu/gourmet-plates-strawberry-paradise.webp"
+        },
+        {
+          "name": "Devil's Chocolate",
+          "price": 180,
+          "veg": true,
+          "desc": "Rich Chocolate truffle rolls served with choco sauce & topped with choco chips.",
+          "image": "/img/menu/gourmet-plates-deveils-choco.webp"
+        }
+      ]
+    },
+    {
+      "id": "exotic-sundaes",
+      "title": "Exotic Sundaes",
+      "short": "Sundaes",
+      "tagline": "Tall glasses, a lot of toppings.",
+      "taglineConfirmed": false,
+      "hidden": false,
+      "items": [
+        {
+          "name": "Hot Chocolate Fudge",
+          "price": 125,
+          "veg": true,
+          "desc": "The classic sundae with vanilla ice cream, topped with peanut & choco sauce.",
+          "image": "/img/menu/sundaes-hot-choco-fuge.webp"
+        },
+        {
+          "name": "Soft Cake Fudge",
+          "price": 150,
+          "veg": true,
+          "desc": "Soft chocolate sponge topped onto vanilla ice cream and choco sauce.",
+          "image": "/img/menu/sundaes-soft-cake-fudge.webp"
+        },
+        {
+          "name": "Strawberry Sundae",
+          "price": 150,
+          "veg": true,
+          "desc": "A yummy strawberry ice cream topped with Melba sauce, crackers and jellies.",
+          "image": "/img/menu/sundaes-sundae-strawberry.webp"
+        },
+        {
+          "name": "Chocolate Nut Sundae",
+          "price": 160,
+          "veg": true,
+          "desc": "Indulge in double chocolate scoop with crunchy roasted nuts & heavenly sauce.",
+          "image": "/img/menu/sundaes-choco-nut-sundae.webp"
+        },
+        {
+          "name": "Butterscotch Sin",
+          "price": 160,
+          "veg": true,
+          "desc": "This double scoop is topped with butterscotch nuts, sauce, almonds & cashews.",
+          "image": "/img/menu/sundaes-butterscotch-sin.webp"
+        },
+        {
+          "name": "Brownie Surprise",
+          "price": 160,
+          "veg": true,
+          "desc": "Refreshing brownie twist with vanilla ice cream, choco sauce & choco chips.",
+          "image": "/img/menu/sundaes-browine-surprise.webp"
+        }
+      ]
+    },
+    {
       "id": "waffle-cones",
       "title": "Waffle Cones",
+      "short": "Cones",
+      "tagline": "Scoops in a crisp, golden cone.",
+      "taglineConfirmed": false,
       "hidden": false,
       "items": [
         {
@@ -165,6 +267,9 @@
     {
       "id": "shakes",
       "title": "Shakes",
+      "short": "Shakes",
+      "tagline": "Cold, thick and best with a straw.",
+      "taglineConfirmed": false,
       "hidden": false,
       "items": [
         {
@@ -240,127 +345,11 @@
       ]
     },
     {
-      "id": "sundaes",
-      "title": "Exotic Sundaes",
-      "hidden": false,
-      "items": [
-        {
-          "name": "Hot Chocolate Fudge",
-          "price": 125,
-          "veg": true,
-          "desc": "The classic sundae with vanilla ice cream, topped with peanut & choco sauce.",
-          "image": "/img/menu/sundaes-hot-choco-fuge.webp"
-        },
-        {
-          "name": "Soft Cake Fudge",
-          "price": 150,
-          "veg": true,
-          "desc": "Soft chocolate sponge topped onto vanilla ice cream and choco sauce.",
-          "image": "/img/menu/sundaes-soft-cake-fudge.webp"
-        },
-        {
-          "name": "Strawberry Sundae",
-          "price": 150,
-          "veg": true,
-          "desc": "A yummy strawberry ice cream topped with Melba sauce, crackers and jellies.",
-          "image": "/img/menu/sundaes-sundae-strawberry.webp"
-        },
-        {
-          "name": "Chocolate Nut Sundae",
-          "price": 160,
-          "veg": true,
-          "desc": "Indulge in double chocolate scoop with crunchy roasted nuts & heavenly sauce.",
-          "image": "/img/menu/sundaes-choco-nut-sundae.webp"
-        },
-        {
-          "name": "Butterscotch Sin",
-          "price": 160,
-          "veg": true,
-          "desc": "This double scoop is topped with butterscotch nuts, sauce, almonds & cashews.",
-          "image": "/img/menu/sundaes-butterscotch-sin.webp"
-        },
-        {
-          "name": "Brownie Surprise",
-          "price": 160,
-          "veg": true,
-          "desc": "Refreshing brownie twist with vanilla ice cream, choco sauce & choco chips.",
-          "image": "/img/menu/sundaes-browine-surprise.webp"
-        }
-      ]
-    },
-    {
-      "id": "gourmet-plates",
-      "title": "Gourmet Plates",
-      "hidden": false,
-      "items": [
-        {
-          "name": "Mango Madness",
-          "price": 150,
-          "veg": true,
-          "desc": "Mango mousse served with mango rolls and finished off with some mango pulp.",
-          "image": "/img/menu/gourmet-plates-mango-madness.webp"
-        },
-        {
-          "name": "Lychee Rush",
-          "price": 150,
-          "veg": true,
-          "desc": "Lychee fruits served with lychee rolls and drowned with special cream sauce.",
-          "image": "/img/menu/gourmet-plates-lychee-rush.webp"
-        },
-        {
-          "name": "Choco Lava Therapy",
-          "price": 170,
-          "veg": true,
-          "desc": "Chocolate lava cake topped with our choco sauce and served with vanilla rolls.",
-          "image": "/img/menu/gourmet-plates-choco-lava-therapy.webp"
-        },
-        {
-          "name": "Strawberry Paradise",
-          "price": 170,
-          "veg": true,
-          "desc": "Strawberry mousse on sponge, served with rolls, rice crisps & cream sauce.",
-          "image": "/img/menu/gourmet-plates-strawberry-paradise.webp"
-        },
-        {
-          "name": "Devil's Chocolate",
-          "price": 180,
-          "veg": true,
-          "desc": "Rich Chocolate truffle rolls served with choco sauce & topped with choco chips.",
-          "image": "/img/menu/gourmet-plates-deveils-choco.webp"
-        }
-      ]
-    },
-    {
-      "id": "signatures",
-      "title": "Signatures",
-      "hidden": false,
-      "items": [
-        {
-          "name": "Rollover's Chocolate Karma",
-          "price": 149,
-          "veg": true,
-          "desc": "Choco karma with churro crumbs, warm chocolate sauce, a teaser for taste.",
-          "image": "/img/menu/signatures-choco-karma.webp"
-        },
-        {
-          "name": "Rollover Skillet Cake",
-          "price": 149,
-          "veg": true,
-          "desc": "Warm and gooey skillet cookie cake served with vanilla ice cream & sauce.",
-          "image": "/img/menu/signatures-skillet-cake.webp"
-        },
-        {
-          "name": "Sizzling Brownie",
-          "price": 149,
-          "veg": true,
-          "desc": "Enjoy sinfully delicious brownie dessert with ice cream and hot fudge sauce.",
-          "image": "/img/menu/signatures-sizzling-brownie.webp"
-        }
-      ]
-    },
-    {
       "id": "momos",
       "title": "Momos",
+      "short": "Momos",
+      "tagline": "Small parcels, made for sharing.",
+      "taglineConfirmed": false,
       "hidden": false,
       "items": [
         {
@@ -424,6 +413,9 @@
     {
       "id": "munchies",
       "title": "Munchies",
+      "short": "Munchies",
+      "tagline": "Crunchy things for the middle of the table.",
+      "taglineConfirmed": false,
       "hidden": false,
       "items": [
         {
@@ -499,8 +491,42 @@
       ]
     },
     {
+      "id": "signatures",
+      "title": "Signatures",
+      "short": "Signatures",
+      "tagline": "The ones we would put our name on.",
+      "taglineConfirmed": false,
+      "hidden": false,
+      "items": [
+        {
+          "name": "Rollover's Chocolate Karma",
+          "price": 149,
+          "veg": true,
+          "desc": "Choco karma with churro crumbs, warm chocolate sauce, a teaser for taste.",
+          "image": "/img/menu/signatures-choco-karma.webp"
+        },
+        {
+          "name": "Rollover Skillet Cake",
+          "price": 149,
+          "veg": true,
+          "desc": "Warm and gooey skillet cookie cake served with vanilla ice cream & sauce.",
+          "image": "/img/menu/signatures-skillet-cake.webp"
+        },
+        {
+          "name": "Sizzling Brownie",
+          "price": 149,
+          "veg": true,
+          "desc": "Enjoy sinfully delicious brownie dessert with ice cream and hot fudge sauce.",
+          "image": "/img/menu/signatures-sizzling-brownie.webp"
+        }
+      ]
+    },
+    {
       "id": "burgers",
       "title": "Burgers",
+      "short": "Burgers",
+      "tagline": "Two ways to get happily messy.",
+      "taglineConfirmed": false,
       "hidden": false,
       "items": [
         {
@@ -522,6 +548,9 @@
     {
       "id": "sandwiches",
       "title": "Sandwiches",
+      "short": "Sandwiches",
+      "tagline": "Toasted, pressed and gone in minutes.",
+      "taglineConfirmed": false,
       "hidden": false,
       "items": [
         {
@@ -557,49 +586,51 @@
     {
       "id": "beverages",
       "title": "Beverages",
-      "hidden": true,
-      "note": "HIDDEN: old-site data was placeholder (paneer sandwich copy/photo). Add real descriptions and photos, then set hidden:false.",
+      "short": "Drinks",
+      "tagline": "Something cold to go with it.",
+      "taglineConfirmed": false,
+      "hidden": false,
       "items": [
         {
           "name": "Orange",
           "price": 120,
           "veg": true,
-          "desc": "[DESCRIPTION]",
+          "desc": "",
           "image": null
         },
         {
           "name": "Strawberry",
           "price": 120,
           "veg": true,
-          "desc": "[DESCRIPTION]",
+          "desc": "",
           "image": null
         },
         {
           "name": "Mojito",
           "price": 120,
           "veg": true,
-          "desc": "[DESCRIPTION]",
+          "desc": "",
           "image": null
         },
         {
           "name": "Lime & Lemon",
           "price": 120,
           "veg": true,
-          "desc": "[DESCRIPTION]",
+          "desc": "",
           "image": null
         },
         {
           "name": "Blueberry",
           "price": 120,
           "veg": true,
-          "desc": "[DESCRIPTION]",
+          "desc": "",
           "image": null
         },
         {
           "name": "Jeera",
           "price": 120,
           "veg": true,
-          "desc": "[DESCRIPTION]",
+          "desc": "",
           "image": null
         }
       ]

@@ -8,7 +8,7 @@
   - Photos on a plain background (or with a few seconds spare) are easiest to cut out for the sticker look.
 - **Vibe section photos.** The tiles currently use stills from the old About video (shop sign, interior table, rolls on the plate) and two old dessert photos. Replace with new shots.
 - **New hero footage**: a 10–15 s clip of a roll being made (pour, chop, spread, roll, plate), **1080p or higher, shot both portrait (9:16) and landscape (16:9)**. The current hero is old, upscaled SD footage taken from the old site's About video, which is why it is tinted pink and inset on desktop.
-- **Beverages**: photos and descriptions for Orange, Strawberry, Mojito, Lime & Lemon, Blueberry and Jeera, so the hidden category can be switched on.
+- **Beverages**: photos (and, if wanted, descriptions) for the six drinks, see the list below. The Drinks category is live with names and prices only.
 
 ## Photos removed (watermarked, need real replacements)
 These three old-site photos carried another account's watermark or logo, so they have been deleted from the
@@ -16,6 +16,18 @@ site. Their menu cards show a "Photo coming soon" tile until real photos arrive:
 - Cheese Pineapple Cherry (watermark "@myspicyfork")
 - Butterscotch Caramel Popcorn (repost watermark "@urwashi_17")
 - Snicker (corner logo "Ice Cream Roll")
+
+## Menu items still showing "Photo coming soon" (9 of 75)
+The menu was re-checked against rolloverwarangal.com on 3 Nov 2026. These dishes have no photo of their own yet:
+- **Ice cream rolls (3):** Cheese Pineapple Cherry, Snicker, Butterscotch Caramel Popcorn (watermarks, see above).
+- **Beverages (6, all ₹120):** Orange, Strawberry, Mojito, Lime & Lemon, Blueberry, Jeera. The live site shows photos for these, but they look like generic stock/AI images (not the cafe, no cafe interior), so we did not reuse them. Real photos please.
+
+Also on the menu: several existing photos are old promo posters with text on them (for example Veg Nuggets). Plain shots of the dish would look better under the cursor.
+
+## Menu copy and facts to confirm
+- **Category taglines.** The italic line under each category heading (for example "Cold, thick and best with a straw.") is our own wording for ten of the eleven categories, each shown with a `[CONFIRM]` tag until signed off (`tagline` / `taglineConfirmed` in `src/data/menu.json`). Ice Cream Rolls keeps its approved line.
+- **Smoked Chicken Tikka Sandwich** is marked Veg on the live site. We keep it Non-veg because it is chicken. Please confirm, and correct the live site if it is wrong.
+- **Beverages heading.** The live site calls the category "Beverages" in its heading and "Drinks" in its tab; we do the same.
 
 ## Copy for sign-off: "How rolls are made"
 General description of the process shown in the cafe's own video. No temperatures, timings or ingredient

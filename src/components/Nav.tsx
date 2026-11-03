@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import OrderButton from "./OrderButton";
 
-const links = [
+const homeLinks = [
   { href: "#how", label: "How it's made" },
   { href: "#specials", label: "Specials" },
   { href: "#menu", label: "Menu" },
@@ -11,7 +11,9 @@ const links = [
 ];
 
 /** Masthead: wordmark left, issue line centre, contents and the order button right. A hairline underneath, like a magazine page head. */
-export default function Nav() {
+/** `home` false (the menu pages): the in-page links point at the home page, and Menu is the current page. */
+export default function Nav({ home = true }: { home?: boolean }) {
+  const links = home ? homeLinks : homeLinks.map((l) => ({ ...l, href: l.href === "#menu" ? "/menu" : `/${l.href}` }));
   const [open, setOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
@@ -28,14 +30,14 @@ export default function Nav() {
   return (
     <header ref={header} className="sticky top-0 z-50 border-b border-current/60 bg-[var(--bg)]">
       <nav aria-label="Main" className="mx-auto flex h-14 max-w-[1600px] items-center gap-4 px-4 sm:px-8">
-        <a href="#top" className="shrink-0 font-display text-[1.45rem] leading-none tracking-[-0.03em]" aria-label="RollOver Warangal, home">
+        <a href={home ? "#top" : "/"} className="shrink-0 font-display text-[1.45rem] leading-none tracking-[-0.03em]" aria-label="RollOver Warangal, home">
           Roll<span className="t-accent">O</span>ver
         </a>
         <p className="caption ml-6 hidden border-l border-current/60 pl-6 lg:block">No. 01 &mdash; Hanamkonda</p>
 
         <ul className="ml-auto hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <li key={l.href}><a href={l.href} className="caption ulink">{l.label}</a></li>
+            <li key={l.href}><a href={l.href} aria-current={!home && l.href === "/menu" ? "page" : undefined} className="caption ulink">{l.label}</a></li>
           ))}
         </ul>
 

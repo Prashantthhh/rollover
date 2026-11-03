@@ -21,6 +21,17 @@ const checks = [
 ];
 const og = await sharp("out/og-image.png").metadata();
 checks.push([`og-image.png is ${og.width}x${og.height} (1200x630)`, og.width === 1200 && og.height === 630]);
+// every menu page: its own title / description / canonical, one h1, JSON-LD present
+const slugs = JSON.parse(fs.readFileSync("src/data/menu.json", "utf8")).categories.filter((c) => !c.hidden).map((c) => c.id);
+for (const slug of slugs) {
+  const page = fs.readFileSync(`out/menu/c/${slug}.html`, "utf8");
+  const t = decode(page.match(/<title>([^<]*)<\/title>/)?.[1]) ?? "";
+  const d = decode(page.match(/<meta name="description" content="([^"]*)"/)?.[1]) ?? "";
+  checks.push([`/menu/c/${slug}: title (${t.length}) < 60, description (${d.length}) < 155, own canonical, one h1, MenuSection JSON-LD`, t.length > 0 && t.length < 60 && d.length > 0 && d.length < 155 && page.includes(`<link rel="canonical" href="https://rolloverwarangal.com/menu/c/${slug}"`) && (page.match(/<h1[ >]/g) || []).length === 1 && page.includes("MenuSection")]);
+}
+const idx = fs.readFileSync("out/menu.html", "utf8");
+checks.push(["/menu canonical points at the first category", idx.includes(`<link rel="canonical" href="https://rolloverwarangal.com/menu/c/${slugs[0]}"`)]);
+checks.push(["sitemap lists the home page and every category page", (() => { const s = fs.readFileSync("out/sitemap.xml", "utf8"); return slugs.every((x) => s.includes(`/menu/c/${x}<`)); })()]);
 let bad = 0;
 for (const [label, ok] of checks) { console.log(ok ? "PASS" : "FAIL", label); if (!ok) bad++; }
 process.exit(bad ? 1 : 0);

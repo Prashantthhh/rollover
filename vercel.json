@@ -128,6 +128,11 @@
       "source": "/Ambassador",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/menu/item/:id",
+      "destination": "/menu",
+      "permanent": true
     }
   ]
 }

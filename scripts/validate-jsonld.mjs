@@ -29,8 +29,9 @@ const ancestors = (t, seen = new Set()) => {
 };
 const DATA_TYPES = new Set(["Text", "URL", "Number", "Float", "Integer", "Boolean", "Date", "DateTime", "Time", "CssSelectorType", "XPathType", "PronounceableText"]);
 
-const html = fs.readFileSync("out/index.html", "utf8");
-const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => m[1]);
+// the home page and every menu page (out/menu/c/<slug>.html)
+const pages = ["out/index.html", "out/menu.html", ...fs.readdirSync("out/menu/c").filter((f) => f.endsWith(".html")).map((f) => `out/menu/c/${f}`)];
+const blocks = pages.flatMap((p) => [...fs.readFileSync(p, "utf8").matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => m[1]));
 const errors = [], warnings = [];
 if (!blocks.length) errors.push("no JSON-LD block found in out/index.html");
 
@@ -74,7 +75,7 @@ for (const raw of blocks) {
   check(doc, doc["@type"] ?? "root");
   for (const banned of ["aggregateRating", "review"]) if (banned in doc) errors.push(`policy: ${banned} must not be self-published`);
   const hoursConfirmed = /export const HOURS_CONFIRMED = true/.test(fs.readFileSync("src/data/site.ts", "utf8"));
-  if (("openingHoursSpecification" in doc) !== hoursConfirmed) errors.push(`policy: openingHoursSpecification ${"openingHoursSpecification" in doc ? "present" : "absent"} but HOURS_CONFIRMED is ${hoursConfirmed}`);
+  if (doc.address && ("openingHoursSpecification" in doc) !== hoursConfirmed) errors.push(`policy: openingHoursSpecification ${"openingHoursSpecification" in doc ? "present" : "absent"} but HOURS_CONFIRMED is ${hoursConfirmed}`);
   try {
     const expanded = await jsonld.expand(doc);
     if (!expanded.length) errors.push("jsonld.expand returned nothing");
