@@ -1,3 +1,4 @@
+import { rupees } from "../data/menu";
 import { savouryRows } from "../data/savoury";
 import Photo from "./Photo";
 import Split from "./Split";
@@ -67,7 +68,7 @@ export default function NotJustDessert() {
                 alt={r.alt}
                 ratio={[1.2, 0.85, 0.85, 1.2][i] ?? 1}
                 className={["md:col-span-7", "md:col-span-4 md:col-start-9 md:mt-28", "md:col-span-4 md:col-start-1", "md:col-span-6 md:col-start-7 md:mt-24"][i] ?? "md:col-span-4"}
-                caption={<><span className="caption mr-2">Fig. {i + 1}</span>{r.item.name}, from {r.from}{r.placeholder && " · representative photo"}</>}
+                caption={<><span className="caption mr-2">Fig. {i + 1}</span>{r.item.name}, {rupees(r.item.price)}{r.placeholder && " · representative photo"}</>}
               />
             ))}
           </div>

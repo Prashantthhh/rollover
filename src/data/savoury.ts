@@ -9,8 +9,8 @@ import { categories, findItem, fromPrice, rupees } from "./menu";
  * `lead` is the dish the specials show for that category (the name must match menu.json exactly).
  */
 export const savoury: { id: string; word: string; lead: string; photo: string | null; placeholder?: boolean; alt: string }[] = [
-  { id: "burgers", word: "Burgers", lead: "Veg Cheese Burger", photo: "/img/savoury/burgers.webp", placeholder: true, alt: "A cheeseburger with lettuce and tomato on a wooden board (stock photo)" },
-  { id: "momos", word: "Momos", lead: "Chicken Momos Fried", photo: "/img/savoury/momos.webp", placeholder: true, alt: "Steamed momos on a black plate with a dipping sauce (stock photo)" },
+  { id: "burgers", word: "Burgers", lead: "Chicken Cheese Burger", photo: "/img/savoury/burgers.webp", placeholder: true, alt: "A crispy chicken burger with lettuce on a white plate (stock photo)" },
+  { id: "momos", word: "Momos", lead: "Chicken Momos Fried", photo: "/img/savoury/momos.webp", placeholder: true, alt: "Steamed dumplings with a spicy dipping sauce on a wooden table (stock photo)" },
   { id: "munchies", word: "Munchies", lead: "Mr.Fries", photo: "/img/savoury/munchies.webp", placeholder: true, alt: "Golden French fries in paper (stock photo)" },
   { id: "sandwiches", word: "Sandwiches", lead: "Smoked Paneer Sandwich", photo: "/img/savoury/sandwiches.webp", placeholder: true, alt: "A toasted cheese sandwich, stacked (stock photo)" },
 ];

@@ -6,8 +6,8 @@
 // Run: node scripts/process-stock.mjs
 import sharp from "sharp"; import fs from "fs"; import path from "path";
 const jobs = [
-  { id: 5609525, out: "savoury/burgers", kind: "home" },
-  { id: 18803174, out: "savoury/momos", kind: "home" },
+  { id: 11354334, out: "savoury/burgers", kind: "home" },
+  { id: 3728294, out: "savoury/momos", kind: "home" },
   { id: 12946719, out: "savoury/munchies", kind: "home" },
   { id: 7729372, out: "savoury/sandwiches", kind: "home" },
   { id: 792024, out: "menu/munchies-chicken-cheese-balls", kind: "menu" },

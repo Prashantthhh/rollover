@@ -8,8 +8,8 @@ RollOver's own photos (see the shoot list in `NEEDS_FROM_CLIENT.md`). The raw do
 
 | Used for | Shipped file | Photo | Photographer | Source |
 |---|---|---|---|---|
-| Home: Burgers | `public/img/savoury/burgers.webp` | A Burger on the Wooden Chopping Board | Italo Melo | https://www.pexels.com/photo/a-burger-on-the-wooden-chopping-board-5609525/ |
-| Home: Momos | `public/img/savoury/momos.webp` | Momos Dumplings with Sauces | Ansh Rajput | https://www.pexels.com/photo/momos-dumplings-with-sauces-18803174/ |
+| Home: Burgers (Chicken Cheese Burger; chicken, no beef or pork) | `public/img/savoury/burgers.webp` | Close-up Photo of Delicious Chicken Burger | Qamar Rehman | https://www.pexels.com/photo/close-up-photo-of-delicious-chicken-burger-11354334/ |
+| Home: Momos (steamed) | `public/img/savoury/momos.webp` | Dumplings in Plastic Container next to Sauce | Madison Inouye | https://www.pexels.com/photo/dumplings-in-plastic-container-next-to-sauce-3728294/ |
 | Home: Munchies | `public/img/savoury/munchies.webp` | Close-up Photo of French Fries on White Paper | Vinícius Caricatte | https://www.pexels.com/photo/close-up-photo-of-french-fries-on-white-paper-12946719/ |
 | Home: Sandwiches | `public/img/savoury/sandwiches.webp` | Sandwich Full of Cheese | Lucas Guizo | https://www.pexels.com/photo/sandwich-full-of-cheese-7729372/ |
 | Menu: Chicken Cheese Balls | `public/img/menu/munchies-chicken-cheese-balls.webp` | Brown Fried Dish on White Bowl | Roger Cziwerny | https://www.pexels.com/photo/brown-fried-dish-on-white-bowl-792024/ |
