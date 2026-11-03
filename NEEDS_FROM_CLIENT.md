@@ -1,6 +1,13 @@
 # Needed from the client
 
 ## Photos and video
+- **Savoury shoot list (priority: the home page has no food photos yet).** Phone photos on a plain table, in daylight, are fine. Please shoot, one clean shot each, plus wide table shots:
+  1. A burger (a Veg Cheese Burger or Chicken Cheese Burger, held together or cut in half).
+  2. Momos on a plate with the schezwan chutney (steamed or fried).
+  3. Fries and a fried snack (fries, nuggets or wings) on the table.
+  4. A toasted sandwich, cut in half.
+  5. Two or three wide shots of food on the table with the shop around it (a burger, momos and a roll together works well).
+  Square or landscape, 2000 px or larger, no text or filters. When they arrive, set the path in `photo` in `src/data/savoury.ts`: the figure then appears in "Not just dessert" and under the specials (nothing shows there until a photo is set).
 - **Interior + board game photos (priority).** The Vibe section currently has no real interior or board-game photo: a designed dice tile stands in for the games. We need: the dining area and seating, people playing board games, the game shelf, a family at a table, the counter with the freezing plates in action. Landscape and portrait, 2000 px or larger.
 - **High-res product photos** (min 1200 px on the long side, ideally 2000 px):
   - Ice cream rolls, one clean shot per flavour (11 flavours). The old photos are 230–280 px wide, and several carry other accounts' watermarks (`@urwashi_17` on Butterscotch Caramel, `@myspicyfork` on Cheese Pineapple Cherry, an "Ice Cream Roll" logo on Snicker). These are not ours to reuse.
@@ -17,12 +24,13 @@ site. Their menu cards show a "Photo coming soon" tile until real photos arrive:
 - Butterscotch Caramel Popcorn (repost watermark "@urwashi_17")
 - Snicker (corner logo "Ice Cream Roll")
 
-## Menu items still showing "Photo coming soon" (9 of 75)
+## Menu items still showing "Photo coming soon" (11 of 75)
 The menu was re-checked against rolloverwarangal.com on 3 Nov 2026. These dishes have no photo of their own yet:
+- **Another business's name in the picture (2, removed 3 Nov 2026):** Chicken Cheese Balls (the poster says "My Chicken Store") and the Mango cone (a template handle, "@reallygreatsite"). Real photos please.
 - **Ice cream rolls (3):** Cheese Pineapple Cherry, Snicker, Butterscotch Caramel Popcorn (watermarks, see above).
 - **Beverages (6, all ₹120):** Orange, Strawberry, Mojito, Lime & Lemon, Blueberry, Jeera. The live site shows photos for these, but they look like generic stock/AI images (not the cafe, no cafe interior), so we did not reuse them. Real photos please.
 
-Also on the menu: several existing photos are old promo posters with text on them (for example Veg Nuggets). Plain shots of the dish would look better under the cursor.
+**The remaining menu images are stock posters to replace after the shoot.** About 40 of the photos under the cursor on the menu pages are stock food images on poster templates, with the dish name baked into the picture (every burger, momos, munchies and sandwich photo, and most shakes, cones and sundaes). They were on the old site and none is a photograph of RollOver's own food, so we do not use them on the home page. Plain shots of each dish would replace them one by one (swap the file in `public/img/menu` and the path in `src/data/menu.json`). The contact sheets are in `reference/live-photos/` (not committed).
 
 ## Menu copy and facts to confirm
 - **Smoked Chicken Tikka Sandwich** is marked Veg on the live site. We keep it Non-veg because it is chicken. Please confirm, and correct the live site if it is wrong.

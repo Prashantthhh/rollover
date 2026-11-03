@@ -4,6 +4,7 @@ import HowScrub from "../components/HowScrub";
 import Intro from "../components/Intro";
 import JsonLd from "../components/JsonLd";
 import MenuSection from "../components/MenuSection";
+import NotJustDessert from "../components/NotJustDessert";
 import Nav from "../components/Nav";
 import PhotoStrip from "../components/PhotoStrip";
 import PhraseBand from "../components/PhraseBand";
@@ -12,7 +13,7 @@ import Specials from "../components/Specials";
 import VisitSection from "../components/VisitSection";
 import { localBusinessJsonLd } from "../lib/jsonld";
 
-// Editorial redesign. Page order: cover, standfirst, how it's made (scrubbed), specials, menu, photo strip, reviews, visit, footer.
+// Editorial redesign. Page order: cover, standfirst, how it's made (scrubbed), not just dessert (savoury), specials, menu, photo strip, reviews, visit, footer.
 // OffersSection exists but is deliberately not rendered (offers stay hidden).
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <Intro />
         <PhraseBand />
         <HowScrub />
+        <NotJustDessert />
         <PhraseBand />
         <Specials />
         <MenuSection />

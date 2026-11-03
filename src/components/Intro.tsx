@@ -20,14 +20,14 @@ export default function Intro() {
           <div className="lg:col-span-2">
             <p className="caption">No. 01</p>
             <hr className="my-3 border-0 border-t border-current/60" />
-            <p className="caption-i max-w-[12rem] opacity-80">A rolled ice cream shop in Hanamkonda, and how it got that way.</p>
+            <p className="caption-i max-w-[12rem] opacity-80">A café in Hanamkonda for food and dessert, and how it got that way.</p>
             {SHOW_SLOT_HINTS && <p className="caption mt-8 border border-dashed border-current/60 p-2 text-[0.625rem] normal-case tracking-normal">Doodle slot 1 &middot; a hand-drawn circle round the price, drawn on as this enters.</p>}
           </div>
 
           <div className="lg:col-span-7 lg:col-start-4">
             <h2 id="intro-h" className="sr-only">About RollOver</h2>
             <p className="max-w-[24em] font-display text-[clamp(1.6rem,3vw,3.1rem)] leading-[1.18] tracking-[-0.02em]">
-              RollOver is the ice cream shop <em className="t-accent">opposite Tara Gardens</em>, in Prashanthnagar Colony. Rolls start at{" "}
+              RollOver is a café <em className="t-accent">opposite Tara Gardens</em>, in Prashanthnagar Colony, Hanamkonda: burgers, momos and sandwiches to eat, ice cream rolls to finish. Rolls start at{" "}
               <span className="relative inline-block whitespace-nowrap">
                 <span data-count={rollsFrom} data-prefix="₹" className="inline-block tabular-nums" style={{ minWidth: "2.5ch" }}>{rupees(rollsFrom)}</span>
                 <HandDrawn slot={1} note="circle round the price" label="none" className="absolute -inset-x-4 -inset-y-1" />
@@ -77,7 +77,7 @@ export default function Intro() {
             <div className="border-t border-current/60 pt-3">
               <dt className="caption">On the menu</dt>
               <dd className="mt-3 font-display text-[clamp(2.2rem,3.8vw,3.6rem)] leading-none"><span data-count={onTheMenu} className="tabular-nums">{onTheMenu}</span></dd>
-              <dd className="caption-i mt-2 opacity-80">rolls, cones, shakes, momos and more</dd>
+              <dd className="caption-i mt-2 opacity-80">burgers, momos, rolls, shakes and more</dd>
             </div>
           </dl>
         </div>

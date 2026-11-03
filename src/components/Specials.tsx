@@ -1,5 +1,6 @@
 import { featured } from "../data/featured";
 import { rupees } from "../data/menu";
+import { savouryRows } from "../data/savoury";
 import Photo from "./Photo";
 import Split from "./Split";
 
@@ -73,6 +74,28 @@ export default function Specials() {
           <Pick it={rest[2]} n={8} className="md:col-span-4 md:col-start-9 md:mt-12" />
           <Pick it={rest[3]} n={9} className="md:col-span-4 md:col-start-3 md:mt-8" />
           <Pick it={rest[4]} n={10} className="md:col-span-4 md:col-start-8 md:mt-36" />
+        </div>
+
+        {/* the savoury side: typographic rows; a figure renders only once a real photo path is set in data/savoury.ts */}
+        <div className="mt-28 sm:mt-44">
+          <div className="flex items-baseline justify-between border-t border-current/60 pt-3">
+            <p className="caption">And for something savoury</p>
+            <a href="#savoury" className="caption ulink">Burgers, momos and more</a>
+          </div>
+          <ul className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-3">
+            {savouryRows.slice(0, 3).map((r) => (
+              <li key={r.id}>
+                {r.photo && <Photo src={r.photo} alt={r.alt} ratio={1} className="mb-5" />}
+                <p className="caption flex items-center gap-2"><Veg veg={r.item.veg} />{r.word}</p>
+                <h3 className="mt-3 font-display text-[clamp(1.9rem,3vw,3rem)] leading-[1.02] tracking-[-0.02em]">{r.item.name}</h3>
+                <p className="caption-i mt-3 max-w-[22rem] opacity-80">{r.item.desc.trim()}</p>
+                <p className="mt-5 flex items-baseline gap-6">
+                  <span className="font-display text-3xl tabular-nums">{rupees(r.item.price)}</span>
+                  <a href={`/menu/c/${r.id}`} className="caption ulink">See all {r.word.toLowerCase()}</a>
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

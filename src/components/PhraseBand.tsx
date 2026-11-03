@@ -1,4 +1,4 @@
-const phrases = ["Rolled while you watch", "Opposite Tara Gardens", "From ₹125", "Board games inside"];
+const phrases = ["Rolled while you watch", "Burgers", "Opposite Tara Gardens", "Momos", "From ₹125", "Fries", "Board games inside", "Sandwiches"];
 
 /**
  * A slow band of real phrases between sections. Decorative repeat of facts the page already states, so it is aria-hidden;

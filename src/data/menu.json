@@ -197,7 +197,7 @@
           "price": 70,
           "veg": true,
           "desc": "Taste the burst of flavors in waffle cone with creamy ice cream & choco chips.",
-          "image": "/img/menu/waffle-cones-cone1.webp"
+          "image": null
         },
         {
           "name": "Dry Fruit",
@@ -465,7 +465,7 @@
           "price": 140,
           "veg": false,
           "desc": "8 Chicken spicy & cheesy balls, fried to perfection & tossed in rich spices.",
-          "image": "/img/menu/munchies-chickencheeseballs.webp"
+          "image": null
         },
         {
           "name": "Chicken Strips",

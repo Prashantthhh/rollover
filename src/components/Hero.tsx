@@ -4,6 +4,10 @@ import HeroVideo from "./HeroVideo";
 import OrderButton from "./OrderButton";
 
 const lines = ["Rolled while", "you watch."]; // the second line renders "watch." in italic
+// The small line under the headline: it says there is food here, not only dessert. Alternatives kept for the cafe to choose from:
+//  B: "A café for burgers, momos and sandwiches, with ice cream rolls to finish."
+//  C: "Hot food and a cold plate: burgers, momos, sandwiches and rolls."
+const SUBLINE = "Burgers, momos, sandwiches — and ice cream rolls for after.";
 
 /**
  * Cover page. Full-bleed real footage with the headline set huge across the bottom; each line is revealed by a
@@ -29,6 +33,8 @@ export default function Hero() {
             ))}
           </span>
         </h1>
+
+        <p className="fade-in mt-4 max-w-[36rem] text-[1.05rem] leading-snug sm:mt-5 sm:text-xl" style={{ "--i": 1 } as CSSProperties}>{SUBLINE}</p>
 
         <div className="fade-in mt-6 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 border-t border-white/50 pt-5" style={{ "--i": 2 } as CSSProperties}>
           <p className="caption-i max-w-[22rem]">

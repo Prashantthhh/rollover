@@ -5,6 +5,10 @@ import { SHOW_SLOT_HINTS } from "../data/site";
 import OrderButton from "./OrderButton";
 import Split from "./Split";
 
+// The preview lists rolls first, then the savoury categories, then the rest in menu order, so food shows near the top.
+const SAVOURY = ["burgers", "momos", "munchies", "sandwiches"];
+const ordered = [categories[0], ...SAVOURY.map((id) => categories.find((c) => c.id === id)!), ...categories.filter((c, i) => i > 0 && !SAVOURY.includes(c.id))];
+
 const dishes = categories.reduce((n, c) => n + c.items.length, 0);
 
 /**
@@ -47,7 +51,7 @@ export default function MenuSection() {
         </div>
 
         <ol className="border-y border-current/60">
-          {categories.map((c, i) => (
+          {ordered.map((c, i) => (
             <li key={c.id} className="menu-li border-t border-current/25 first:border-t-transparent">
               <a href={`/menu/c/${c.id}`} className="grid grid-cols-[2rem_2.5rem_minmax(0,1fr)_auto] items-center gap-x-3 py-5 md:grid-cols-[4rem_3rem_minmax(0,1.2fr)_minmax(0,1fr)_auto] md:gap-x-8 md:py-6">
                 <span className="caption">{String(i + 1).padStart(2, "0")}</span>
