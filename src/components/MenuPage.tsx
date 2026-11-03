@@ -1,3 +1,4 @@
+import { SHOW_TAGLINES } from "../data/site";
 import { categories, categoryBySlug, figureOffsets, fromPrice, rupees } from "../data/menu";
 import { menuCategoryJsonLd } from "../lib/jsonld";
 import Footer from "./Footer";
@@ -41,11 +42,8 @@ export default function MenuPage({ slug }: { slug: string }) {
               <h1 className="font-display text-[clamp(3.2rem,9vw,9rem)] leading-[0.9] tracking-[-0.04em]">{c.title}<span className="t-accent">.</span></h1>
             </div>
             <div className="md:col-span-4 md:pb-3">
-              <p className="it text-[1.35rem] leading-snug sm:text-2xl">
-                {c.tagline}
-                {!c.taglineConfirmed && <span className="caption ml-2 not-italic normal-case tracking-normal">[CONFIRM]</span>}
-              </p>
-              <p className="caption mt-4 opacity-70">From {rupees(fromPrice(c))}</p>
+              {SHOW_TAGLINES && c.taglineConfirmed && <p className="it mb-4 text-[1.35rem] leading-snug sm:text-2xl">{c.tagline}</p>}
+              <p className="caption opacity-70">From {rupees(fromPrice(c))}</p>
             </div>
           </header>
 

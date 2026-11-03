@@ -75,3 +75,9 @@ export const RATING_CONFIRMED = false;
  * the code stays in place. Set to true to see them again while working. A doodle given real `paths` always renders.
  */
 export const SHOW_SLOT_HINTS = false;
+
+/**
+ * The italic tagline under each menu category heading. Hidden (heading only) until the cafe approves the wording: set a category's
+ * `taglineConfirmed` to true in menu.json once its line is signed off, then set this to true. Only confirmed lines are ever shown.
+ */
+export const SHOW_TAGLINES = false;
