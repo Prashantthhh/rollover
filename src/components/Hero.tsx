@@ -21,7 +21,7 @@ export default function Hero() {
       <HeroVideo treatment={HERO_TREATMENT} />
       <div aria-hidden="true" className="absolute inset-0 bg-ink/40" />
       {/* soft gradients behind the type, darkest where the text sits (bottom block and the corner captions), so small text stays readable on bright frames */}
-      <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_22_19/0.7)_0%,rgb(26_22_19/0.45)_38%,transparent_62%),linear-gradient(to_bottom,rgb(26_22_19/0.5)_0%,transparent_20%)]" />
+      <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_22_19/0.88)_0%,rgb(26_22_19/0.72)_40%,rgb(26_22_19/0.4)_58%,transparent_78%),linear-gradient(to_bottom,rgb(26_22_19/0.5)_0%,transparent_20%)]" />
 
       <p className="caption fade-in absolute right-4 top-5 sm:right-8 sm:top-7" style={{ "--i": 0 } as CSSProperties}>No. 01 &mdash; Hanamkonda</p>
       <p aria-hidden="true" className="caption fade-in absolute left-4 top-5 sm:left-8 sm:top-7" style={{ "--i": 0 } as CSSProperties}>The cold plate issue</p>
